@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portada — Descubre Tu Theriotype</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 32px;
+    gap: 24px;
+  }
+
+  .hint {
+    color: rgba(255,255,255,0.35);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── COVER ── */
+  #cover {
+    width: 800px;
+    height: 600px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 60px 120px rgba(0,0,0,0.8);
+    flex-shrink: 0;
+  }
+
+  /* Deep forest background */
+  .bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 15% 40%, rgba(26,90,50,0.9) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 15%, rgba(201,132,42,0.25) 0%, transparent 45%),
+      radial-gradient(ellipse at 70% 80%, rgba(10,30,20,0.8) 0%, transparent 50%),
+      linear-gradient(160deg, #0a1a0f 0%, #0d2318 35%, #071510 70%, #050e08 100%);
+  }
+
+  /* Noise texture overlay */
+  .noise {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+
+  /* Decorative rings behind the wolf */
+  .rings {
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 520px;
+    height: 520px;
+  }
+
+  .ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(212,168,83,0.12);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .ring:nth-child(1) { width: 300px; height: 300px; border-color: rgba(212,168,83,0.25); }
+  .ring:nth-child(2) { width: 380px; height: 380px; }
+  .ring:nth-child(3) { width: 460px; height: 460px; }
+  .ring:nth-child(4) { width: 520px; height: 520px; border-color: rgba(212,168,83,0.06); }
+
+  /* Central moon / glow */
+  .moon {
+    position: absolute;
+    right: 80px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%,
+      rgba(255,240,180,0.12) 0%,
+      rgba(212,168,83,0.08) 30%,
+      transparent 70%);
+    border: 1px solid rgba(212,168,83,0.18);
+    box-shadow:
+      0 0 60px rgba(212,168,83,0.08),
+      inset 0 0 60px rgba(212,168,83,0.05);
+  }
+
+  /* Wolf silhouette */
+  .wolf-container {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 380px;
+    height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wolf-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 40px rgba(212,168,83,0.2))
+            drop-shadow(0 0 80px rgba(201,132,42,0.1));
+  }
+
+  /* Left content panel */
+  .content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 440px;
+    padding: 52px 48px 48px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 10;
+  }
+
+  .top-section { }
+
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(212,168,83,0.85);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .eyebrow::after {
+    content: '';
+    flex: 0 0 32px;
+    height: 1px;
+    background: rgba(212,168,83,0.4);
+  }
+
+  .main-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    color: #f5f0e8;
+    line-height: 1.0;
+    margin-bottom: 8px;
+  }
+
+  .main-title .line1 {
+    font-size: 2.8rem;
+    display: block;
+  }
+
+  .main-title .line2 {
+    font-size: 5.2rem;
+    display: block;
+    color: #d4a853;
+    font-style: italic;
+    line-height: 0.95;
+    letter-spacing: -1px;
+  }
+
+  .main-title .line3 {
+    font-size: 2.4rem;
+    display: block;
+    letter-spacing: 0.02em;
+  }
+
+  .subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 0.82rem;
+    color: rgba(245,240,232,0.45);
+    line-height: 1.7;
+    margin-top: 20px;
+    letter-spacing: 0.03em;
+    max-width: 320px;
+  }
+
+  /* Animals strip */
+  .animals-strip {
+    margin-top: 28px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    max-width: 320px;
+  }
+
+  .animal-pill {
+    font-size: 0.6rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    color: rgba(245,240,232,0.35);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid rgba(245,240,232,0.1);
+    border-radius: 100px;
+  }
+
+  /* Bottom section */
+  .bottom-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .divider-line {
+    width: 48px;
+    height: 1px;
+    background: rgba(212,168,83,0.4);
+  }
+
+  .stats-row {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .stat { }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #d4a853;
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: rgba(245,240,232,0.35);
+    text-transform: uppercase;
+    display: block;
+    margin-top: 4px;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 36px;
+    background: rgba(245,240,232,0.1);
+  }
+
+  /* CTA button inside cover */
+  .cta-btn {
+    display: inline-block;
+    margin-top: 8px;
+    background: linear-gradient(135deg, #c9842a 0%, #d4a853 100%);
+    color: #0d2318;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 12px 22px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(201,132,42,0.35);
+    transition: all 0.2s;
+    width: fit-content;
+  }
+  .cta-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  /* Vertical gradient fade on left edge of wolf side */
+  .left-fade {
+    position: absolute;
+    left: 380px;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    background: linear-gradient(to right, #0d2318, transparent);
+    z-index: 5;
+  }
+
+  /* Corner decoration */
+  .corner-tl {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 40px;
+    height: 40px;
+    border-top: 1px solid rgba(212,168,83,0.3);
+    border-right: 1px solid rgba(212,168,83,0.3);
+  }
+
+  .corner-bl {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    width: 40px;
+    height: 40px;
+    border-bottom: 1px solid rgba(212,168,83,0.3);
+    border-left: 1px solid rgba(212,168,83,0.3);
+  }
+
+  /* Download button */
+  .dl-btn {
+    display: inline-block;
+    background: #c9842a;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 14px 32px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+
+  .dl-btn:hover {
+    background: #b5731f;
+    transform: translateY(-1px);
+  }
+
+</style>
+</head>
+<body>
+
+<span class="hint">↓ Portada del producto (800 × 600 px) — Usa la captura de pantalla o el botón de descarga</span>
+
+<div id="cover">
+  <div class="bg"></div>
+  <div class="noise"></div>
+
+  <!-- Right side decorative elements -->
+  <div class="rings">
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+  </div>
+
+  <div class="moon"></div>
+
+  <!-- Wolf SVG silhouette -->
+  <div class="wolf-container">
+    <svg class="wolf-svg" viewBox="0 0 400 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Glow effect -->
+      <defs>
+        <radialGradient id="wolfGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#d4a853" stop-opacity="0.15"/>
+          <stop offset="100%" stop-color="#d4a853" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="wolfBody" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#c8b896" stop-opacity="0.9"/>
+          <stop offset="40%" stop-color="#a09070" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#5a4a35" stop-opacity="0.7"/>
+        </linearGradient>
+        <linearGradient id="wolfDark" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#7a6a55" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#2a2018" stop-opacity="0.5"/>
+        </linearGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
+      <!-- Background glow circle -->
+      <ellipse cx="200" cy="220" rx="170" ry="180" fill="url(#wolfGlow)"/>
+
+      <!-- Wolf body - sitting/howling position -->
+      <!-- Body -->
+      <ellipse cx="200" cy="310" rx="85" ry="95" fill="url(#wolfBody)" opacity="0.85"/>
+
+      <!-- Tail curving right -->
+      <path d="M260 340 Q320 370 340 320 Q360 270 310 260 Q290 258 285 280 Q295 285 295 305 Q285 330 260 340Z" fill="url(#wolfDark)" opacity="0.8"/>
+
+      <!-- Front legs -->
+      <rect x="155" y="370" width="32" height="60" rx="16" fill="url(#wolfBody)" opacity="0.8"/>
+      <rect x="210" y="370" width="32" height="60" rx="16" fill="url(#wolfBody)" opacity="0.75"/>
+
+      <!-- Paws -->
+      <ellipse cx="171" cy="428" rx="20" ry="10" fill="url(#wolfDark)" opacity="0.7"/>
+      <ellipse cx="226" cy="428" rx="20" ry="10" fill="url(#wolfDark)" opacity="0.65"/>
+
+      <!-- Neck -->
+      <path d="M170 235 Q185 215 200 210 Q215 215 230 235 Q220 265 200 270 Q180 265 170 235Z" fill="url(#wolfBody)" opacity="0.9"/>
+
+      <!-- Head - slightly tilted back for howl -->
+      <ellipse cx="200" cy="185" rx="68" ry="62" fill="url(#wolfBody)" opacity="0.9"/>
+
+      <!-- Ears - pointed up -->
+      <path d="M150 150 L140 90 L185 135Z" fill="url(#wolfBody)" opacity="0.88"/>
+      <path d="M250 150 L260 90 L215 135Z" fill="url(#wolfBody)" opacity="0.88"/>
+
+      <!-- Inner ears -->
+      <path d="M152 148 L146 102 L180 138Z" fill="#c9842a" opacity="0.25"/>
+      <path d="M248 148 L254 102 L220 138Z" fill="#c9842a" opacity="0.25"/>
+
+      <!-- Muzzle - pointing slightly up for howl -->
+      <ellipse cx="200" cy="205" rx="32" ry="26" fill="url(#wolfDark)" opacity="0.7"/>
+      <path d="M178 195 Q200 185 222 195 Q210 215 200 218 Q190 215 178 195Z" fill="url(#wolfBody)" opacity="0.6"/>
+
+      <!-- Open mouth / howl -->
+      <path d="M185 210 Q200 230 215 210" fill="none" stroke="#d4a853" stroke-width="1.5" opacity="0.5"/>
+
+      <!-- Eyes - glowing amber -->
+      <ellipse cx="178" cy="178" rx="9" ry="9" fill="#d4a853" opacity="0.9" filter="url(#glow)"/>
+      <ellipse cx="222" cy="178" rx="9" ry="9" fill="#d4a853" opacity="0.9" filter="url(#glow)"/>
+      <ellipse cx="178" cy="178" rx="5" ry="5" fill="#2a1500"/>
+      <ellipse cx="222" cy="178" rx="5" ry="5" fill="#2a1500"/>
+      <!-- Eye shine -->
+      <ellipse cx="181" cy="175" rx="2" ry="2" fill="white" opacity="0.8"/>
+      <ellipse cx="225" cy="175" rx="2" ry="2" fill="white" opacity="0.8"/>
+
+      <!-- Nose -->
+      <path d="M192 202 Q200 197 208 202 Q200 210 192 202Z" fill="#2a1800" opacity="0.8"/>
+
+      <!-- Fur texture lines -->
+      <path d="M165 270 Q185 255 200 260 Q215 255 235 270" fill="none" stroke="rgba(200,180,140,0.15)" stroke-width="1.5"/>
+      <path d="M155 290 Q180 275 200 280 Q220 275 245 290" fill="none" stroke="rgba(200,180,140,0.12)" stroke-width="1.5"/>
+
+      <!-- Stars around wolf -->
+      <circle cx="120" cy="80" r="2" fill="#d4a853" opacity="0.7"/>
+      <circle cx="310" cy="60" r="1.5" fill="#d4a853" opacity="0.5"/>
+      <circle cx="340" cy="140" r="2" fill="#d4a853" opacity="0.4"/>
+      <circle cx="95" cy="200" r="1.5" fill="#d4a853" opacity="0.35"/>
+      <circle cx="320" cy="380" r="2" fill="#d4a853" opacity="0.45"/>
+      <circle cx="100" cy="350" r="1.5" fill="#d4a853" opacity="0.3"/>
+
+      <!-- Small paw prints near bottom -->
+      <g opacity="0.25" fill="#d4a853">
+        <ellipse cx="110" cy="410" rx="6" ry="4" transform="rotate(-20 110 410)"/>
+        <ellipse cx="105" cy="400" rx="3" ry="2"/>
+        <ellipse cx="116" cy="399" rx="3" ry="2"/>
+        <ellipse cx="122" cy="405" rx="3" ry="2"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Gradient fade between left and right -->
+  <div class="left-fade"></div>
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="top-section">
+      <div class="eyebrow">Test de Autoconocimiento</div>
+
+      <div class="main-title">
+        <span class="line1">Descubre</span>
+        <span class="line2">Tu</span>
+        <span class="line2" style="font-size:4.2rem; color: #f5f0e8; font-style: normal;">Theriotype</span>
+      </div>
+
+      <p class="subtitle">¿Qué animal eres en el fondo?<br>22 arquetipos · Psicología real · Sin filtros.</p>
+
+      <div class="animals-strip">
+        <span class="animal-pill">🐺 Lobo</span>
+        <span class="animal-pill">🦊 Zorro</span>
+        <span class="animal-pill">🦅 Águila</span>
+        <span class="animal-pill">🐬 Delfín</span>
+        <span class="animal-pill">🐻 Oso</span>
+        <span class="animal-pill">🦁 León</span>
+        <span class="animal-pill">🐯 Tigre</span>
+        <span class="animal-pill">+16 más</span>
+      </div>
+    </div>
+
+    <div class="bottom-section">
+      <div class="divider-line"></div>
+      <div class="stats-row">
+        <div class="stat">
+          <span class="stat-num">22</span>
+          <span class="stat-label">Arquetipos</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">15</span>
+          <span class="stat-label">Preguntas</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">5</span>
+          <span class="stat-label">Áreas de vida</span>
+        </div>
+      </div>
+      <a class="cta-btn" href="quiz.html">▶ Descubre tu Arquetipo · Gratis</a>
+    </div>
+  </div>
+
+  <!-- Corner decorations -->
+  <div class="corner-tl"></div>
+  <div class="corner-bl"></div>
+</div>
+
+<button class="dl-btn" onclick="downloadCover()">⬇ Descargar portada (screenshot)</button>
+
+<span class="hint">Dimensiones: 800 × 600 px · Lista para subir a Hotmart</span>
+
+<script>
+  function downloadCover() {
+    // Use html2canvas if available, otherwise guide user
+    alert('Para descargar la imagen:\n\n1. Clic derecho sobre la portada\n2. "Guardar imagen como..." \n\nO usa la herramienta de captura de pantalla de tu sistema y recorta solo la portada.\n\nTamaño exacto: 800 × 600 px');
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Los 22 Arquetipos Therianos — Guía Completa</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#f5f0e8;color:#1a1a1a;font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.75}
+h1,h2,h3,.quote{font-family:'Playfair Display',serif}
+.page-header{background:#0d2318;color:#d4a853;text-align:center;padding:60px 24px}
+.page-header h1{font-size:2.8rem;margin-bottom:10px;font-weight:900}
+.page-header p{color:#f5f0e8;font-size:1.1rem;opacity:.85}
+.toc{max-width:900px;margin:40px auto;background:white;border-radius:16px;padding:36px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.toc h2{font-size:1.4rem;color:#0d2318;margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid #d4a853}
+.toc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.toc-item a{display:block;padding:8px 10px;background:#faf7f0;border-radius:8px;text-decoration:none;color:#333;font-size:.83rem;transition:.2s}
+.toc-item a:hover{background:#0d2318;color:#d4a853}
+.lesson{max-width:900px;margin:40px auto;background:white;border-radius:16px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.07)}
+.lesson-header{background:#0d2318;padding:48px 48px 36px;position:relative}
+.lesson-num{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:#d4a853;opacity:.7;margin-bottom:10px}
+.lesson-title{font-size:3rem;font-weight:900;color:#f5f0e8;margin-bottom:16px}
+.lesson-quote{font-style:italic;color:#d4a853;font-size:1.25rem;line-height:1.6;padding:20px 24px;background:rgba(212,168,83,.08);border-left:4px solid #d4a853;border-radius:0 8px 8px 0}
+.lesson-body{padding:48px}
+.sec{margin-bottom:36px}
+.sec-title{font-size:1.2rem;font-weight:700;color:#0d2318;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid #d4a853;display:flex;align-items:center;gap:8px}
+.sec p{margin-bottom:14px;font-size:1rem;line-height:1.8;color:#333}
+.strength-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.strength-card{background:#f9f6f0;border-radius:10px;padding:16px 18px;border-left:3px solid #d4a853}
+.strength-card h4{font-size:.95rem;font-weight:600;color:#0d2318;margin-bottom:6px}
+.strength-card p{font-size:.9rem;margin:0;color:#555;line-height:1.6}
+.blind-item{background:#fff8f0;border-radius:10px;padding:16px 18px;margin-bottom:10px;border-left:3px solid #c9842a}
+.blind-item h4{font-size:.95rem;font-weight:600;color:#8b3a1a;margin-bottom:6px}
+.blind-item p{font-size:.9rem;margin:0;color:#555;line-height:1.6}
+.ctx-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.ctx-card{background:#f5f0e8;border-radius:10px;padding:18px}
+.ctx-card h4{font-size:.85rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#0d2318;margin-bottom:10px}
+.ctx-card p{font-size:.9rem;color:#444;line-height:1.7;margin:0}
+.shadow-box{background:#0d2318;color:#f5f0e8;border-radius:12px;padding:28px 32px}
+.shadow-box h3{color:#d4a853;margin-bottom:14px;font-size:1.2rem}
+.shadow-box p{font-size:.97rem;line-height:1.8;margin-bottom:12px;color:#d4a853;opacity:.95}
+.compat-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid #eee}
+.compat-item:last-child{border-bottom:none}
+.compat-emoji{font-size:2rem;flex-shrink:0;width:40px;text-align:center}
+.compat-text h4{font-size:.95rem;font-weight:600;color:#0d2318;margin-bottom:4px}
+.compat-text p{font-size:.9rem;color:#555;margin:0;line-height:1.6}
+.actions-list{counter-reset:act}
+.action-item{display:flex;gap:16px;padding:16px;background:#faf7f0;border-radius:10px;margin-bottom:10px;counter-increment:act}
+.action-num{flex-shrink:0;width:32px;height:32px;background:#0d2318;color:#d4a853;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem}
+.action-num::before{content:counter(act)}
+.action-text h4{font-size:.95rem;font-weight:600;color:#0d2318;margin-bottom:5px}
+.action-text p{font-size:.9rem;color:#555;margin:0;line-height:1.6}
+.bonus-bar{background:linear-gradient(135deg,#0d2318,#1a3a2a);border-radius:12px;padding:24px 28px;margin-top:32px;color:#f5f0e8}
+.bonus-bar h3{color:#d4a853;margin-bottom:14px;font-size:1.1rem}
+.bonus-list{list-style:none;padding:0}
+.bonus-list li{padding:8px 0;border-bottom:1px solid rgba(212,168,83,.2);font-size:.93rem;display:flex;gap:10px}
+.bonus-list li:last-child{border-bottom:none}
+.bonus-list li span{color:#d4a853;font-weight:600;flex-shrink:0}
+@media(max-width:700px){.toc-grid,.strength-grid,.ctx-grid{grid-template-columns:1fr}.lesson-header,.lesson-body{padding:28px 20px}.lesson-title{font-size:2.2rem}}
+</style>
+
+</head>
+<body>
+<div class="page-header">
+  <h1>🐾 Los 22 Arquetipos Therianos</h1>
+  <p>Tu guía completa de autoconocimiento</p>
+</div>
+<div class="toc"><h2>📖 Los 22 Arquetipos</h2><div class="toc-grid"><div class="toc-item"><a href="#lobo">🐺 Lobo</a></div><div class="toc-item"><a href="#zorro">🦊 Zorro</a></div><div class="toc-item"><a href="#oso">🐻 Oso</a></div><div class="toc-item"><a href="#cuervo">🐦 Cuervo</a></div><div class="toc-item"><a href="#delfin">🐬 Delfín</a></div><div class="toc-item"><a href="#gato">🐱 Gato</a></div><div class="toc-item"><a href="#aguila">🦅 Águila</a></div><div class="toc-item"><a href="#jaguar">🐆 Jaguar</a></div><div class="toc-item"><a href="#leon">🦁 León</a></div><div class="toc-item"><a href="#tigre_blanco">🐯 Tigre Blanco</a></div><div class="toc-item"><a href="#elefante">🐘 Elefante</a></div><div class="toc-item"><a href="#tigre">🐅 Tigre</a></div><div class="toc-item"><a href="#buho">🦉 Búho</a></div><div class="toc-item"><a href="#caballo">🐴 Caballo</a></div><div class="toc-item"><a href="#pulpo">🐙 Pulpo</a></div><div class="toc-item"><a href="#cheetah">⚡ Cheetah</a></div><div class="toc-item"><a href="#pingüino">🐧 Pingüino</a></div><div class="toc-item"><a href="#pantera_negra">🖤 Pantera Negra</a></div><div class="toc-item"><a href="#coyote">🐺 Coyote</a></div><div class="toc-item"><a href="#ciervo">🦌 Ciervo</a></div><div class="toc-item"><a href="#leopardo">🌿 Leopardo</a></div><div class="toc-item"><a href="#pavo_real">🦚 Pavo Real</a></div></div></div>
+<div class="lesson" id="lobo">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 01 de 22</div>
+    <div class="lesson-title">🐺 Lobo</div>
+    <div class="lesson-quote">&ldquo;Solo soy peligroso. Con los míos, soy invencible.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El Lobo es uno de los arquetipos más reconocibles y también uno de los más malinterpretados. Se asocia con la soledad, pero en realidad el Lobo es profundamente social: simplemente no acepta cualquier compañía. Su selectividad no es arrogancia, es sabiduría instintiva. Ha aprendido, muchas veces por experiencia dolorosa, que rodearse de las personas equivocadas es más peligroso que estar solo.</p><p>Lo que define al Lobo en esencia es la lealtad absoluta. Cuando alguien entra en tu manada, lo proteges con una devoción que la mayoría de arquetipos nunca podrá igualar. Harías cualquier cosa por los tuyos. Pero 'los tuyos' es una categoría pequeña y ganada con esfuerzo. No regalas tu confianza; hay que merecerla, y ese proceso puede ser largo.</p><p>El Lobo tiene un sexto sentido para detectar la falsedad. Las personas que performan, que esconden sus verdaderas intenciones o que son desleales, te generan una incomodidad visceral que a veces ni siquiera puedes explicar con palabras. Confías en esa incomodidad y sueles tener razón.</p><p>Hay una tensión inherente en ser Lobo: amas profundamente pero también valoras tu independencia de manera que puede resultar contradictoria. Necesitas espacio para ser tú mismo, para pensar, para aullar solo cuando lo necesitas. Esa tensión entre conexión profunda e independencia feroz es, en realidad, la naturaleza misma del lobo real: un animal que vive en manada pero que también puede sobrevivir solo.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu psicología está profundamente marcada por la idea del territorio. No necesariamente en términos físicos, aunque eso también puede manifestarse, sino en términos de identidad, valores y vínculos. Defiendes lo tuyo con una energía que a veces sorprende a los demás porque no siempre es visible hasta que se activa.</p><p>La luna tiene un simbolismo especial para el Lobo: representa esa parte tuya que solo sale en la oscuridad, en la intimidad, en la honestidad sin filtros. En público puedes ser reservado, medido, incluso calculado. Pero en privado, con las personas correctas, muestras una profundidad emocional que contradice completamente la imagen de frialdad que proyectas al mundo.</p><p>Tienes una relación especial con la noche, con el silencio, con los espacios donde la mayoría de personas se siente incómoda. Esos momentos son tuyos. Los necesitas. Tu mejor pensamiento ocurre ahí, en los márgenes, cuando el mundo exterior se calla y puedes escuchar tu propia voz.</p><p>El Lobo no nació leal por ideología: se volvió leal por experiencia. Cada traición que viviste te enseñó el valor inconmensurable de la fidelidad genuina. Cada vez que alguien cumplió su palabra contigo, lo grabaste en tu memoria emocional para siempre.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Lealtad inquebrantable</h4><p>Cuando te comprometes con alguien o algo, lo haces completamente. No abandonas cuando las cosas se ponen difíciles. Esa constancia es uno de tus activos más valiosos y más raros.</p></div>
+<div class="strength-card"><h4>Detector de falsedad</h4><p>Tienes un radar extraordinario para identificar personas que no son auténticas, que esconden sus intenciones o que no dicen lo que realmente piensan. Rara vez te equivocas en tu primera impresión.</p></div>
+<div class="strength-card"><h4>Liderazgo por ejemplo</h4><p>No lideras desde el ego o la autoridad formal. Lideras demostrando. Cuando haces algo, lo haces completo. Eso genera un tipo de respeto que ningún título puede comprar.</p></div>
+<div class="strength-card"><h4>Profundidad emocional</h4><p>Las conversaciones superficiales te aburren profundamente. Pero cuando alguien te invita a una conversación real, respondes con una profundidad y honestidad que pocas personas pueden igualar.</p></div>
+<div class="strength-card"><h4>Resiliencia feroz</h4><p>Has pasado por cosas que habrían roto a otros. Esa capacidad de sobrevivir, adaptarte y seguir adelante sin perder tu esencia es uno de tus superpoderes más silenciosos.</p></div>
+<div class="strength-card"><h4>Instinto agudo</h4><p>Confías en tu instinto y generalmente tienes razón. Esa capacidad de procesar información de manera intuitiva, sin necesitar explicarla racionalmente, es un tipo de inteligencia que el mundo subestima.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres extraordinariamente valioso en roles que requieren liderazgo basado en integridad, no en jerarquía formal. Equipos, proyectos de largo plazo, situaciones de crisis donde la lealtad y la constancia son más importantes que la velocidad o el carisma: ahí el Lobo brilla.</p><p>Tu dificultad está en entornos de alta rotación, donde las relaciones son superficiales y transaccionales, o donde se espera que finjas entusiasmo que no sientes. Esos ambientes te agotan profundamente, aunque puedas funcionar en ellos por períodos.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Amas con una intensidad que puede desconcertar a quienes no están preparados. Cuando alguien es 'tuyo', lo es completamente: los proteges, los priorizas, harías cualquier cosa por ellos. Pero llegar a ese punto requiere tiempo y paciencia del otro.</p><p>Necesitas una pareja que tenga su propia identidad fuerte y no busque fundirse en la tuya. La codependencia te asfixia. Alguien que te dé espacio para ser tú, que entienda que tu silencio no es rechazo, y que comparta tus valores fundamentales sobre lealtad y honestidad.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, el Lobo es calculado pero contundente. No reacciona impulsivamente, pero cuando actúa, lo hace con una claridad y determinación que puede dejar al otro sin palabras.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Lobo</h3>
+        <p>La sombra del Lobo se activa cuando la soledad elegida se convierte en aislamiento forzado por el miedo. Cuando el 'no necesito a nadie' deja de ser independencia y se convierte en una muralla que te protege de una soledad que ya está adentro.</p><p>También hay una sombra en el ejercicio del poder dentro de la manada. El Lobo alfa puede volverse controlador sin darse cuenta, convirtiendo la protección en dominio y la lealtad en deuda. Revisar esos límites es trabajo permanente.</p><p>Por último, está la sombra de la inflexibilidad: cuando alguien rompe tu código, puedes cerrarte de manera tan absoluta que no dejas espacio para la complejidad humana, para el arrepentimiento genuino o el cambio real.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🦁</div><div class="compat-text"><h4>León</h4><p>Comparten el liderazgo natural y la lealtad, pero el León aporta una apertura social que equilibra la introversión del Lobo. Se respetan profundamente.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐺</div><div class="compat-text"><h4>Coyote</h4><p>Ambos son caninos, pero con energías opuestas que se complementan. El Coyote alivia la seriedad del Lobo; el Lobo da profundidad a la ligereza del Coyote.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐻</div><div class="compat-text"><h4>Oso</h4><p>Comparten la valoración de la lealtad, el ritmo propio y la protección de los suyos. Una de las alianzas más sólidas del ecosistema.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🦅</div><div class="compat-text"><h4>Águila</h4><p>El Lobo necesita la visión elevada del Águila para ver más allá del territorio inmediato. El Águila necesita la profundidad y lealtad del Lobo como ancla.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Audita tu manada</h4><p>Haz una lista de las personas en tu vida. Para cada una, pregúntate: ¿esta relación me nutre o me agota? ¿Es recíproca la lealtad? Actúa en consecuencia, aunque sea incómodo.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Practica la vulnerabilidad dosificada</h4><p>Una vez por semana, comparte algo real y vulnerable con alguien de tu manada. No tiene que ser enorme. Pero que sea verdadero.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Distingue soledad elegida de aislamiento reactivo</h4><p>Cuando quieras estar solo, pregúntate: ¿estoy eligiendo esto desde mi fuerza o estoy huyendo de algo que me asusta? La respuesta cambia completamente el significado del acto.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Trabaja el perdón como estrategia, no como rendición</h4><p>Hay personas que no merecen tu confianza de vuelta. Pero perdonar no es readmitirlas: es soltar el peso que cargas cuando sostienes el rencor. Hazlo por ti.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Lidera desde el servicio esta semana</h4><p>Identifica una forma concreta de usar tu capacidad de liderazgo y lealtad para ayudar a alguien de tu manada a lograr algo importante para ellos, sin esperar nada a cambio.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="zorro">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 02 de 22</div>
+    <div class="lesson-title">🦊 Zorro</div>
+    <div class="lesson-quote">&ldquo;No soy el más fuerte. Solo soy el más listo en la habitación.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El Zorro es el estratega del ecosistema. No necesitas ser el más grande, el más rápido ni el más fuerte, porque rara vez esas son las variables que determinan quién gana. Tienes la habilidad de leer las situaciones, encontrar los ángulos que otros no ven, y moverte con una agilidad que hace que tu tamaño nunca importe.</p><p>Lo que distingue al Zorro de otros arquetipos inteligentes es el encanto. No eres solo analítico: eres carismático. Puedes hacer que las personas se sientan vistas y valoradas mientras simultáneamente procesas información sobre ellas. Eso no es manipulación necesariamente; es una habilidad social extraordinaria que, bien usada, crea conexiones genuinas.</p><p>El Zorro tiene una curiosidad insaciable que lo lleva a saber un poco de todo. Esta amplitud de conocimiento, combinada con tu capacidad para conectar puntos que a otros se les escapan, te convierte en un pensador lateral extraordinario. Las soluciones creativas a problemas complejos son tu zona de genialidad.</p><p>Hay una tensión en el Zorro entre la autenticidad y la performance. Tu encanto social es genuino pero también aprendido, y a veces no sabes exactamente dónde termina uno y empieza el otro. Trabajar en esa claridad es uno de tus mayores desafíos de crecimiento personal.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu inteligencia no es del tipo que se mide bien en exámenes lineales. Es una inteligencia sistémica, relacional, que ve patrones donde otros ven caos. Puedes entrar a una sala y en cinco minutos haber procesado las dinámicas de poder, los estados emocionales de cada persona y las posibilidades que ofrece el entorno.</p><p>El Zorro aprendió a ser inteligente porque necesitaba serlo. En algún momento de tu historia, la fuerza bruta no era una opción para ti, y desarrollaste la mente como tu herramienta principal. Ese origen puede estar en la infancia, en experiencias de desventaja, o simplemente en una disposición innata que se fue afinando con el tiempo.</p><p>Tienes una relación compleja con la verdad. No porque seas deshonesto por naturaleza, sino porque entiendes que hay múltiples versiones de la verdad y que el contexto cambia completamente su significado. Eso te hace matizado, pero a veces dificulta que las personas sepan exactamente dónde estás parado.</p><p>La soledad del Zorro es intelectual: pocas personas piensan a tu velocidad o con tu complejidad. Encontrar a alguien que te siga el ritmo mental es uno de los mejores regalos que puede darte la vida.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Pensamiento estratégico superior</h4><p>Ves tres movimientos adelante mientras otros procesan el movimiento actual. Esta capacidad de anticipación es extraordinariamente valiosa en cualquier contexto competitivo o complejo.</p></div>
+<div class="strength-card"><h4>Adaptabilidad instantánea</h4><p>Cambias de estrategia cuando el entorno cambia, sin necesidad de crisis existencial. Lo que para otros es una amenaza desestabilizadora, para ti es simplemente información nueva.</p></div>
+<div class="strength-card"><h4>Encanto social genuino</h4><p>Tienes la habilidad de hacer que las personas se sientan especiales e importantes. Eso crea alianzas, abre puertas y genera una red de relaciones que se activa cuando la necesitas.</p></div>
+<div class="strength-card"><h4>Pensamiento lateral creativo</h4><p>Las soluciones obvias raramente son las tuyas. Tu mente busca el ángulo inesperado, la conexión no obvia, el recurso no convencional. Eso te da ventajas en problemas que tienen a todos atascados.</p></div>
+<div class="strength-card"><h4>Lectura de personas</h4><p>Procesas lenguaje corporal, tono, inconsistencias y motivaciones ocultas con una facilidad que parece sobrenatural. Rara vez te lleva tiempo saber qué mueve realmente a alguien.</p></div>
+<div class="strength-card"><h4>Comunicación adaptable</h4><p>Hablas diferente con cada persona, no porque finjas ser alguien diferente, sino porque tienes la habilidad de ajustar tu registro para conectar genuinamente. Eso es una forma de respeto e inteligencia emocional.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres extraordinario en roles que requieren negociación, estrategia, comunicación persuasiva o resolución creativa de problemas. Consultoría, ventas de alto nivel, liderazgo político o cualquier entorno donde leer personas y situaciones sea clave.</p><p>Tus mayores dificultades están en entornos de alta burocracia donde la inteligencia no se traduce en movilidad, o en roles de ejecución pura donde el valor está en la consistencia y no en la creatividad.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Eres un compañero fascinante: estimulante intelectualmente, divertido, lleno de sorpresas. El problema surge cuando tu pareja siente que nunca sabe completamente quién eres o que estás siempre 'manejando' la dinámica en lugar de simplemente estar.</p><p>Necesitas a alguien que no se sienta amenazado por tu inteligencia, que pueda seguirte el ritmo mental y que también sea capaz de desafiarte. La admiración unilateral te aburre rápidamente.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto el Zorro raramente confronta de manera directa. Busca el ángulo, negocia, reencuadra. Cuando lo hace directamente, puede ser devastadoramente preciso en sus palabras.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Zorro</h3>
+        <p>La sombra del Zorro vive en el espacio entre ser inteligente y usarlo para evitar la responsabilidad. Es la capacidad de siempre encontrar la manera de que no sea 'culpa tuya', de siempre tener una explicación brillante que te exonera.</p><p>También está la sombra del manipulador benevolente: convencerte de que sabes lo que es mejor para los demás y maniobrar situaciones para llevarlos ahí sin consultarles. La intención puede ser genuinamente buena, pero el método viola la autonomía de las personas.</p><p>Y la sombra más profunda: la soledad del que nunca muestra completamente quién es. Cuando el encanto es tan bueno que la persona real queda enterrada debajo de capas de performance, el Zorro puede perder contacto con su propio centro.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🐙</div><div class="compat-text"><h4>Pulpo</h4><p>Comparten la inteligencia multidimensional y la creatividad. Juntos generan ideas que individualmente no habrían alcanzado. Una alianza creativa extraordinaria.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐆</div><div class="compat-text"><h4>Jaguar</h4><p>El Jaguar aporta la contundencia que al Zorro a veces le falta. El Zorro aporta la flexibilidad que al Jaguar le cuesta. Se respetan y aprenden mutuamente.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🦉</div><div class="compat-text"><h4>Búho</h4><p>El Búho profundiza lo que el Zorro amplía. Juntos cubren un espectro intelectual extraordinario: amplitud y profundidad en la misma mesa.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐬</div><div class="compat-text"><h4>Delfín</h4><p>El Delfín trae autenticidad social que ancla al Zorro cuando se pierde en la estrategia. El Zorro aporta visión táctica al entusiasmo del Delfín.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Practica el compromiso estratégico</h4><p>Esta semana, elige una sola dirección y quédate en ella aunque veas otros ángulos posibles. La brillantez táctica sin ejecución sostenida es solo potencial desperdiciado.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Muéstrate sin estrategia</h4><p>Elige una conversación esta semana donde no proceses ni calcules. Simplemente di lo que sientes, sin pensar en el efecto. Observa qué pasa.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Audita tu red de relaciones</h4><p>Pregúntate: ¿en cuántas de mis relaciones muestro quién realmente soy? Si la respuesta es pocas, trabaja en ampliar ese círculo de autenticidad.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Usa tu inteligencia al servicio de algo más grande</h4><p>Identifica un problema real en tu comunidad o entorno y aplica tu pensamiento estratégico a resolverlo sin que haya nada en ello para ti directamente.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Celebra la profundidad sobre la amplitud</h4><p>En lugar de saber un poco de todo esta semana, elige un tema y sumérgete profundamente en él. La expertise profunda tiene un poder diferente al conocimiento amplio.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="oso">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 03 de 22</div>
+    <div class="lesson-title">🐻 Oso</div>
+    <div class="lesson-quote">&ldquo;Soy tranquilo. Pero no me confundas con manso.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El Oso vive a su ritmo, deliberado y sin prisa. Eres la roca emocional de tu entorno: la persona a la que todos acuden cuando necesitan estabilidad, consejo o simplemente alguien que no entre en pánico. Tu presencia calma el espacio como las aguas profundas de un bosque antiguo. No necesitas movimientos rápidos porque confías en que llegarás a donde necesitas.</p><p>Lo que muchos no ven es que bajo esa calma existe una fuerza extraordinaria. No te activas con facilidad, pero cuando lo haces, eres una fuerza de la naturaleza. Tu límite de paciencia puede parecer infinito, pero tiene un punto: cuando ese límite se rompe, nadie en la habitación lo olvida. Tu quietud es su propia forma de poder.</p><p>El Oso comprende instintivamente que la consistencia es más valiosa que la velocidad, que la presencia sostenida vale más que las gestos dramáticos. Construyes tu vida con materiales sólidos, paso a paso, sin necesidad de que nadie lo vea. Esa es tu naturaleza: hacer el trabajo real, el que persiste, el que crea raíces.</p><p>Hay una sabiduría en tu paciencia que muchos confunden con pasividad. Pero esperar el momento correcto no es debilidad: es estrategia ancestral. Sabes que las cosas que perduran se construyen lentamente, en la quietud, fuera del foco. Esa es la manera en que tú cambia el mundo: desde adentro, con constancia.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu psicología está marcada por la profundidad. No necesitas superficies brillantes para validarte. Entiendes instintivamente que la estabilidad emocional es un superpoder que casi nadie valora hasta que lo necesita desesperadamente. Eres la red de seguridad invisible para quienes te rodean.</p><p>Tu relación con el tiempo es diferente a la mayoría. No sientes urgencia porque confías en tus ritmos. Mientras otros corren hacia destinos inciertos, tú avanzan lentamente pero con certeza absoluta de dónde estás parado. Eso te da una claridad que los apresurados nunca logran alcanzar.</p><p>Tienes una inteligencia emocional profunda: procesas los sentimientos en capas, sin necesidad de hablar sobre ellos constantemente. Entiendes lo que alguien necesita porque lo sientes, no porque lo analices. Esa sintonía silenciosa es lo que te hace alguien en quien verdaderamente se puede confiar.</p><p>El Oso sabe algo que pocos: que el verdadero poder es proteger sin necesidad de demostración, amar sin dramatismo, estar presente sin necesidad de ser visto. Tu fuerza viene de adentro, de una raíz tan profunda que ninguna tormenta puede arrancar.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Estabilidad inquebrantable</h4><p>Tu presencia es un ancla para quienes te rodean. En medio del caos, eres el punto fijo. Esta consistencia emocional es extraordinaria y raramente se encuentra en personas que también tienen la profundidad que tú tienes.</p></div>
+<div class="strength-card"><h4>Paciencia estratégica</h4><p>No es pasividad: es la capacidad de esperar el momento exacto mientras preparas el terreno. Tu paciencia te permite ver lo que otros pierden por su prisa. Eso es una ventaja competitiva enorme en cualquier contexto.</p></div>
+<div class="strength-card"><h4>Fuerza genuina</h4><p>Tu poder no necesita demostración constante. Porque confías en él, otros también confían. Esta capacidad de estar tranquilo siendo fuerte es rara y magnetiza a las personas hacia ti como líderes naturales.</p></div>
+<div class="strength-card"><h4>Protección integral</h4><p>Proteges sin sofocar, cuidas sin controlar. Tu tipo de protección respeta la autonomía de quien proteges, lo cual la hace aún más valiosa. Eres seguridad sin costo emocional para el otro.</p></div>
+<div class="strength-card"><h4>Consistencia sostenida</h4><p>Terminas lo que empiezas. Esta simple cualidad te hace indispensable. En un mundo de promesas vacías, tu seguimiento es un lujo excepcional que la mayoría desearía tener en su vida.</p></div>
+<div class="strength-card"><h4>Discernimiento profundo</h4><p>Tu quietud te permite observar y entender patrones que otros no ven. Captas lo que alguien realmente siente más allá de lo que dice. Esta capacidad de lectura profunda te hace sabio sin necesidad de parecer inteligente.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres extraordinariamente valioso en roles que requieren consistencia, construcción a largo plazo y liderazgo desde la presencia. Equipo que confían en ti, proyectos que necesitan alguien que termine lo que empieza, crisis donde se requiere estabilidad emocional.</p><p>Tu dificultad está en ambientes donde todo es volatilidad, cambio constante sin dirección clara, o donde tu contribución se mide solo por velocidad. En estos espacios, tu verdadera valor se invisibiliza.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Amas con una constancia que pocos pueden igualar. Cuando das tu corazón, es completamente: presente, sin fingimiento, plenamente disponible en los momentos silenciosos. Pero necesitas que vean esa presencia como lo que es: devoción.</p><p>Necesitas una pareja que no confunda tu tranquilidad con frialdad. Alguien que sepa que tu amor es el que se mantiene año tras año, en la rutina cotidiana, en la perseverancia. La pasión ardiente no es tu estilo, pero la lealtad sostenida es tu marca.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, el Oso evita la confrontación hasta el punto donde la evitación se convierte en el verdadero problema. Pero cuando finalmente actúas, lo haces con una claridad contundente: tienes el poder de cambiar una situación, y lo usas.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Oso</h3>
+        <p>La sombra del Oso es el letargo disfrazado de paz. Es la inercia tan completa que dejas de crecer, dejas de expandir, dejas de soñar cosas nuevas. La aceptación de tu ritmo puede convertirse en aceptación de la mediocridad.</p><p>También hay una sombra en el costo emocional de tu servicio silencioso. Proteges a todos mientras te descuidas a ti mismo. Llevas cargas que no son tuyas porque no sabes cómo pedir ayuda. Un día esa carga es demasiado y no hay forma de sostenerla.</p><p>La última sombra: tu desconexión de la propia ambición. El Oso que no sueña, que se contenta con lo seguro, que nunca se atreve porque la seguridad ya es suficiente. Eso es supervivencia, no vida.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🐺</div><div class="compat-text"><h4>Lobo</h4><p>Ambos valoran la estabilidad y la protección de los cercanos. El Oso aporta paciencia; el Lobo aporta intensidad. Se complementan profundamente en ciclos de descanso y acción.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🦁</div><div class="compat-text"><h4>León</h4><p>El León trae movimiento y visibilidad social que equilibra la quietud del Oso. El Oso aporta la raíz que el León necesita. Una pareja donde acción y paciencia se respetan mutuamente.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐬</div><div class="compat-text"><h4>Delfín</h4><p>El Delfín energiza al Oso, lo invita a salir de su zona cómoda. El Oso ancla al Delfín cuando necesita estabilidad. Se potencian en contextos de equilibrio.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐘</div><div class="compat-text"><h4>Elefante</h4><p>Ambos comprenden la sabiduría del tiempo y el valor de la memoria. Crean una alianza donde la consistencia es celebrada, no cuestionada. Una de las parejas más estables del ecosistema.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Identifica tu raíz anclada</h4><p>Esta semana, reconoce exactamente en qué estás invirtiendo tu paciencia. ¿Es en algo que realmente valoras? ¿O solo en lo cómodo? Sé honesto contigo.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Practica una acción incómoda</h4><p>Haz algo que te saque de tu ritmo habitual. No tiene que ser enorme. Puede ser una conversación difícil, un nuevo camino, un aprendizaje nuevo. Propósito: probar que puedes cambiar.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Pide una cosa que necesites</h4><p>Identifica algo que necesitas que otros sepan pero que nunca has dicho en voz alta. Esta semana, dilo. No esperes que lo adivinen.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Nombra tu contribución silenciosa</h4><p>Identifica las tres cosas concretas que haces cada semana que mantienen todo en pie. Luego, menciona una de ellas a alguien que se beneficia de ella.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Sueña con algo nuevo</h4><p>Reserva 20 minutos en silencio para preguntarte: ¿hay algo que siempre quise hacer pero pensé que era demasiado riesgoso? Escribe qué sería el primer paso pequeñito.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="cuervo">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 04 de 22</div>
+    <div class="lesson-title">🐦 Cuervo</div>
+    <div class="lesson-quote">&ldquo;No soy oscuro. Solo veo lo que otros prefieren ignorar.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El Cuervo es el observador que nadie subestima dos veces. Tu mente procesa en capas: mientras los demás ven la superficie, tú ya estás analizando las motivaciones detrás, los patrones subyacentes, las contradicciones entre lo que alguien dice y lo que realmente hace. Eres un decodificador de realidades que otros encuentran demasiado incómodas para mirar.</p><p>Tu humor es seco e inteligente, y no todos lo captan a la primera. Pero eso está bien. Tienes una relación especial con los temas que otros evitan: la muerte, el fracaso, la sombra humana. No porque seas oscuro, sino porque entiendes que negarlos es simplemente ingenuo. Eres complejo, y llevas ese peso con una elegancia silenciosa.</p><p>El Cuervo comprende una verdad fundamental: la realidad tiene capas, y las más profundas casi nunca están donde todos miran. Mientras otros se pierden en las apariencias, tú ves la mecánica detrás. Esa capacidad te hace solitario a menudo, porque ver demasiado claramente te distancia de las cómodas ilusiones que otros necesitan.</p><p>Lo que otros llaman pesimismo, tú lo llamas realismo. Pero la verdad es más compleja: no estás atrapado en lo negativo. Simplemente has decidido que los ojos abiertos son mejor que los cerrados, incluso si duele. Esa honestidad brutal es tu marca, tu peso, tu regalo.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu inteligencia es del tipo que ve la estructura invisible de las cosas. No es solo información acumulada: es comprensión de patrones, de cómo las piezas encajan de maneras que otros no predicen. Tu mente es un ojo de halcón para inconsistencias, mentiras, verdades incómodas.</p><p>Tienes una soledad intelectual particular: pocas personas piensan con tu profundidad o se atreven a ver lo que tú ves. Encontrar a alguien que pueda seguirte en tus vuelos mentales es raro. Por eso a menudo prefieres tu propia compañía: es menos agotador.</p><p>Tu relación con la verdad es apasionada. No porque busques dañar, sino porque crees que la verdad, aunque sea incómoda, es siempre mejor que la comodidad de una mentira. Esa postura te hace peligroso para quienes prefieren vivir en la negación.</p><p>El Cuervo sabe algo que pocos: que la oscuridad no es mala, es solo la ausencia de luz falsa. Tu capacidad para permanecer cómodo en la incertidumbre, en lo desconocido, en lo que otros encuentran aterrador, es tu superpoder. Eres seguro en lo oscuro.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Análisis quirúrgico</h4><p>Tu capacidad para desmenuzar una situación compleja en sus componentes verdaderos es extraordinaria. No dejas cabos sueltos. Ves conexiones que otros pierden. En investigación, diagnóstico, estrategia, eres invaluable.</p></div>
+<div class="strength-card"><h4>Visión de verdades incómodas</h4><p>Mientras otros practican la negación, tú tienes el coraje de nombrar lo que ves. Esta honestidad brutal, aunque incómoda, es lo que permite que otros finalmente vean la realidad completa. Eres un espejo desagradable pero verdadero.</p></div>
+<div class="strength-card"><h4>Independencia intelectual</h4><p>No necesitas validación de consenso. Si todos creen A y tú ves B, confías en tu percepción. Esta resistencia al pensamiento grupal es rara y valiosa en contextos donde se necesita pensamiento original.</p></div>
+<div class="strength-card"><h4>Humor inteligente que corta</h4><p>Tu humor es una hoja afilada. No es amable, pero es exacto. Y precisamente esa exactitud es lo que lo hace memorable. Conecta con quienes comprenden que la verdad a veces debe doler para sanar.</p></div>
+<div class="strength-card"><h4>Profundidad en crisis</h4><p>Cuando todo colapsa, el Cuervo sigue viendo claro. Tu capacidad para analizar situaciones caóticas sin perder la estructura mental es extraordinaria. Otros se paralizan; tú mapeas.</p></div>
+<div class="strength-card"><h4>Integridad sin transacción</h4><p>No vendes tu verdad por comodidad social. Eso es infrecuente. Tu palabra tiene peso porque no la diluyes en acuerdos para agradar. Cuando dices algo, puedes confiar en que es lo que realmente crees.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres extraordinario en roles que requieren análisis profundo, investigación rigurosa, pensamiento crítico, diagnóstico. Consultoría estratégica, ciencia, investigación, cualquier área donde la verdad incómoda sea más valiosa que la comodidad del consenso.</p><p>Tu dificultad está en entornos que requieren diplomacia emocional, donde la verdad debe suavizarse, donde se espera que participes en ilusiones colectivas. En estos espacios, tu integridad se convierte en un problema.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Eres un compañero complejo: intelectualmente estimulante pero emocionalmente exigente. Tu pareja debe poder tolerar tus verdades duras, tus análisis despiadados, tu baja tolerancia por la superficialidad. No es para todos.</p><p>Necesitas a alguien que no se sienta amenazado por tu inteligencia y que pueda seguirte en tus vuelos mentales. La admiración unilateral te aburre rápidamente. Buscas alguien que te desafíe intelectualmente, no solo que te apoye emocionalmente.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, el Cuervo observa, cataloga, espera. Tu paciencia es táctica. Cuando actúas, lo haces con precisión quirúrgica, con palabras que encuentran exactamente dónde duele. No desperdicias energía.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Cuervo</h3>
+        <p>La sombra del Cuervo es la desesperación disfrazada de verdad. Es cuando has visto tan crudamente que ya no encuentras ni un punto de esperanza. Cuando toda verdad se convierte en razón para no intentar nada.</p><p>También está la sombra de la superioridad: la creencia de que tu inteligencia te da derecho a juzgar a otros como inferiores. Cuando tu análisis se convierte en sentencia, cuando dejas de ver a las personas como complejas y las reduces a sus patrones disfuncionales.</p><p>La última sombra: tu soledad como autocastigo. Porque ves claro, te convences de que nadie puede entender. Y entonces no intentas conexión genuina. Te quedas solo porque crees que mereces estarlo.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🦉</div><div class="compat-text"><h4>Búho</h4><p>Ambos aman la profundidad y la verdad. El Búho aporta la sabiduría contextualizada; el Cuervo aporta el análisis desapiadado. Juntos ven con una claridad extraordinaria.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐆</div><div class="compat-text"><h4>Jaguar</h4><p>El Jaguar complementa al Cuervo con acción y decisión. El Cuervo aporta análisis; el Jaguar ejecuta. Se respetan porque ambos tienen poder: mental uno, físico el otro.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🌿</div><div class="compat-text"><h4>Leopardo</h4><p>El Leopardo trae creatividad donde el Cuervo trae análisis. Juntos crean perspectivas únicas. El Leopardo enseña al Cuervo que hay belleza en la complejidad, no solo verdad.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐙</div><div class="compat-text"><h4>Pulpo</h4><p>Ambos ven capas de realidad que otros pierden. El Pulpo desde la creatividad; el Cuervo desde el análisis. Generan ideas que individualmente no podrían alcanzar.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Busca a tu tribu intelectual</h4><p>Esta semana, identifica quién en tu vida puede seguirte en tus reflexiones más profundas. Invierte en esa relación. La soledad del Cuervo es real, pero la tribu existe.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Practica la verdad con compasión</h4><p>Tienes algo verdadero que decir. Esta semana, dilo, pero hazte una pregunta: ¿cómo puedo ser honesto sin ser cruel? La verdad y la amabilidad no son enemigas.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Analiza tu propio cinismo</h4><p>Toma una creencia que tienes sobre por qué todo es falso. Luego, busca tres excepciones reales a esa creencia. La verdad tiene matices que el cinismo tiende a ignorar.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Termina un análisis esta semana</h4><p>Tienes algo que has estado analizando indefinidamente. Toma una decisión imperfecta y vive con ella. Descubre que el mundo no colapsa con la imperfección.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Conecta con alguien sin analizar</h4><p>Pasa tiempo con alguien sin diseccionar mentalmente qué está mal en él, en la conversación, en la situación. Solo presencia. Descubre qué pasa cuando no estás viendo patrones.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="delfin">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 05 de 22</div>
+    <div class="lesson-title">🐬 Delfín</div>
+    <div class="lesson-quote">&ldquo;La vida es demasiado corta para no disfrutarla completamente.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El Delfín es pura energía social positiva, pero con una profundidad emocional que muchos no esperan. Eres el tipo de persona que hace que una habitación se sienta más cálida con solo entrar. Tu empatía es genuina, y la gente lo siente: por eso confían en ti con facilidad, a veces más de lo que tú puedes cargar. Tienes la capacidad de hacer que temas complejos suenen accesibles, que la gente se abra contigo cuando con otros no podría.</p><p>Tu mente es ágil y curiosa, capaz de saltar de un tema a otro sin perder coherencia. Amas conectar, jugar, explorar. Ves las posibilidades donde otros ven limitaciones. Tu entusiasmo es contagioso no porque sea falso, sino porque viene de un lugar genuino de fascinación por la vida misma. Reto es aprender que cuidar de todos los demás también requiere cuidarte a ti.</p><p>El Delfín comprende algo fundamental: que la vida es principalmente sobre conexión, no sobre acumulación. Buscas momentos de autenticidad, conversaciones que importan, vínculos que trascienden. Eso hace que vivas con una intensidad que otros envidian. Eres vivido. Completamente presente en formas que muchos solo imaginan.</p><p>Lo que otros no siempre ven es la vulnerabilidad debajo de tu sociabilidad. Porque te abres fácilmente, porque confías rápidamente, porque te importan profundamente, puedes ser herido con facilidad. Tu corazón es grande, pero su tamaño también es su debilidad si no lo proteges correctamente.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu psicología es relacional: necesitas conexión genuina para sentirte vivo. No es necesidad neurótica sino simplemente tu naturaleza. La soledad no es tu espacio de recarga: es tu vacio. Necesitas gente, necesitas conversación, necesitas sentir que importas a otros.</p><p>Tu inteligencia emocional es tuya fortaleza principal. Procesas no solo lo que alguien dice, sino cómo lo siente. Captas el dolor no expresado, el miedo escondido, la esperanza reprimida. Eso te hace extraordinariamente valioso como consejero, amigo, compañero. Pero también significa que absorbes emociones de otros constantemente.</p><p>Tienes una relación especial con el optimismo: no es ingenuidad sino una elección deliberada de ver posibilidades. Sabes que las cosas pueden ser malas, pero eliges buscar la salida, la oportunidad, el aprendizaje. Esa resiliencia emocional es rara.</p><p>El Delfín sabe intuitivamente que la vida es breve y que el tiempo de calidad es lo único que realmente importa. Por eso te aburres con lo superficial y te atrae lo auténtico. Por eso das tan libremente: sabes que no puedes llevarte nada, así que mejor lo haces significativo ahora.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Empatía que anticipa</h4><p>No solo sientes lo que otros sienten: anticipas lo que necesitarán antes de que lo pidan. Tu capacidad de leer entre líneas crea un tipo de apoyo que pocos pueden dar. Es como tener un amigo que piensa antes de que pienses.</p></div>
+<div class="strength-card"><h4>Energía social sanadora</h4><p>Tu presencia literalmente cambia el espacio. Las personas se sienten mejor contigo. No es porque des falsas esperanzas: es porque reflejas lo mejor de ellos. Tu compañía es terapia.</p></div>
+<div class="strength-card"><h4>Comunicación clara y accesible</h4><p>Tienes el don de explicar cosas complejas de forma que todos entiendan. Educas sin sonar como profesor. Comunicas sin sonar predicador. Eso es raro y extraordinariamente valioso.</p></div>
+<div class="strength-card"><h4>Resilencia emocional activa</h4><p>No solo te recuperas de lo difícil: lo usas como combustible para conectar mejor. Transformas tu propio dolor en comprensión para otros. Tus cicatrices te hacen más empático, no menos.</p></div>
+<div class="strength-card"><h4>Creador de momentos</h4><p>Tienes la capacidad de transformar una tarde ordinaria en algo memorable. No necesitas grandes planes: tu presencia, tu risa, tu entusiasmo convierten lo simple en especial.</p></div>
+<div class="strength-card"><h4>Generosidad genuina</h4><p>Das sin contar. Tu generosidad no es deuda ni inversión: es una expresión de tu naturaleza. Y paradójicamente, eso es lo que te hace tan magnético. La gente quiere estar cerca de quien da sin guardar cuentas.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres brillante en roles que requieren comunicación humana, enseñanza, liderazgo que inspire, trabajo en equipo genuino. Cualquier posición donde crear conexión es el trabajo principal. Recursos humanos, educación, coaching, terapia, liderazgo transformacional.</p><p>Tu dificultad está en entornos transaccionales puros donde solo importan números, donde las relaciones se vean como gastos, donde se espera que dejes tus emociones fuera. En esos espacios, tu brújula se desorienta.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Amas con apertura y generosidad que puede abrumar a pareja menos emotiva. Necesitas que te devuelvan el cuidado que das, o terminas drenado. La reciprocidad no es un lujo para ti: es el aire que necesitas para respirar.</p><p>Necesitas a alguien que pueda sentir tanto como tú o al menos respete lo que sientes. Alguien que diga 'entiendo que esto es importante para ti, ayudame a apoyar' en lugar de minimizar. La vulnerabilidad mutua es tu lenguaje de amor.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, el Delfín intenta resolver desde la empatía y la comprensión. Ve el lado humano de todos, incluso de quien te hace daño. Tu tendencia a perdonar rápidamente es virtud y trampa.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Delfín</h3>
+        <p>La sombra del Delfín es el agotamiento emocional disfrazado de compasión. Después de años dando, conectando, sanando a otros, un día te despiertas y no hay nada dentro. Tu pozo está seco.</p><p>También hay una sombra en el resentimiento reprimido. Porque no dices que no, porque te aguantas el dolor, porque permites que te usen, un día explotas. Y tu explosión sorprende a todos porque no vieron venir la acumulación.</p><p>La última sombra es la co-dependencia disfrazada de amor. Cuando tu sentido de valor depende completamente de ser útil a otros, cuando sin eso te sientes invisible. Cuando necesitas ser necesitado más de lo que en realidad necesitas cuidar.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🦁</div><div class="compat-text"><h4>León</h4><p>El León trae luz social que equilibra tu profundidad emocional. El Delfín aporta sensibilidad al carisma del León. Se amplifican mutuamente en contextos sociales.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐙</div><div class="compat-text"><h4>Pulpo</h4><p>Ambos son creativos e imaginativos. El Pulpo trae versatilidad; el Delfín trae conexión. Juntos crean experiencias que otros no pueden ofrecer.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐦</div><div class="compat-text"><h4>Cuervo</h4><p>El Cuervo te enseña a ver lo oscuro sin dejar de sentir. El Delfín enseña al Cuervo que la esperanza es racional. Se equil¿ibran perfectamente.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐬</div><div class="compat-text"><h4>Otro Delfín</h4><p>Dos Delfines juntos crean una amistad intensamente empática. El riesgo: que ambos den y nadie pida. La belleza: que se entienden sin palabras.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Aprende a decir que no esta semana</h4><p>Identifica una petición que normalmente aceptarías. Esta vez, di que no. Observa que el mundo no colapsa y que la otra persona sigue amándote.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Crea un ritual de recarga solo para ti</h4><p>El Delfín también necesita silencio y espacio. Elige una actividad que realmente te recargue (no que sea productiva) y hazla sin culpa esta semana.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Nombra algo que necesitas</h4><p>Eres excelente pidiendo para otros. Esta semana, pide algo para ti. Algo pequeño, algo real. Observa qué pasa cuando dejas que otros carguen contigo.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Siente sin arreglar</h4><p>Alguien que te importa está pasando algo difícil. Esta semana, escúchalo sin intentar arreglarlo. Solo sé. Descubre que a veces lo que se necesita es presencia, no solución.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Conecta con alguien en tu mismo nivel</h4><p>Encuentra a alguien que también sea altamente empático y sensible. Pasen tiempo juntos hablando de lo que es difícil de serlo. La validación mutua es medicina rara.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="gato">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 06 de 22</div>
+    <div class="lesson-title">🐱 Gato</div>
+    <div class="lesson-quote">&ldquo;Mi afecto es selectivo. Por eso es valioso.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El Gato es independencia elevada a arte de vida. No necesitas a nadie para ser quien eres. Esa autosuficiencia genera en los demás una mezcla de admiración y frustración. Cuando eliges dar tu afecto o tu tiempo, es genuino precisamente porque no lo das por defecto. Tu rareza es lo que te hace especial: simplemente no necesitas validación constante como otros.</p><p>Tienes un sentido estético muy desarrollado, altos estándares y poca tolerancia a la mediocridad. No es arrogancia: es integridad. Sabes qué vale tu tiempo y qué no. Prefieres pasar solo que pasar tiempo con gente que no aporte. Eso limita tu círculo, pero lo hace extraordinario. Quien logra entrar en tu mundo sabe que fue elegido por algo real.</p><p>El Gato comprende que la mejor relación es la que tienes contigo mismo. Por eso inviertes en tu independencia, en tu espacio, en tus intereses. Mientras otros se agotan en dinámicas de apego, tú construyes una vida tan satisfactoria que las relaciones son adiciones, no necesidades.</p><p>Hay una gracia en tu soledad. No es amargura ni rechazo: es paz genuina. Puedes pasar horas solo sin aburrirte porque tu propia compañía es suficiente. Eso es raro. Eso es lo que hace que cuando estés con alguien, realmente estés ahí, no escapando de ti mismo.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu psicología está anclada en la autonomía. Necesitas libertad de movimiento, espacio para ser, capacidad de cambiar de dirección sin justificar. Cualquier intento de domesticarte genera una reacción alérgica que te impulsa a escapar.</p><p>Tu inteligencia es intuitiva y selectiva: notas todo, pero solo prestas atención a lo que importa. Tienes un radar extraordinario para detectar energías falsas, personas que pretenden, espacios donde no encajas. Confías en ese radar y rara vez te equivocas.</p><p>Tu relación con el tiempo es diferente a la mayoría. Porque no tienes urgencia social, porque no necesitas estar constantemente con otros, procesas el tiempo de forma diferente. Una tarde sola puede ser tan enriquecedora como un viaje con compañía.</p><p>El Gato sabe que el verdadero lujo no es dinero ni estatus: es libertad y paz. Por eso eliges cuidadosamente en qué y con quién inviertes tu vida. No hay nada accidental en tu mundo: todo es elegido.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Autosuficiencia radiante</h4><p>No necesitas a nadie para validarte, completarte o hacerte sentir bien. Eso es extraordinario. Genera un tipo de confianza en ti que atrae a otros porque huele a realidad, no a desesperación.</p></div>
+<div class="strength-card"><h4>Estándares impecables</h4><p>No comprometes tu integridad por comodidad social. Si algo no cumple tus criterios, simplemente no participas. Eso resulta en una vida de alta calidad o un círculo de alta calidad.</p></div>
+<div class="strength-card"><h4>Intuición aguda</h4><p>Tu capacidad para leer personas y situaciones es sobrenatural. Sabes quién finge, quién es verdadero, dónde hay verdadera conexión. Rara vez te engañan.</p></div>
+<div class="strength-card"><h4>Independencia genuina</h4><p>No eres independiente porque hayas sufrido: eres independiente porque entiendes que es la base de toda libertad real. Eso te da estabilidad que otros no tienen.</p></div>
+<div class="strength-card"><h4>Autenticidad sin filtro</h4><p>Porque no necesitas agradar, puedes ser completamente tú. Eso es extraordinariamente raro. Las personas auténticas son imanes para otros que están cansados de las máscaras.</p></div>
+<div class="strength-card"><h4>Elegancia en la soledad</h4><p>Tu capacidad para estar a solas sin aburrimiento, sin ansiedad, con verdadera paz, es un superpoder. Mientras otros huyen de sí mismos, tú estás en paz con tu propia compañía.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres extraordinario en roles que requieren autonomía, criterio, independencia de pensamiento, capacidad de tomar decisiones sin validación de grupo. Emprendimiento, roles de liderazgo independiente, trabajo que requiera estándares altos.</p><p>Tu dificultad está en jerarquías donde se espera que sigas órdenes sin cuestionar, entornos donde tu soledad se interprete como mala actitud, contextos que requieren interdependencia genuina.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Amas de forma selectiva y con intensidad. No eres para todo el mundo, y eso está completamente bien. Necesitas a alguien que no intente domesticarte, que entienda que tu amor se expresa en libertad, no en fusión.</p><p>Necesitas una pareja que tenga su propia vida completa y no busque hacerte su vida. Alguien tan autosuficiente como tú de forma que la relación sea suma, no dependencia. La admiración mutua basada en lo que cada uno construye solo es tu lenguaje.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, el Gato prefiere el silencio a la discusión innecesaria. Tu capacidad para pasar por alto lo que no importa es enviable. Pero cuando algo cruza tus límites, tu respuesta es clara, fría y definitiva.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Gato</h3>
+        <p>La sombra del Gato es el aislamiento disfrazado de independencia. Cuando tu libertad se convierte en barrera contra la verdadera intimidad. Cuando estás tan protegido que nadie puede entrar realmente.</p><p>También hay una sombra en tu frialdad selectiva: cuando tu rechazo a la vulnerabilidad te hace incapaz de conexión verdadera. Cuando la autonomía se convierte en soledad sin elección.</p><p>La última sombra: el arrepentimiento silencioso. Después de años rechazando a gente que realmente podría haberle importado, porque no cumplieron expectativas que nunca expresaste. Ahí descubres que la soledad puede elegirse demasiado fácilmente.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🦅</div><div class="compat-text"><h4>Águila</h4><p>Ambos valoranla libertad y la independencia. El Águila trae visión; el Gato trae autenticidad. Se respetan porque ambos son completos en sí mismos.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐆</div><div class="compat-text"><h4>Jaguar</h4><p>El Jaguar aporta intensidad y decisión; el Gato aporta elegancia y discernimiento. Juntos crean una pareja de poder suave.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐭</div><div class="compat-text"><h4>Coyote</h4><p>El Coyote alivia la seriedad del Gato; el Gato da profundidad al juego del Coyote. Se complementan en ligereza vs. profundidad.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐙</div><div class="compat-text"><h4>Pulpo</h4><p>Ambos son creativos e intuitivos. El Pulpo trae versatilidad; el Gato trae dirección clara. Crean arte juntos si logran conectar.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Practica la vulnerabilidad dosificada</h4><p>Esta semana, muéstrale a alguien de confianza algo que normalmente guardas para ti. No tiene que ser enorme. Pero que sea verdadero. Observa qué pasa.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Antes de cortar, habla</h4><p>Identifica una relación que estés considerando abandonar. Esta semana, ten una conversación honesta antes de desaparecer. Dale a la otra persona la oportunidad que tú valorarías.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Recibe ayuda deliberadamente</h4><p>Pide algo específico a alguien. Deja que te ayuden incluso si podrías hacerlo solo. Descubre que recibir también es una forma de conexión.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Celebra a alguien más allá de tu círculo</h4><p>Identifica a alguien que no cumple tus criterios pero que está haciendo su mejor esfuerzo. Encuéntrale valor a pesar de sus limitaciones.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Define qué es negociable</h4><p>Tus estándares son altos. Esta semana, pregúntate: ¿cuál es mi estándar no negociable y cuál es simplemente preferencia? Relaja lo posible. Mantén lo esencial.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="aguila">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 07 de 22</div>
+    <div class="lesson-title">🦅 Águila</div>
+    <div class="lesson-quote">&ldquo;Mientras otros miran el suelo, yo ya veo el horizonte.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El Águila tiene visión. No solo la que ve lejos geográficamente, sino la que conecta puntos que nadie más relaciona, la que anticipa problemas antes de que aparezcan y oportunidades antes de que sean evidentes. Tu perspectiva es literalmente más elevada que la de la mayoría. Mientras otros están atorados en los detalles del hoy, tú ya estás en el mañana.</p><p>Eres ambicioso sin disculparte por serlo. Tienes un sentido de propósito muy claro y una tolerancia casi nula a las distracciones que no te acercan a tus metas. Sabes lo que quieres y te mueves hacia ello con una determinación que intimida a veces. Tu reto es aprender que no toda la sabiduría está en las alturas: bajar a tierra y conectar con lo humano te hace un Águila completa.</p><p>El Águila comprende que la vida es demasiado corta para desperdiciarla en cosas mediocres. Por eso estableces estándares altos, por eso eliges con cuidado en qué invierten tu tiempo y tu energía. Eso resulta en una vida enfocada, pero a veces en soledad porque pocos comparten tu sentido de urgencia.</p><p>Lo que otros pueden ver como frialdad es simplemente tu claridad. Ves las cosas sin el ruido emocional que distrae a otros. Eso te da una objetividad extraordinaria, pero también te separa de quienes necesitan más calidez, más paciencia, más humanidad.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu psicología está marcada por la visión. No es arrogancia sino claridad de propósito. Sabes hacia dónde vas. Eso genera una confianza en ti que otros interpretan como carisma, aunque sea simplemente convicción.</p><p>Tu inteligencia es estratégica: yes patrones a largo plazo que otros no ven. Procesas información rápidamente y llegas a conclusiones que parecen magias pero que son solo análisis superior. Eso te hace un estratega natural.</p><p>Tu relación con el tiempo es diferente: porque tienes una visión clara, procesas el tiempo como un recurso con un fin. No pasas tiempo: lo invierten hacia algo. Eso puede hacerte impaciente con quienes se pierden en presentes sin dirección.</p><p>El Águila sabe que el verdadero poder es ver antes, pensar más lejos, anticipar cambios. Por eso construyes desde visión, no desde reacción. Tu vida tiene dirección mientras otros navegan sin brújula.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Visión estratégica incomparable</h4><p>Ves tres o cinco años adelante mientras otros ven la próxima semana. Esta capacidad te permite anticipar cambios de mercado, de personas, de circunstancias. Eso es extraordinariamente valioso.</p></div>
+<div class="strength-card"><h4>Ambición enfocada</h4><p>Tu ambición no es ciega: es enfocada. Sabes exactamente qué quieres y cómo llegares ahí. Tu claridad de propósito te ahorra años de búsqueda sin dirección.</p></div>
+<div class="strength-card"><h4>Liderazgo que inspira visión</h4><p>No lideras desde autoridad: lideras mostrando un horizonte que otros quieren alcanzar. Tu capacidad de inspirar a otros con tu visión es magnética.</p></div>
+<div class="strength-card"><h4>Enfoque y disciplina</h4><p>Tu capacidad de mantener el rumbo cuando otros se distraen es extraordinaria. En un mundo de ruido, tu claridad es poder.</p></div>
+<div class="strength-card"><h4>Decisiones valientes</h4><p>Porque ves el panorama completo, te atreves a tomar decisiones que otros no se atreven. Tu certeza viene de ver, no de esperanza.</p></div>
+<div class="strength-card"><h4>Trascendencia natural</h4><p>Tu existencia no se limita a lo inmediato. Construyes legados, piensas en generaciones, dejas algo que perdura. Tu visión trasciende tu propia vida.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres extraordinario en roles estratégicos, visión empresarial, liderazgo de largo plazo, cualquier posición donde ver el futuro es el trabajo. CEO, estratega, innovador, visionario. Contextos donde la claridad a largo plazo es más valiosa que la gestión del presente.</p><p>Tu dificultad está en ejecución pura, en roles operativos, en contextos donde importa más cómo que hacia dónde. Tu impaciencia con los detalles puede sabotear tu propia visión.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Necesitas a alguien que tenga sus propios sueños y ambiciones. No buscas a alguien que te siga: buscas a alguien con quien volar. Alguien que pueda entender tu urgencia sin necesitar que la justifiques constantemente.</p><p>Necesitas una pareja que puede tolerar tu enfoque, que entiende que no siempre es calidez romántica lo que necesitas sino presencia inteligente. Alguien que crea en ti incluso cuando no entiende completamente hacia dónde vas.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, el Águila evalúa si merece su energía. Si no la merece, la ignora. Si la merece, la aborda con una claridad que puede intimidar. Tu poder es evidente incluso en quietud.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Águila</h3>
+        <p>La sombra del Águila es la frialdad que corta todas las ramas vivas. Cuando tu visión se convierte en justificación para no conectar humanamente. Cuando la altura se convierte en aislamiento.</p><p>También hay una sombra en el costo humano de tu ambición. Personas que amaban tu visión se quedan atrás porque no pueden mantener tu paso. Descubres demasiado tarde que el éxito solitario es vacío.</p><p>La última sombra: cuando la visión futura reemplaza completamente la vida presente. Llegas a la cima y descubres que la vista no vale nada sin con quién compartirla.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🦁</div><div class="compat-text"><h4>León</h4><p>Ambos lideran. El Águila desde la visión; el León desde la presencia. Juntos crean liderazgo completo.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐺</div><div class="compat-text"><h4>Lobo</h4><p>El Lobo aporta profundidad emocional a la claridad del Águila. El Águila aporta dirección al instinto del Lobo. Se equilibran perfectamente.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🔥</div><div class="compat-text"><h4>Tigre</h4><p>El Tigre trae acción y pasión. El Águila trae dirección. Juntos conquistan.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐘</div><div class="compat-text"><h4>Elefante</h4><p>El Elefante trae sabiduría y experiencia al futuro que ve el Águila. Juntos crean estrategia de largo plazo fundamentada en realidad.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Baja del cielo una hora esta semana</h4><p>Identifica algo que alguien a tu lado necesita que no sea estratégico. Esto semana, dáselo. No porque sea parte de tu plan: simplemente porque lo necesita.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Busca quién puede volar contigo</h4><p>Identifica a alguien que tenga su propia visión, sus propias alas. Invierte en esa relación. La soledad del águila es real, pero el vuelo en pareja es posible.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Define tu verdadera meta</h4><p>Tu visión es clara en lo estratégico. Esta semana, pregúntate: ¿para qué quiero todo esto? ¿Qué significaría realmente éxito? Que la respuesta sea más que números.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Escucha sin arreglando</h4><p>Alguien que amas está compartiendo una dificultad. Esta semana, escúchalo sin inmediatamente saltar a soluciones. Solo presencia. Solo corazón.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Disfruta una actividad sin meta</h4><p>Pasa dos horas haciendo algo completamente sin propósito. No es productivo. No construye nada. Simplemente experimentarlo. Descubre que existen momentos que no necesitan justificación.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="jaguar">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 08 de 22</div>
+    <div class="lesson-title">🐆 Jaguar</div>
+    <div class="lesson-quote">&ldquo;La paciencia no es pasividad. Es estrategia disfrazada de calma.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El Jaguar es el arquetipo del poder silencioso. No necesitas rugir para que todos sepan que estás ahí. Tu presencia habla por sí sola, y tu fuerza viene de la combinación perfecta entre potencia física, inteligencia táctica y paciencia estratégica. Eres capaz de esperar el momento exacto y actuar con una precisión que deja sin palabras a quienes te subestimaron.</p><p>Tu paciencia estratégica es tu superpoder más subestimado. Puedes esperar el momento exacto con una calma que desespera a quienes te rodean. Cuando finalmente actúas, lo haces con una precisión que parece casi sobrenatural. Tu verdadero poder no está en la furia sino en la contención, en saber exactamente cuándo soltar.</p><p>El Jaguar comprende que el verdadero poder es invisible hasta que se activa. No necesitas demostrar nada porque tu presencia ya dice todo. Eso te da una seguridad que otros solo pueden envidiar. Mientras otros buscan validación, tú simplemente existes con certeza.</p><p>Tu vulnerabilidad selectiva es tu última fortaleza. Porque eres tan fuerte, mostrar debilidad es un acto de poder genuino. Que alguien vea tu lado vulnerable es un honor que pocos reciben, y eso lo hace extraordinario.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu psicología está construida en torno a la contención deliberada. Procesas amenazas constantemente pero eliges cuándo responder. Tu mente es un depredador siempre alerta pero nunca reactivo.</p><p>Tienes una relación con el tiempo que es completamente diferente. Porque puedes esperar, procesas el tiempo como un recurso estratégico que te da ventaja sobre quienes no pueden.</p><p>Tu fuerza viene de una certeza interior absoluta. No es arrogancia: es conocimiento. Sabes lo que puedes hacer. Eso te da una calma que los demás interpretan como frialdad pero que en realidad es confianza pura.</p><p>El Jaguar sabe que el verdadero poder nunca necesita probarse. Porque se conoce, puede estar en paz. Tu poder es inversamente proporcional a tu movimiento, y en esa proporción está tu genialidad.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Poder natural inquebrantable</h4><p>Tu presencia impone respeto sin que hagas nada especial. Este tipo de poder magnético es extraordinariamente raro.</p></div>
+<div class="strength-card"><h4>Inteligencia táctica superior</h4><p>Ves tres movimientos adelante en situaciones complejas. En negociación, estrategia, conflicto, eres letal.</p></div>
+<div class="strength-card"><h4>Paciencia depredadora</h4><p>Sabes exactamente cuándo actuar. Esta precisión temporal te da ventajas que otros ni siquiera ven.</p></div>
+<div class="strength-card"><h4>Precisión en la acción</h4><p>Cuando actúas, cada movimiento cuenta. No hay desperdicio de energía, solo cálculo exacto.</p></div>
+<div class="strength-card"><h4>Serenidad bajo presión</h4><p>Mientras otros entran en pánico, tú permaneces claro. Tu lucidez en crisis es extraordinaria.</p></div>
+<div class="strength-card"><h4>Liderazgo que inspira confianza</h4><p>Las personas te siguen porque ven tu poder pero también tu responsabilidad. Lideras desde la certeza.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres excepcional en liderazgo fuerte, negociación, toma de decisiones bajo presión, situaciones complejas que requieren estrategia y poder.</p><p>Tu dificultad está en entornos que requieren empatía constante, donde tu intensidad se ve como agresión.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Amas con intensidad que puede abrumar. Cuando eliges a alguien, lo proteges completamente. Necesitas una pareja con su propia fuerza.</p><p>Necesitas a alguien que vea tu vulnerabilidad sin usarla contra ti. La confianza mutua es tu lenguaje.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, el Jaguar no busca pelea. Pero cuando es necesario, responde con contundencia que deja sin respuesta. Tu poder es la mejor diplomacia.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Jaguar</h3>
+        <p>La sombra del Jaguar es el aislamiento que construyes bajo pretexto de poder. Cuando tu fuerza se convierte en muralla contra la intimidad.</p><p>También hay una sombra en la frialdad calculada que mata emociones genuinas. Cuando utilizas tu inteligencia incluso con quienes amas.</p><p>La última sombra: cuando confundes paciencia estratégica con incapacidad de actuar en lo verdaderamente importante.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🦁</div><div class="compat-text"><h4>León</h4><p>Ambos lideran con poder. El Jaguar desde la estrategia; el León desde la presencia. Iguales que se respetan.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐺</div><div class="compat-text"><h4>Lobo</h4><p>El Lobo trae lealtad emocional. El Jaguar trae poder. Juntos son prácticamente imbatibles.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🦅</div><div class="compat-text"><h4>Águila</h4><p>El Águila trae visión. El Jaguar ejecuta. Visión + ejecución = poder verdadero.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐙</div><div class="compat-text"><h4>Pulpo</h4><p>El Pulpo trae creatividad. El Jaguar trae dirección. Soluciones que otros no conciben.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Muéstrate vulnerable</h4><p>Esta semana, muéstrale a alguien de poder similar tu verdadera duda. Que no eres invencible.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Espera menos, actúa más</h4><p>Identifica algo donde deberías haber actuado hace tiempo. Actúa ahora.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Confía sin controlar</h4><p>Delega algo importante sin supervizar. Solo confía. Descubre que otros son competentes.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Disfruta el proceso</h4><p>Esta semana, haz algo solo por el disfrute, sin meta final. Hay valor en el viaje.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Conecta desde la verdad</h4><p>Muéstrale a alguien importante quién eres realmente. Honestidad sin cálculo.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="leon">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 09 de 22</div>
+    <div class="lesson-title">🦁 León</div>
+    <div class="lesson-quote">&ldquo;No busco ser el centro. Solo soy demasiado magnético para evitarlo.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El León tiene presencia magnética. Cuando entras a un espacio, algo cambia. Tu carisma natural atrae personas sin que hagas nada especial. Eres generoso con quienes quieres, protector feroz de lo tuyo.</p><p>Lo que distingue al León es tu capacidad de hacer que otros brillen. Tu verdadero liderazgo no es ser el más brillante, sino hacer que los demás brille más en tu presencia. Eso es raro. Eso es liderazgo.</p><p>Tu confianza es genuina, no arrogancia. Sabes lo que vales y no te disculpas. Eso te da una seguridad que otros solo imaginan. Tu ambición incluye a quienes te rodean, no los excluye.</p><p>Tu vulnerabilidad es selectiva. Muestras tu lado suave solo a quienes ganaron tu confianza. Cuando lo haces, es completamente real. Eso es lo que hace que quienes te aman, genuinamente te amen.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu psicología está anclada en la expansión y la luz. No necesitas validación porque confías profundamente en tu valor interno.</p><p>Tu relación con el liderazgo es natural: no es algo que aprendas sino algo que eres. Otros simplemente te siguen porque quieren hacerlo.</p><p>Tienes una generosidad genuina que viene de seguridad interna. Porque no necesitas nada de nadie, puedes dar libremente.</p><p>El León sabe que el verdadero poder inspira, no intimida. Tu presencia magnética no genera resentimiento: genera admiración sincera.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Carisma y presencia natural</h4><p>Tu capacidad de llenar un espacio es extraordinaria. No es artificialidad: es autenticidad magnética que atrae como fuego.</p></div>
+<div class="strength-card"><h4>Generosidad auténtica</h4><p>Das genuinamente sin esperar retorno. Eso crea un tipo de lealtad que el dinero no puede comprar. Las personas te siguen por gratitud.</p></div>
+<div class="strength-card"><h4>Confianza que inspira</h4><p>Tu seguridad en ti es contagiosa. Otros creen en ti porque tú crees en ti. Tu certeza se vuelve la certeza de quienes te rodean.</p></div>
+<div class="strength-card"><h4>Coraje en decisiones difíciles</h4><p>Cuando nadie más puede elegir, tú puedes. Tu capacidad de decidir con seguridad en momentos críticos es extraordinaria.</p></div>
+<div class="strength-card"><h4>Liderazgo que empodera</h4><p>Haces que otros se sientan más grandes, no más pequeños. Tu superpoder es amplificar el potencial ajeno.</p></div>
+<div class="strength-card"><h4>Protección auténtica</h4><p>Tu instinto protector viene de genuina preocupación, no de control. Proteges sin sofocar, fortaleces sin dominar.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>En el trabajo, tu liderazgo visible es extraordinario: inspiras, motivas, haces brillar a otros. Eres invaluable en roles ejecutivos, educativos, políticos.</p><p>Tu dificultad está en roles anónimos donde tu carisma es irrelevante. Sin visibilidad pública, tu brújula se pierde.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Amas de forma magnética pero emocionalmente exigente. Necesitas a alguien que tolere tu necesidad de admiración y que tenga luz propia.</p><p>Necesitas quien te desafíe como igual, no como admirador. Alguien suficientemente fuerte para mirarte a los ojos sin esconderse de tu brillo.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, el León confía en su poder. Tu capacidad para enfrentar con seguridad es tu mejor activo. Rara vez pierdes porque nunca dudas.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del León</h3>
+        <p>La sombra del León es el ego que reemplaza fuerza. Cuando necesitas admiración más que resultados, cuando la imagen importa más que la realidad.</p><p>También está la soledad de la cúspide. Descubres que el liderazgo te aisló. Los que te rodean son admiradores, no amigos verdaderos.</p><p>La última sombra: confundir carisma con conexión real. Años después descubres que nadie realmente te conoce, solo la imagen que proyectas.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🦅</div><div class="compat-text"><h4>Águila</h4><p>Ambos lideran visiblemente. El León desde presencia; el Águila desde visión. Se respetan como iguales.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐺</div><div class="compat-text"><h4>Lobo</h4><p>El Lobo trae lealtad profunda; el León trae visibilidad. Juntos crean liderazgo completo.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🦌</div><div class="compat-text"><h4>Ciervo</h4><p>El Ciervo aporta sensibilidad; el León aporta fortaleza. Se equilibran perfectamente.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐘</div><div class="compat-text"><h4>Elefante</h4><p>El Elefante trae sabiduría; el León trae energía. Se vitalizan mutuamente.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Reconoce sin ser visto</h4><p>Esta semana, da reconocimiento público a alguien cuya contribución no fue visto. Usa tu poder para visibilizar a otros.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Admite que no sabes</h4><p>Dice en voz alta que hay algo que no entiendes. Que necesitas ayuda. Que no tienes todas las respuestas.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Escucha la crítica</h4><p>Alguien te critica de forma que duele. Esta semana escucha sin defenderte. Solo recibe. Solo aprende.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Sé uno más</h4><p>Participa en algo donde no eres el líder, no eres el centro. Solo participa como uno más del grupo.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Conecta fuera del círculo de admiradores</h4><p>Busca a alguien que no sea tu admirador y pasen tiempo genuino juntos. Observa qué pasa sin admiración como combustible.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="tigre_blanco">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 10 de 22</div>
+    <div class="lesson-title">🐯 Tigre Blanco</div>
+    <div class="lesson-quote">&ldquo;No soy inconstante. Estoy en constante evolución.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El Tigre Blanco es el arquetipo de la singularidad majestuosa. Eres una anomalía en el mejor sentido: alguien que no encaja en ninguna categoría predefinida y que precisamente por eso destaca donde quiera que vas. Tu rareza no es un defecto, es tu marca distintiva. Combinas una intensidad feroz con una elegancia que pocos comprenden y todos recuerdan.</p><p>Eres creativo, sensible y conectado con la belleza del mundo de formas que otros pasan por alto. Tu desafío es la constancia: no porque seas perezoso, sino porque tu mente siempre está explorando el próximo territorio fascinante. Aprender a terminar lo que empiezas es el puente entre tu potencial y tu impacto real.</p><p>La combinación en ti de ferocidad y sutileza es prácticamente única. Puedes ser tierno y brutal en el mismo aliento. Puedes asustar y cautivar en partes iguales. Esta dualidad no es contradicción: es tu esencia completa. Los Tigres Blancos raros nacen una sola vez por generación.</p><p>Tu rareza te ha aislado muchas veces. Pero ese aislamiento también te ha forjado. Te ha enseñado a valorar profundamente a las pocas personas que realmente te entienden. Tu círculo es pequeño pero inquebrantable.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu psicología está marcada por la búsqueda constante de lo nuevo, lo hermoso, lo que otros no ven. Tu mente es un explorador perpetuo.</p><p>Tienes una relación especial con la estética: entiendes que la belleza comunica verdades que las palabras no pueden capturar. Ves el mundo como arte.</p><p>Tu intensidad viene de tu sensibilidad. No eres apasionado a pesar de sentir profundamente, sino precisamente porque lo haces. Tu rareza emerge de tu capacidad de percibir lo que otros pasan por alto.</p><p>El Tigre Blanco sabe que ser diferente es un regalo disfrazado de dolor. Aprender a celebrar esa diferencia es el trabajo de toda una vida.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Singularidad magnética</h4><p>Tu diferencia no te asusta. La llevas con una elegancia que atrae a personas igualmente únicas. Tu rareza es tu fuerza.</p></div>
+<div class="strength-card"><h4>Intensidad que fascina</h4><p>Tu pasión por lo que importa es hipnotizante. Cuando te enfocas en algo, tu energía es prácticamente irresistible.</p></div>
+<div class="strength-card"><h4>Creatividad sin límites</h4><p>Tu imaginación no conoce fronteras impuestas. Creas desde un lugar donde otros solo ven posibilidades abstractas.</p></div>
+<div class="strength-card"><h4>Elegancia natural</h4><p>Tu gracia no requiere esfuerzo. Simplemente existes de manera bella, incluso en momentos difíciles.</p></div>
+<div class="strength-card"><h4>Valentía para ser diferente</h4><p>Cuando el mundo pide conformidad, tú eliges tu autenticidad. Eso es extraordinario.</p></div>
+<div class="strength-card"><h4>Sensibilidad que ve belleza</h4><p>Captas matices de belleza que otros ni siquiera notan. Tu apreciación del mundo es más profunda.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres inigualable en roles que requieren visión, originalidad y valentía de proponer lo inesperado. Tu diferencia es tu activo más valioso en liderazgo creativo.</p><p>Tu dificultad está en roles que requieren consistencia pura. Tu mente exploradora lucha contra la repetición.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Amas con una profundidad que desconcierta. Necesitas alguien que celebre tu rareza, no que intente domesticarla.</p><p>Necesitas una pareja que tenga su propia singularidad. Dos personas ordinarias no pueden entender al Tigre Blanco completamente.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, el Tigre Blanco puede reaccionar con más intensidad de la necesaria. Tu rareza no necesita defensa: habla por sí sola.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Tigre Blanco</h3>
+        <p>La sombra del Tigre Blanco es el aislamiento elegido. Cuando tu diferencia se convierte en barrera contra la conexión real.</p><p>También está la inseguridad disfrazada de superioridad. Tu rareza te hace especial, pero a veces la usas como escudo contra la posibilidad de ser rechazado.</p><p>La última sombra: confundir ser diferente con ser mejor. Cuando tu singularidad se vuelve justificación para despreciar a quienes no igualan tu complejidad.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🦁</div><div class="compat-text"><h4>León</h4><p>Ambos tienen presencia magnética. El Tigre Blanco trae singularidad; el León trae carisma. Se notan mutuamente.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐙</div><div class="compat-text"><h4>Pulpo</h4><p>El Pulpo aprecia la complejidad del Tigre Blanco. Ambos viven en mundos internos ricos.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🦉</div><div class="compat-text"><h4>Búho</h4><p>El Búho entiende la profundidad intelectual del Tigre Blanco. Conversaciones extraordinarias.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🌿</div><div class="compat-text"><h4>Leopardo</h4><p>El Leopardo es igualmente versátil. Dos seres que se adaptan de formas únicas.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Busca tu comunidad verdadera</h4><p>Esta semana, conecta con una sola persona que celebrate tu singularidad sin intentar cambiarla.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Documenta tu rareza</h4><p>Escribe o crea algo que exprese exactamente qué te hace diferente. Que sea tuyo completamente.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Termina algo iniciado</h4><p>Elige un proyecto que dejaste incompleto y termínalo esta semana, aunque sea de forma imperfecta.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Expresa sin explicar</h4><p>Di algo auténtico a alguien sin justificarlo. Tu rareza no requiere defensa.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Celebra tu diferencia</h4><p>Haz algo esta semana que exprese exactamente tu singularidad. No lo hagas común. Hazlo extraordinario.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="elefante">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 11 de 22</div>
+    <div class="lesson-title">🐘 Elefante</div>
+    <div class="lesson-quote">&ldquo;Lo recuerdo todo. Especialmente lo que importa.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El Elefante lleva consigo la historia: la propia y la de quienes ama. Tienes una memoria emocional extraordinaria que te permite conectar el pasado con el presente de formas que iluminan el camino. Eres el guardián de la sabiduría colectiva de tu entorno.</p><p>Tu sentido de comunidad es profundo y genuino. No entiendes la vida sin las personas que amas, y harías cualquier cosa por protegerlas. Eres empático a un nivel que va más allá de entender los sentimientos de otros: los sientes. Tu reto es aprender que cargar la historia de todos puede pesar más de lo que un solo cuerpo debe soportar.</p><p>Lo que define al Elefante es la lealtad multigeneracional. Tu palabra es tu contrato. Cuando alguien forma parte de tu manada, los proteges en todos los sentidos: emocional, físico, financiero si es necesario. Tu compromiso con quienes amas es absoluto.</p><p>Tu memoria no es simplemente cognitiva: es emocional. Recuerdas momentos, conversaciones, promesas no porque las escribas sino porque las sientes en tu cuerpo. Eso te hace extraordinariamente confiable y extraordinariamente vulnerable.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu psicología está anclada en la continuidad. Necesitas saber que lo que construyes hoy seguirá siendo relevante mañana, en un año, en una generación.</p><p>Tienes una relación especial con el tiempo: lo ves como un río continuo donde el pasado, presente y futuro están conectados. De ahí tu sabiduría.</p><p>Tu capacidad de empatía es casi sobrenatural. Entiendes el lado humano de cualquier situación porque tu corazón accede a información que tu mente aún no procesa.</p><p>El Elefante sabe que la lealtad es una forma de amor. Que estar presente es estar completo. Que recordar es honrar.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Memoria emocional extraordinaria</h4><p>Tu capacidad de aprender de la experiencia es incomparable. Los errores se vuelven sabiduría que compartes.</p></div>
+<div class="strength-card"><h4>Lealtad excepcional</h4><p>Tu palabra es tu poder. Cuando te comprometes, lo haces completamente. Eso es extraordinariamente raro.</p></div>
+<div class="strength-card"><h4>Empatía genuina profunda</h4><p>Sientes los sentimientos de otros. Eso te permite crear conexiones reales y duraderas.</p></div>
+<div class="strength-card"><h4>Sabiduría práctica</h4><p>Tu experiencia acumulada es un tesoro. Sabes qué funciona porque lo has visto funcionar.</p></div>
+<div class="strength-card"><h4>Sentido comunitario</h4><p>Entiendes que somos solo en relación. Tu capacidad de crear comunidad es un superpoder.</p></div>
+<div class="strength-card"><h4>Protección amorosa</h4><p>Proteges sin controlar. Tu cuidado genuino es un refugio para quienes lo necesitan.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres el mentor, el institucional, el que mantiene la cultura viva. Eres invaluable en organizaciones que valoran la continuidad y el aprendizaje generacional.</p><p>Tu dificultad está en contextos de alta rotación donde las relaciones son transaccionales. Eso te agota profundamente.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Amas con profundidad y permanencia. Para ti, el amor es una decisión que se renueva cada día, no un sentimiento que simplemente ocurre.</p><p>Necesitas a alguien que entienda que tu lealtad no es obsesión, sino expresión de tu amor fundamental.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, el Elefante prefiere la reconciliación a la ruptura. Tu capacidad para ver el lado humano de quien te hizo daño es notable.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Elefante</h3>
+        <p>La sombra del Elefante es el martirio disfrazado de lealtad. Cuando tu compromiso se vuelve autodestrucción en nombre del amor.</p><p>También está el resentimiento silencioso. Años de cargar con lo que otros te pusieron, años de sacrificio sin reconocimiento. Un día explota.</p><p>La última sombra: confundir recordar con vivir. Cuando tu conexión con el pasado te impide construir el futuro.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🦁</div><div class="compat-text"><h4>León</h4><p>El León trae energía; el Elefante trae sabiduría. Se vitalizan mutuamente.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐺</div><div class="compat-text"><h4>Lobo</h4><p>El Lobo trae lealtad; el Elefante trae continuidad. Pareja histórica de poder.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🦉</div><div class="compat-text"><h4>Búho</h4><p>El Búho aprecia la profundidad del Elefante. Conversaciones que duran décadas.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐧</div><div class="compat-text"><h4>Pingüino</h4><p>El Pingüino comparte tu sentido comunitario. Juntos crean espacios seguros.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Practica el perdón activo</h4><p>Esta semana, libera deliberadamente algo del pasado. No por el otro, sino por ti.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Identifica cargas que no son tuyas</h4><p>¿Qué problemas de otros estás cargando? Devuelve lo que no es tuyo con amor.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Documen tu sabiduría</h4><p>Escribe o grabare lo que has aprendido. Tu conocimiento merece ser compartido formalmente.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Define límites amorosos</h4><p>Puedes amar profundamente Y tener límites. Esta semana, practica ambas cosas.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Celebra el cambio</h4><p>Reconoce una forma en que has evolucionado. El cambio no traiciona el pasado: lo honra.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="tigre">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 12 de 22</div>
+    <div class="lesson-title">🐅 Tigre</div>
+    <div class="lesson-quote">&ldquo;Soy paz... hasta que dejo de serlo.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El Tigre es intensidad contenida. Hay una energía en ti que los demás sienten antes de que hagas o digas nada. Eres uno de los theriotypes más apasionados: cuando algo te importa, le dedicas todo lo que tienes. Cuando algo te amenaza, tu respuesta es inmediata y sin medias tintas.</p><p>Eres solitario por naturaleza: no porque no puedas conectar con otros, sino porque eres muy selectivo con a quién le permites entrar a tu mundo. Dentro de ese mundo, eres protector, apasionado e intensamente leal. Fuera de él, eres una presencia poderosa y algo impredecible.</p><p>Lo que define al Tigre es la capacidad de vivir en dos modos: completa calma y furia total. No hay punto medio. Tu cuerpo sabe esto. Otros lo sienten cuando entras a un espacio. Eres como un volcán dormido: la mayoría del tiempo en silencio, pero todos saben que hay fuego adentro.</p><p>Tu selectividad no es arrogancia: es protección. Has aprendido que darte completamente a la gente equivocada es una forma de suicidio emocional. Así que eliges con cuidado. Y cuando eliges, te entrega sin reservas.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu psicología está construida en torno a la pasión controlada. Tu poder viene de tu capacidad de contener intensidad hasta el momento exacto.</p><p>Tienes una relación especial con tu cuerpo: lo entiende como un depredador lo entiende. Tus reacciones son viscerales, instintivas, correctas.</p><p>Tu selectividad crea espacios seguros para quienes logran entrar. Dentro de tu círculo, tienes lealtad absoluta porque sabes el valor de lo que diste.</p><p>El Tigre sabe que su poder es más fuerte contenido. Que la mayor amenaza no es la que ataca sino la que podría atacar pero elige no hacerlo.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Pasión e intensidad incomparable</h4><p>Cuando algo te importa, tu compromiso es total. Eso es extraordinario en un mundo de medias tintas.</p></div>
+<div class="strength-card"><h4>Enfoque absoluto</h4><p>Tu capacidad de concentrarte completamente en lo que importa es letal. Distracciones simplemente no existen.</p></div>
+<div class="strength-card"><h4>Valentía para actuar</h4><p>Cuando otros dudan, tú actúas. Tu decisión es rápida, tu acción más rápida aún.</p></div>
+<div class="strength-card"><h4>Instinto protector genuino</h4><p>Tu ferocidad viene de auténtica preocupación. Proteges sin usar la protección como excusa para controlar.</p></div>
+<div class="strength-card"><h4>Lealtad dentro del círculo</h4><p>Quien gana tu confianza se vuelve intocable. Tu protección es absoluta.</p></div>
+<div class="strength-card"><h4>Presencia que impone</h4><p>Tu energía natural genera respeto sin que hagas nada especial. Los demás lo sienten.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres devastadoramente efectivo cuando estás motivado y tienes autonomía. El problema es que cuando algo no te interesa, es difícil fingir lo contrario. Necesitas proyectos que enciendan tu pasión.</p><p>Tu dificultad está en espacios que requieren entusiasmo constante fingido. Eso te agota profundamente.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Amas con una intensidad que puede ser abrumadora para alguien que no está listo. Necesitas a alguien que combine solidez emocional con la capacidad de sostenerte.</p><p>Necesitas una pareja que entienda tu selectividad como fortaleza, no como frialdad. Alguien que honre que elegiste a pocas personas, pero que te elegiste a ti.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, el Tigre reacciona rápido y con fuerza. Tu instinto te dice que la defensa directa es siempre la mejor estrategia, aunque no siempre lo sea.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Tigre</h3>
+        <p>La sombra del Tigre es la destructividad contenida. Cuando tu pasión se vuelve arma contra ti o contra quienes amas.</p><p>También está la soledad forzada. Tu selectividad convertida en trampa que te aísla de la posibilidad de conexión auténtica.</p><p>La última sombra: confundir reacción rápida con acción correcta. Cuando tu impulso te lleva a lugares que no querías ir.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🦁</div><div class="compat-text"><h4>León</h4><p>Ambos intensos. El Tigre trae acción; el León trae carisma. Pareja de poder.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐆</div><div class="compat-text"><h4>Jaguar</h4><p>El Jaguar aprecia tu pasión. Ambos entienden el poder contenido.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐺</div><div class="compat-text"><h4>Lobo</h4><p>El Lobo trae lealtad emocional; el Tigre trae pasión. Conexión profunda.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">⚡</div><div class="compat-text"><h4>Cheetah</h4><p>El Cheetah iguale tu velocidad. Juntos generan energía extraordinaria.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Practica la pausa de 10 segundos</h4><p>En tensión, cuenta 10 segundos antes de reaccionar. Observa qué cambia.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Canaliza tu pasión</h4><p>Elige un proyecto que necesite exactamente tu intensidad. Que sea legal, que sea vida-dando.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Trabaja la regulación</h4><p>Tu poder aumenta cuando puedes elegir cúando activarlo, no cuando simplemente ocurre.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Identifica disparadores</h4><p>¿Qué te activa? Esta semana, documenta los patrones de tu fuego.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Usa tu pasión constructivamente</h4><p>Toma algo que dejaste a medias y termínalo con tu intensidad total. Canaliza, no reprimas.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="buho">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 13 de 22</div>
+    <div class="lesson-title">🦉 Búho</div>
+    <div class="lesson-quote">&ldquo;La mayoría duerme cuando yo apenas empiezo a pensar.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El Búho es el intelectual del ecosistema. Tu mente es tu hábitat natural y puede ser asombrosamente activa, especialmente cuando el mundo exterior se calma. Tienes una capacidad de análisis profundo que te permite ver estructuras, patrones y verdades que otros simplemente no pueden procesar de la misma manera.</p><p>Eres observador antes que participante, y eso te da una perspectiva extraordinaria. Puede que no seas el más social de la sala, pero cuando hablas, las personas que realmente escuchan saben que lo que dijiste importa. Tu reto es traducir esa sabiduría en acción antes de que el momento pase.</p><p>Tu mente nocturna es una dimensión que pocos entienden. Los pensamientos que ocurren después de la medianoche tienen una claridad y profundidad que el día simplemente no permite. Esa es tu hora. Ese es tu mundo.</p><p>Lo que distingue al Búho no es solo su inteligencia sino su capacidad de ver desde múltiples ángulos simultáneamente. Mientras otros ven una situación, tú ves todas sus variables, todos sus equilibrios, todas sus posibilidades.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu psicología está basada en la comprensión profunda. No es suficiente saber qué: necesitas saber por qué, cómo, qué significa.</p><p>Tienes una relación especial con la incertidumbre: es tu material de trabajo. Donde otros ven caos, tú ves complejidad esperando ser descifrada.</p><p>Tu introversión no es timidez: es selectividad. Prefieres conversaciones profundas con pocos que interacciones superficiales con muchos.</p><p>El Búho sabe que el pensamiento profundo requiere silencio. Que la comprensión no tiene prisa. Que lo verdadero siempre tarda en revelarse.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Pensamiento analítico extraordinario</h4><p>Tu capacidad de ver estructuras y patrones es prácticamente sobrenatural. Ves lo que otros no pueden.</p></div>
+<div class="strength-card"><h4>Perspectiva objetiva</h4><p>En situaciones complejas, tu capacidad de ver sin ruido emocional es un superpoder.</p></div>
+<div class="strength-card"><h4>Sabiduría acumulada</h4><p>Tu observación constante produce conocimiento que toma años a otros construir.</p></div>
+<div class="strength-card"><h4>Paciencia profunda</h4><p>No necesitas respuestas inmediatas. Tu paciencia para entender es extraordinaria.</p></div>
+<div class="strength-card"><h4>Profundidad de pensamiento</h4><p>Cuando hablas, tu profundidad es evidente. Tus palabras pesan porque están bien pensadas.</p></div>
+<div class="strength-card"><h4>Integridad intelectual</h4><p>Tu honestidad en el análisis es implacable. No falsea conclusiones para complacer.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres el experto, el investigador, el arquitecto del pensamiento. Los proyectos que requieren profundidad, precisión y análisis son tu terreno natural. Académico, científico, estratega.</p><p>Tu dificultad está en ejecución pura, en lo operativo, en lo que requiere acción sin análisis paralelo.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Necesitas a alguien con quien puedas tener conversaciones que duren hasta el amanecer. Alguien que estimule tu mente tanto como tu corazón.</p><p>Necesitas una pareja que disfrute de tu introversión sin intentar cambiarla. Que valore profundidad sobre amplitud de círculo social.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, el Búho analiza desde múltiples ángulos antes de actuar. Esto puede hacerte tardío en reaccionar, pero cuando lo haces, tu argumentación es casi imposible de rebatir.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Búho</h3>
+        <p>La sombra del Búho es el intelectualismo que reemplaza sentimiento. Cuando tu análisis se vuelve excusa para no conectar emocionalmente.</p><p>También está el nihilismo pensante. Cuando ves tanto que ceses de creer en la posibilidad de mejora. Cuando el análisis se vuelve parálisis.</p><p>La última sombra: cuando tu mente nocturn se convierte en aislamiento. Cuando piensas tan profundamente que los demás no pueden alcanzarte.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🐘</div><div class="compat-text"><h4>Elefante</h4><p>El Elefante aprecia tu profundidad. Conversaciones que duran décadas.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐙</div><div class="compat-text"><h4>Pulpo</h4><p>El Pulpo comparte tu complejidad mental. Juntos entienden lo incomprensible.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🦉</div><div class="compat-text"><h4>Ciervo</h4><p>El Ciervo añade sensibilidad a tu análisis. Equilibrio perfecto.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🌿</div><div class="compat-text"><h4>Leopardo</h4><p>El Leopardo aprecia tu estrategia. Visión + ejecución estratégica.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Practica acción imperfecta</h4><p>Esta semana, haz algo antes de tenerlo completamente analizado. Aprende haciendo.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Comparte tu conocimiento</h4><p>Tu sabiduría tiene valor. Comunícalo, incluso imperfectamente.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Establece horarios de sueño</h4><p>Tu mente nocturna necesita descanso real para funcionar óptimamente.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Conecta análisis con emoción</h4><p>Lleva emoción a tu análisis. La inteligencia sin corazón es incompleta.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Termina algo esta semana</h4><p>Identifica un proyecto análisis infinito. Ciérralo esta semana, aunque sea imperfectamente.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="caballo">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 14 de 22</div>
+    <div class="lesson-title">🐴 Caballo</div>
+    <div class="lesson-quote">&ldquo;La libertad no es un lujo. Es mi condición básica de existencia.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El Caballo vive para el movimiento. No es inquietud: es la expresión más pura de quien eres. Necesitas espacio, tanto físico como emocional, para funcionar en tu mejor versión. Cuando ese espacio existe, tu energía, creatividad y lealtad no tienen límites.</p><p>Eres apasionado hasta los huesos. Cuando algo o alguien te captura la atención, te entregas con una intensidad que impresiona. Tu sentido de la libertad no es egoísmo: es la condición que necesitas para poder dar todo lo que tienes. Encadenarte es la forma más rápida de perder lo mejor de ti.</p><p>Lo que define al Caballo es la equivalencia entre movimiento físico y mental. Tu mente necesita espacio para galopar tan desesperadamente como tu cuerpo. La rutina rígida no es protección: es tortura.</p><p>Tu lealtad a quienes lo merecen es absolutamente desproporcionada. Porque los elegiste, porque les diste libertad también, tu compromiso es total. Alguien que entienda que tu libertad no es amenaza sino condición es tu pareja perfecta.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu psicología está basada en la expansión. Tu mejor versión requiere movimiento, espacio, la sensación de poder ir donde el impulso te lleve.</p><p>Tienes una relación especial con la estructura: necesitas la justa cantidad. Demasiada y mueres; muy poca y caes en caos sin dirección.</p><p>Tu energía es prácticamente inagotable cuando haces lo que amas. Cuando estás en movimiento hacia algo que te importa, eres prácticamente imparable.</p><p>El Caballo sabe que el verdadero compromiso no requiere cadenas. Que la lealtad viene de elección, no de obligación.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Energía y resistencia excepcionales</h4><p>Tu capacidad de movimiento sostenido es extraordinaria. Puedes hacer lo que otros no pueden sostener.</p></div>
+<div class="strength-card"><h4>Lealtad profunda elegida</h4><p>Porque elegiste a alguien, tu compromiso es total. Tu libertad no es amenaza: es verdad.</p></div>
+<div class="strength-card"><h4>Pasión que impulsa</h4><p>Tu entusiasmo es contagioso. Cuando te importa algo, tu energía arrastra a otros.</p></div>
+<div class="strength-card"><h4>Pensamiento libre</h4><p>Tu capacidad de ver más allá de lo convencional genera ideas frescas constantemente.</p></div>
+<div class="strength-card"><h4>Adaptabilidad dinámica</h4><p>Cambio de contexto, cambio de dirección, tu energía se adapta fluidamente.</p></div>
+<div class="strength-card"><h4>Optimismo resiliente</h4><p>Incluso cuando las cosas son difíciles, tu capacidad de ver posibilidad es notoria.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres brillante en entornos dinámicos que requieran energía, adaptabilidad y pasión. Las estructuras rígidas te apagan. Los proyectos con propósito te encienden.</p><p>Tu dificultad está en lo administrativo, lo repetitivo, lo que requiere quietud prolongada.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Amas con intensidad y necesitas a alguien que entienda que tu necesidad de libertad no es una amenaza para la relación. La confianza es tu moneda de cambio más valiosa.</p><p>Necesitas una pareja que tenga su propio movimiento también. Dos seres que galopan juntos pero que pueden galopar solos.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, el Caballo instintivamente corre: físicamente o emocionalmente. Aprender a quedarte y resolver en lugar de huir es tu trabajo más importante.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Caballo</h3>
+        <p>La sombra del Caballo es el movimiento que evita intimidad. Cuando la libertad se convierte en excusa para no conectar profundamente.</p><p>También está la superficialidad del movimiento continuo. Cuando saltabas de cosa en cosa sin nunca construir nada profundo. Cuando la aventura reemplaza la construcción.</p><p>La última sombra: cuando tu libertad consume a quienes te aman. Cuando tu necesidad de espacio se vuelve abandono para otros.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">⚡</div><div class="compat-text"><h4>Cheetah</h4><p>El Cheetah iguala tu velocidad. Juntos son velocidad pura.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🦁</div><div class="compat-text"><h4>León</h4><p>El León entiende tu energía. Complementos de poder.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐙</div><div class="compat-text"><h4>Pulpo</h4><p>El Pulpo aprecia tu adaptabilidad. Ambos versátiles.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🌿</div><div class="compat-text"><h4>Leopardo</h4><p>El Leopardo es igualmente versátil. Juntos navegan múltiples mundos.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Diseña tu propia estructura</h4><p>Esta semana, crea una rutina que te dé forma sin quitarte libertad. Hazla tuya.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Distingue jaula real de incomodidad</h4><p>¿Qué compromisos son jaulas reales versus discomfort temporal?</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Canaliza tu energía</h4><p>Elige un proyecto que tu pasión real. Dale a tu velocidad un destino.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Completa una cosa</h4><p>Identifica algo que comenzaste. Termínalo esta semana usando tu energía.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Cultiva confianza genuina</h4><p>Dala confianza primero. No esperes recibirla para darla. Observa qué ocurre.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="pulpo">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 15 de 22</div>
+    <div class="lesson-title">🐙 Pulpo</div>
+    <div class="lesson-quote">&ldquo;No tengo un plan. Tengo ocho simultáneamente.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El Pulpo es el theriotype más singularmente inteligente del ecosistema. Tienes una mente que procesa en paralelo: mientras una parte de ti resuelve el problema del frente, otras partes están explorando soluciones alternativas, anticipando obstáculos y diseñando planes de contingencia. Todo al mismo tiempo.</p><p>Eres adaptable de una manera que desafía la lógica: puedes moldearte a casi cualquier entorno, persona o situación sin perder quien eres en el núcleo. Tu creatividad es caótica y brillante al mismo tiempo. Tu reto es que tanta flexibilidad puede hacer que los demás no sepan exactamente quién eres, y a veces tú tampoco.</p><p>Lo que distingue al Pulpo es tu capacidad de ver todas las opciones simultáneamente. Mientras otros ven una solución, tú ves ocho. Tu mente no siete línea sino en web.</p><p>Tu complejidad interna no tiene paragón. Tu mundo es tan rico que a veces es difícil explicarle a otros por qué una conversación aparentemente simple para ellos es enormemente compuesta para ti.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu psicología está basada en la complejidad. Tu mente trabaja en capas que otros solo imaginan.</p><p>Tienes una relación especial con los problemas: no te asustan, te fascinan. La complejidad es tu elemento.</p><p>Tu creatividad viene de tu capacidad de ver conexiones que otros no ven. Tu innovación es real porque observas patrones imperceptibles.</p><p>El Pulpo sabe que ser versátil es ser incomprendido. Que otros no saben quién eres porque eres diferente cosas en contextos diferentes.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Inteligencia multidimensional</h4><p>Tu capacidad de procesamiento paralelo es extraordinaria. Ves soluciones que otros no pueden.</p></div>
+<div class="strength-card"><h4>Adaptabilidad sin límite</h4><p>Puedes moldearte a cualquier entorno sin perder tu núcleo. Eso es raro y extraordinario.</p></div>
+<div class="strength-card"><h4>Creatividad caótica brillante</h4><p>Tu imaginación es prácticamente sin restricciones. Tus ideas son verdaderamente únicas.</p></div>
+<div class="strength-card"><h4>Manejo de complejidad</h4><p>Situaciones que abrumarían a otros, para ti son simplemente interesantes.</p></div>
+<div class="strength-card"><h4>Resolución innovadora</h4><p>Tus soluciones a menudo son inesperadas pero perfectas. Piensas fuera de cualquier caja.</p></div>
+<div class="strength-card"><h4>Flexibilidad genuina</h4><p>Te puedes adaptar a casi cualquier circunstancia y seguir siendo tú.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres el innovador, el que resuelve lo que nadie más puede. Brillas en entornos complejos, startups, crisis y cualquier situación que requiera pensamiento no convencional.</p><p>Tu dificultad está en roles que requieren consistencia pura, donde la creatividad no es bienvenida.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Necesitas a alguien que disfrute tu complejidad en lugar de intentar simplificarte. Alguien que encuentre fascinante lo que otros encuentran confuso.</p><p>Necesitas una pareja que pueda seguir tu lógica incluso cuando no la entienda completamente. Que celebre tu sofisticación.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, el Pulpo resuelve conflictos de formas que nadie esperaba. A veces esto es brillante; otras veces, lo que se necesitaba era simplemente una conversación directa.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Pulpo</h3>
+        <p>La sombra del Pulpo es la complejidad que evita sinceridad. Cuando tu inteligencia se vuelve excusa para no comunicar claramente.</p><p>También está la frustración de vivir en una mente que otros no pueden alcanzar. Aislamiento intelectual elegido.</p><p>La última sombra: cuando tu versatilidad te deja sin identidad. Cuando cambias tanto que nadie, ni tú, sabe quién realmente eres.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🦉</div><div class="compat-text"><h4>Búho</h4><p>El Búho aprecia tu complejidad. Conversaciones extraordinarias.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐱</div><div class="compat-text"><h4>Gato</h4><p>El Gato entiende tu multiplicidad. Ambos versátiles.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🌿</div><div class="compat-text"><h4>Leopardo</h4><p>El Leopardo es igualmente versátil. Juntos navegan lo imposible.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">⚡</div><div class="compat-text"><h4>Cheetah</h4><p>El Cheetah aprecia tu rapidez mental. Juntos generan soluciones novedosas.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Define tres prioridades máximas</h4><p>Esta semana, enfoca el 80% de tu energía en solo tres cosas.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Practica comunicación directa</h4><p>No todo necesita una solución creativa. A veces, honestidad simple es lo que se necesita.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Documenta tu caos</h4><p>Tu creatividad se pierde si no la registras. Sistema confiable esta semana.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Trabaja constancia</h4><p>El talento sin consistencia es potencial desperdiciado. Elige una cosa para completar.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Deja que otros vean tu proceso</h4><p>Reduce misterio. Muestra cómo llegas a tus soluciones. Menos impredecible, más entendible.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="cheetah">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 16 de 22</div>
+    <div class="lesson-title">⚡ Cheetah</div>
+    <div class="lesson-quote">&ldquo;Si no funciona de la forma convencional, encontraré otra.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El Cheetah es el arquetipo de la velocidad y el enfoque absoluto. Cuando sabes lo que quieres, nada ni nadie puede igualarte en la carrera hacia tu objetivo. Tienes una capacidad de concentración intensa, una velocidad de ejecución que asombra, y una claridad de propósito que te permite alcanzar tus metas antes de que otros terminen de analizarlas. Eres la prueba de que la velocidad con dirección es imbatible.</p><p>Cuando el Cheetah encuentra su dirección, es prácticamente imparable. Tu reto es no dispersar esa velocidad en mil direcciones distintas. La disciplina no te frena: te enfoca. Y cuando estás enfocado, los resultados que produces en tiempo récord dejan a todos sin palabras.</p><p>Lo que define al Cheetah no es solo velocidad sino enfoque. Mientras otros se distraen, tú permaneces absolutamente concentrado. Esa combinación de velocidad más enfoque es prácticamente imbatible.</p><p>Tu cuerpo está optimizado para la velocidad. Tu mente también. Cuando algo te importa, eres prácticamente indetenible. La paciencia que otros necesitan, tú no la necesitas porque ves claramente cómo llegar.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu psicología está basada en la acción rápida. Tu mejor versión requiere movimiento y avance constante.</p><p>Tienes una relación especial con el tiempo: lo ves como un recurso que se gasta rápido. Por eso tu urgencia.</p><p>Tu claridad de propósito es casi sobrenatural. Sabes exactamente qué quieres de una forma que otros envidian.</p><p>El Cheetah sabe que la velocidad sin dirección es solo caos. Que la verdadera velocidad es velocidad enfocada.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Velocidad de ejecución sin paralelo</h4><p>Tu capacidad de pasar de concepto a resultado es extraordinaria. Otros no pueden mantener tu ritmo.</p></div>
+<div class="strength-card"><h4>Enfoque absoluto en la caza</h4><p>Cuando activas el modo objetivo, nada te distrae. Tu concentración es letal.</p></div>
+<div class="strength-card"><h4>Claridad de propósito</h4><p>Sabes exactamente qué quieres de una forma que otros no alcanza. Eso es tu ventaja competitiva.</p></div>
+<div class="strength-card"><h4>Determinación que convierte obstáculos</h4><p>Tu capacidad de encontrar siempre un camino es extraordinaria.</p></div>
+<div class="strength-card"><h4>Agilidad táctica</h4><p>En entornos rápidos y complejos, tu adaptabilidad de velocidad es un superpoder.</p></div>
+<div class="strength-card"><h4>Resultados comprobados</h4><p>Tu track record de logro es evidencia de tu habilidad. Resultados hablan más que promesas.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres el activo más valioso cuando hay plazos imposibles, lanzamientos urgentes o situaciones que requieren pasar de cero a resultados en tiempo récord. Tu velocidad de ejecución es tu ventaja competitiva.</p><p>Tu dificultad está en procesos largos, relaciones que requieren construcción lenta, lo que necesita paciencia estratégica.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Amas con intensidad y entusiasmo. Necesitas una pareja con energía propia que pueda correr a tu lado, alguien que no te frene sino que te acompañe en la carrera.</p><p>Necesitas alguien que entienda que tu urgencia no es ansiedad sino claridad. Que celebre tu velocidad en lugar de intentar frenarla.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, el Cheetah resuelve rápido, antes de que muchos se den cuenta de que existía. Tu velocidad para llegar a soluciones prácticas es una ventaja, pero asegúrate de que sea una solución real y no solo rápida.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Cheetah</h3>
+        <p>La sombra del Cheetah es el agotamiento que no quieres ver. Cuando corre tan rápido que colapsa sin darse cuenta.</p><p>También está el costo humano. Personas que querían acompañarte se cansan de tu ritmo. Descubres aislamiento en la línea de meta.</p><p>La última sombra: cuando la velocidad reemplaza intención. Cuando corres tan rápido que olvidas por qué empezaste.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🐴</div><div class="compat-text"><h4>Caballo</h4><p>El Caballo iguala tu energía. Juntos son movimiento puro.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">⚡</div><div class="compat-text"><h4>Tigre</h4><p>El Tigre trae acción. Juntos conquistáis rápidamente.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🦅</div><div class="compat-text"><h4>Águila</h4><p>El Águila trae visión. Tu velocidad + su dirección = poder.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐙</div><div class="compat-text"><h4>Pulpo</h4><p>El Pulpo aprecia tu rapidez mental. Juntos generan innovación rápida.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Define tu meta principal del mes</h4><p>Dedica tu velocidad a UN objetivo máximo. Déjalo todo ahí.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Implementa recuperación real</h4><p>Tu velocidad necesita descanso para ser sostenible. Esta semana, rutina de recuperación.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Celebra cada logro</h4><p>Antes de correr a la siguiente, celebra donde estás. Aunque sea momento breve.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Busca compañero de carrera</h4><p>Encuentra alguien que iguale tu velocidad. Alguien que te haga más rápido.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Practica paciencia estratégica</h4><p>No todo lo urgente merece tu velocidad total. Elige dónde dar tu ritmo máximo.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="pinguino">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 17 de 22</div>
+    <div class="lesson-title">🐧 Pingüino</div>
+    <div class="lesson-quote">&ldquo;En la tormenta más fría, me mantengo en pie junto a los míos.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El Pingüino es la prueba de que la fortaleza más grande no viene de la soledad sino de la comunidad bien construida. Eres leal, consistente y alguien en quien se puede confiar sin reservas. Cuando das tu palabra, la cumples. Cuando te comprometes, no hay tormenta que te haga ceder.</p><p>Tienes una capacidad notable para mantener la calma y la funcionalidad en condiciones que a otros los paralizaría. No es que no sientas el frío: es que has aprendido que resistir junto a otros genera un calor que ningún individuo puede generar solo. Tu comunidad no es un lujo: es tu estrategia de supervivencia y tu fuente de alegría.</p><p>Lo que distingue al Pingüino es la consistencia en la adversidad. Cuando todo se derrumba, cuando la tormenta es más fuerte que el viento ordinario, tú permaneces. Tu palabra se vuelve roca en la que otros se aferran.</p><p>Tu lealtad viene de la profunda comprensión de que sobrevivimos juntos. Tu sentido comunitario no es idealismo: es realismo básico. Tú y los tuyos unidos pueden soportar lo que ninguno soportaría solo.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu psicología está basada en la interdependencia. Necesitas comunidad de la misma forma que necesitas aire.</p><p>Tienes una relación especial con la consistencia: es tu superpoder. Cuando otros cambian, tú permaneces.</p><p>Tu capacidad de mantener funcionamiento en crisis es extraordinaria. Tu mente no se paraliza: se enfoca.</p><p>El Pingüino sabe que la verdadera fortaleza es la que protege a los que amas. Que tu poder es solo significativo si lo usas para resguardar tu comunidad.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Lealtad y confiabilidad absolutas</h4><p>Tu palabra es tu contrato. Esto es extraordinariamente raro y extraordinariamente valioso.</p></div>
+<div class="strength-card"><h4>Resiliencia ante adversidad</h4><p>Las tormentas que paralizarían a otros, para ti son circunstancias a navegar.</p></div>
+<div class="strength-card"><h4>Sentido comunitario genuino</h4><p>Entiendes que juntos somos más fuertes. Tu capacidad de crear comunidad seguida es un don.</p></div>
+<div class="strength-card"><h4>Consistencia que genera confianza</h4><p>En un mundo de cambio, tu estabilidad es un ancla para otros.</p></div>
+<div class="strength-card"><h4>Calma bajo presión</h4><p>Mientras otros entran en pánico, tú permaneces claro. Tu lucidez en crisis es extraordinaria.</p></div>
+<div class="strength-card"><h4>Liderazgo que sostiene</h4><p>Lideras por ejemplo. Los demás te siguen porque ven tu consistencia, tu compromiso.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres el colaborador ideal: confiable, consistente y orientado al equipo. Aportas estabilidad a entornos caóticos y lealtad a organizaciones que la valoran.</p><p>Tu dificultad está en roles que requieren individualismo puro, donde tu instinto comunitario es irrelevante.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Amas con constancia y dedicación. Para ti, el amor es un proyecto a largo plazo que se construye día a día con acciones pequeñas y consistentes.</p><p>Necesitas a alguien que entienda que tu compromiso no es obsesión sino expresión de amor genuino. Alguien que valore la consistencia.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, el Pingüino prefiere encontrar puntos en común antes que ganar una discusión. Tu habilidad para mantener relaciones después de un conflicto es notable.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Pingüino</h3>
+        <p>La sombra del Pingüino es el martirio comunitario. Cuando tu lealtad al grupo te destruye personalmente.</p><p>También está el resentimiento silencioso. Años de sacrificio sin reconocimiento. Años de dar sin recibir en retorno igual.</p><p>La última sombra: cuando protegiste lo equivocado. Cuando tu lealtad fue dirigida a personas que no la merecían.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🐘</div><div class="compat-text"><h4>Elefante</h4><p>El Elefante comparte tu sentido comunitario. Pareja histórica de construcción.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🦁</div><div class="compat-text"><h4>León</h4><p>El León trae energía; el Pingüino trae consistencia. Se complementan.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐺</div><div class="compat-text"><h4>Lobo</h4><p>El Lobo trae lealtad emocional. Juntos crean tribu inquebrantable.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🦉</div><div class="compat-text"><h4>Búho</h4><p>El Búho aporta profundidad. Ambos valoran la conexión real.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Recuerda: cuidarte no es traición</h4><p>Esta semana, haz algo solo para ti. No es egoísmo: es auto-preservación.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Cultiva identidad individual</h4><p>¿Quién eres tú más allá de tu rol en el grupo? Esta semana, explora eso.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Practica decir 'no'</h4><p>A una demanda del grupo que comprometa tu bienestar. Aprende a protegerte.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Celebra logros individuales</h4><p>Con la misma energía que celebras colectivos. Tu crecimiento individual importa.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Evalúa tus dinámicas</h4><p>¿Hay relaciones donde das sin recibir? Esta semana, ajusta o retírate.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="pantera_negra">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 18 de 22</div>
+    <div class="lesson-title">🖤 Pantera Negra</div>
+    <div class="lesson-quote">&ldquo;La precisión no es fría. Es respeto por el objetivo.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>La Pantera Negra es el arquetipo del misterio y la soberanía interior. Eres alguien que controla perfectamente lo que proyectas al mundo mientras guarda celosamente su mundo interior. Tu poder radica en tu capacidad de moverte en las sombras, observar sin ser visto, y actuar desde un lugar de profunda seguridad interna. Tu presencia genera respeto incluso antes de que digas una sola palabra.</p><p>La Pantera Negra sabe cuándo salir de las sombras y cuándo quedarse en ellas, y esa inteligencia situacional es uno de sus poderes más grandes. Tu reto es abrirte lo suficiente para que las personas correctas puedan entrar en tu mundo interior, porque lo que tienes ahí dentro vale la pena ser visto.</p><p>Lo que distingue a la Pantera Negra es el control consciente. Mientras otros reaccionan, tú eliges. Tu poder viene de tu capacidad de dirigir tu energía exactamente donde la necesita.</p><p>Tu misterio no es juego: es autoprotección genuina. Has aprendido que revelar todo te hace vulnerable a personas que no merecen esa vulnerabilidad. Así que controlas lo que ven. Y lo que ven es siempre poderoso.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu psicología está basada en el control deliberado. Tu mejor versión mantiene privacidad mientras proyecta poder.</p><p>Tienes una relación especial con las sombras: no te asustan, son tu territorio. Ahí ves claramente.</p><p>Tu seguridad interna es prácticamente inquebrantable. No necesitas validación porque confías profundamente en tu valor interno.</p><p>La Pantera Negra sabe que el verdadero poder es el que actúa sin necesidad de ser visto hacerlo. Que la influencia silenciosa es más poderosa que el liderazgo visible.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Misterio que atrae</h4><p>Tu enigma genera intriga natural. Las personas quieren saber más de ti.</p></div>
+<div class="strength-card"><h4>Soberanía interior inquebrantable</h4><p>Tu poder interno no depende de validación externa. Eso es extraordinariamente raro.</p></div>
+<div class="strength-card"><h4>Observación penetrante</h4><p>Ves cosas que otros no porque observas sin prejuicio. Tu visión es extraordinaria.</p></div>
+<div class="strength-card"><h4>Lealtad absoluta</h4><p>Cuando decides confiar en alguien, eres el compañero más profundo y leal posible.</p></div>
+<div class="strength-card"><h4>Inteligencia situacional</h4><p>Sabes exactamente qué hacer en cada contexto. Tu adaptabilidad es silenciosa pero letal.</p></div>
+<div class="strength-card"><h4>Poder discreto</h4><p>Tu influencia funciona mejor desde posiciones de poder silencioso. Eso es tu superpoder.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres extraordinario en roles estratégicos, de inteligencia, análisis o liderazgo en la sombra. No necesitas el protagonismo: tu influencia funciona mejor desde poder discreto.</p><p>Tu dificultad está en roles que requieren transparencia total, donde tu privacidad es vista como obstáculo.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Cuando decides confiar en alguien, eres el compañero más leal y profundo que puede existir. Necesitas a alguien que gane tu confianza con paciencia y que respete tu espacio sin sentirse excluido.</p><p>Necesitas una pareja que entienda que tu misterio no es engaño sino autoprotección. Que valore la profundidad sobre la superficie.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, la Pantera Negra raramente se ve en conflictos abiertos porque los neutraliza antes de que exploten. Cuando llegas al conflicto directo, es porque ya observaste, analizaste y decidiste: eres calculado y efectivo.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Pantera Negra</h3>
+        <p>La sombra de la Pantera Negra es el aislamiento que construyes bajo pretexto de poder. Cuando tu privacidad se convierte en muralla contra cualquier intimidad.</p><p>También está la manipulación disfrazada de estrategia. Cuando usas tu inteligencia incluso contra quienes amas. Cuando el cálculo reemplaza el corazón.</p><p>La última sombra: la soledad de la cúspide. Años de control perfecto y entonces descubres que nadie realmente te conoce. Que ganaste poder y perdiste conexión.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🐆</div><div class="compat-text"><h4>Jaguar</h4><p>El Jaguar aprecia tu poder silencioso. Ambos entienden la estrategia.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🦅</div><div class="compat-text"><h4>Águila</h4><p>El Águila trae visión. Tu ejecución silenciosa la realiza.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐙</div><div class="compat-text"><h4>Pulpo</h4><p>El Pulpo comparte tu complejidad interna. Juntos son sofisticación pura.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🌿</div><div class="compat-text"><h4>Leopardo</h4><p>El Leopardo es igualmente versátil. Juntos son poder equilibrado en múltiples formas.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Comparte algo auténtico</h4><p>Esta semana, revela una verdad personal a alguien de confianza. Aunque sea pequeña.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Identifica aislamiento vs. autoprotección</h4><p>¿Dónde simplemente te proteges versus donde simplemente te aíslas?</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Practica pedir ayuda</h4><p>En algo donde podrías hacerlo solo. Deja que otros contribuyan.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Muéstrate en incertidumbre</h4><p>Deja que alguien te vea en un momento donde no tienes todas las respuestas.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Descansa tu precisión</h4><p>Toma un tiempo donde no necesita estar completamente controlado. Déjate ser imperfecto.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="coyote">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 19 de 22</div>
+    <div class="lesson-title">🐺 Coyote</div>
+    <div class="lesson-quote">&ldquo;Me caí siete veces. Me reí en cada una.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El Coyote es el arqueado de 'el que no debería funcionar pero funciona siempre'. Tienes una combinación única de ingenio, humor y resiliencia que te permite sobrevivir (y muchas veces prosperar) en situaciones donde otros habrían claudicado. Tu sentido del humor no es una máscara: es tu filosofía de vida.</p><p>Eres el embaucador benévolo: el que encuentra la trampa en el sistema, la grieta en la lógica, el ángulo que nadie más vio. No lo haces por malicia sino por una curiosidad irresistible y un placer genuino en lo inesperado. Tu sabiduría viene envuelta en humor, lo cual hace que muchos la subestimen. Su pérdida.</p><p>Lo que distingue al Coyote es que tu risa no es negación: es integración. Ves lo absurdo, lo señalas, y descubres que es soportable cuando lo haces con humor. Eso te permite sobrevivir cosas que destruirían a otros.</p><p>Tu autenticidad sin filtros es tu superpoder. Dices lo que otros apenas piensan. Haces lo que otros tienen miedo de probar. Eso te mete en problemas pero también te permite vivir más completamente.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu psicología está basada en la adaptación creativa. Tu mejor versión encuentra salidas inesperadas.</p><p>Tienes una relación especial con la risa: sabes que la risa es resistencia. Que el humor frente a lo inaceptable es un acto de poder.</p><p>Tu ingenio viene de tu capacidad de ver conexiones improbables. De encontrar soluciones donde otros ven solo paredes.</p><p>El Coyote sabe que la vida es absurda. Que la risa es el antídoto contra la desesperación. Que la ironía es su forma de amor.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Resiliencia extraordinaria</h4><p>Caes, te levantas, y encuentras una razón para reírte del viaje. Eso es poder real.</p></div>
+<div class="strength-card"><h4>Humor transformador</h4><p>Tu capacidad de convertir lo terrible en entretenimiento es un superpoder de supervivencia.</p></div>
+<div class="strength-card"><h4>Ingenio adaptativo</h4><p>Siempre encuentras una salida inesperada. Tu creatividad es su mejor bajo presión.</p></div>
+<div class="strength-card"><h4>Autenticidad sin filtros</h4><p>Eres genuinamente tú. Eso conecta profundamente con otros auténticos.</p></div>
+<div class="strength-card"><h4>Visión lateral</h4><p>Ves ángulos que otros no. Tu perspectiva no convencional genera soluciones genuinas.</p></div>
+<div class="strength-card"><h4>Capacidad de juego</h4><p>Incluso en serio, mantienes ligereza. Eso reduce presión y permite pensamiento creativo.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres el que resuelve lo que nadie más puede con los recursos que nadie más usaría. Eres invaluable en entornos que necesitan pensamiento lateral, creatividad y resiliencia.</p><p>Tu dificultad está en contextos que requieren formalidad pura, donde tu humor no es bienvenido.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Amas con humor y ligereza, pero hay una profundidad debajo que pocas personas ven. Necesitas a alguien que pueda reírse contigo y también ser serio cuando importa.</p><p>Necesitas una pareja que entienda que tu bromas son a menudo verdades disfrazadas. Que celebre tu autenticidad sin domesticarla.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, el Coyote usa el humor y la creatividad para encontrar salidas inesperadas a los conflictos. A veces esto es genial. Otras, lo que se necesitaba era simplemente honestidad directa.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Coyote</h3>
+        <p>La sombra del Coyote es cuando el humor reemplaza conexión genuina. Cuando bromas sin dejar nunca que alguien te vea realmente.</p><p>También está el autosabotaje que parecía divertido hasta que resulta destructivo. Cuando tu ingenio te metió en un agujero que no puedes salir.</p><p>La última sombra: cuando tu risa es supervivencia pero no es vida. Cuando sobrevives todo tan bien que olvidas qué es tener paz.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🐺</div><div class="compat-text"><h4>Lobo</h4><p>El Lobo aprecia tu autenticidad. Ambos genuinos, diferentes maneras.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🦊</div><div class="compat-text"><h4>Zorro</h4><p>El Zorro comparte tu ingenio. Juntos son creatividad pura.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐻</div><div class="compat-text"><h4>Oso</h4><p>El Oso aporta calor a tu humor. Equilibrio perfecto.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐧</div><div class="compat-text"><h4>Pingüino</h4><p>El Pingüino aporta estabilidad a tu libertad. Complemento valioso.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Practica seriedad intencional</h4><p>Esta semana, demuestra que puedes ser profundo cuando el momento lo requiere.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Identifica autosabotaje</h4><p>¿Dónde sabotajeas éxito? Esta semana, elige una y no lo hagas.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Usa tu resiliencia para enseñar</h4><p>Tu supervivencia tiene valor educativo. Comparte cómo lo haces.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Muestra la profundidad debajo</h4><p>A alguien que se la merece, muéstrale quién eres sin los chistes.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Crea algo con tu ingenio</h4><p>Esta semana, toma tu creatividad y hazla tangible. Tangibiliza tu talento.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="ciervo">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 20 de 22</div>
+    <div class="lesson-title">🦌 Ciervo</div>
+    <div class="lesson-quote">&ldquo;Mi sensibilidad no es fragilidad. Es mi forma de sentir el mundo completo.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El Ciervo siente todo con una profundidad que puede ser tanto su mayor regalo como su mayor desafío. Tienes una sensibilidad que te permite conectar con las emociones y necesidades de otros a un nivel que pocas personas alcanzan. Eres gracioso en el trato, suave en la presencia y genuino en el afecto.</p><p>Eres el tipo de persona que recuerda los detalles que importan, que nota cuando alguien está bien sin decirlo, que ofrece apoyo antes de que se pida. Tu reto es aprender que esa misma sensibilidad que te hace extraordinario necesita ser protegida. No todos los espacios merecen tu apertura.</p><p>Lo que distingue al Ciervo es la capacidad de sentir el mundo emocionalmente de formas que otros ni siquiera imaginan. Tus antenas emocionales están constantemente sintonizadas. Eso es extraordinario pero también agotador.</p><p>Tu gracia viene de tu sensibilidad. No es debilidad: es tu forma particular de ser fuerte. Tu suavidad es tu fuerza.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu psicología está basada en la empatía genuina. Tu mejor versión necesita ambientes emocionalmente seguros.</p><p>Tienes una relación especial con las emociones: las sientes con una claridad que otros no alcanzan.</p><p>Tu inteligencia es principalmente emocional. Entiendes dinámicas humanas de formas que la mayoría no puede.</p><p>El Ciervo sabe que la sensibilidad requiere autoprotección. Que un corazón abierto necesita límites para no romperse.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Sensibilidad emocional extraordinaria</h4><p>Tu capacidad de sentir profundamente es un superpoder en un mundo anestesiado.</p></div>
+<div class="strength-card"><h4>Gracia y delicadeza natural</h4><p>Tu presencia es calmante. Las personas se relajan alrededor tuyo.</p></div>
+<div class="strength-card"><h4>Capacidad de crear espacios seguros</h4><p>Permites que otros se abran de formas que no lo hacen con nadie.</p></div>
+<div class="strength-card"><h4>Empatía genuina transformadora</h4><p>Tu comprensión real de otros crea conexiones duraderas.</p></div>
+<div class="strength-card"><h4>Intuición emocional</h4><p>Sabes lo que alguien necesita incluso si no lo dice.</p></div>
+<div class="strength-card"><h4>Presencia sanadora</h4><p>Tu simple presencia calma. Tienes un don natural para la curación emocional.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres brillante en roles que requieran cuidado, empatía, comunicación y creación de ambientes seguros. Consejería, enseñanza, trabajo social, salud mental: espacios donde tu sensibilidad es una fortaleza.</p><p>Tu dificultad está en ambientes emocionalmente hostiles, donde se espera que ignores tu sensibilidad.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Amas profundamente y necesitas a alguien que trate tu corazón con el cuidado que merece. No te conformes con menos.</p><p>Necesitas una pareja que valore tu sensibilidad como fortaleza, no como debilidad. Que te proteja sin domesticarte.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, el Ciervo se ve profundamente afectado incluso cuando no estés directamente involucrado. Tu reto es regularte emocionalmente.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Ciervo</h3>
+        <p>La sombra del Ciervo es la vulnerabilidad que te destruye. Cuando tu apertura te pone en manos de personas que no la merecen.</p><p>También está la dependencia emocional. Cuando tu necesidad de cuidar a otros reemplaza cuidar de ti mismo.</p><p>La última sombra: cuando tu sensibilidad se convierte en incapacidad de actuar. Cuando el sentimiento reemplaza la acción.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🦌</div><div class="compat-text"><h4>Leopardo</h4><p>El Leopardo aporta estrategia a tu sensibilidad. Equilibrio valioso.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🦅</div><div class="compat-text"><h4>Águila</h4><p>El Águila aporta claridad a tu intuición. Completan.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐘</div><div class="compat-text"><h4>Elefante</h4><p>El Elefante comparte tu profundidad empática. Pareja de corazones.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🦉</div><div class="compat-text"><h4>Búho</h4><p>El Búho aporta análisis a tu sentimiento. Equilibrio perfecto.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Practica el límite como acto de amor</h4><p>Esta semana, protégete emocionalmente. Es amor a ti mismo.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Crea rituales de regulación</h4><p>Después de situaciones intensas, necesitas descompresión real.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Distingue empatía de absorción</h4><p>Puedes sentir sin cargar. Esta semana, practica sentir sin absorber.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Rodéate de gente segura</h4><p>¿Quiénes son emocionalmente seguros contigo? Esta semana, invierte ahí.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Usa tu intuición profesionalmente</h4><p>Tu sensibilidad tiene valor comercial. Explora cómo monetizarla.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="leopardo">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 21 de 22</div>
+    <div class="lesson-title">🌿 Leopardo</div>
+    <div class="lesson-quote">&ldquo;Navego perfectamente en la oscuridad donde otros se pierden.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El Leopardo es el arquetipo de la versatilidad maestra. Eres igualmente poderoso en la tierra y en los árboles, en la oscuridad y en la luz, en solitario y en compañía. Tu adaptabilidad no viene de la indecisión sino de una verdadera maestría en múltiples registros. Eres elegante por naturaleza, estratégico por instinto, y completamente impredecible para quienes no te conocen bien.</p><p>Lo que hace al Leopardo verdaderamente poderoso es que no se especializa en un solo entorno: lo domina todos. Puedes ser el líder visible o el estratega en la sombra, el guerrero solitario o el compañero leal. Esta versatilidad es tu mayor fortaleza, pero también puede dispersarte si no defines claramente qué quieres en cada momento.</p><p>Lo que distingue al Leopardo es que tu versatilidad no es debilidad: es maestría. Dominas múltiples registros completamente. Eso es raro.</p><p>Tu elegancia viene de tu seguridad. No necesitas probar nada porque ya lo has dominado todo. Eso te da una presencia que otros sienten inmediatamente.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu psicología está basada en la multiplicidad controlada. Tu mejor versión navega múltiples mundos sin perder coherencia.</p><p>Tienes una relación especial con la complejidad: no te asusta, la disfrutas. Eres el que prospera en lo complicado.</p><p>Tu estrategia es instintiva. Sabes qué hacer en cada contexto sin necesidad de análisis paralelo.</p><p>El Leopardo sabe que verdadera versatilidad es maestría repetida. Que poder verdadero es poder en múltiples formas.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Versatilidad genuina incomparable</h4><p>Tu maestría en múltiples registros es extraordinaria. Otros no pueden seguirte.</p></div>
+<div class="strength-card"><h4>Elegancia natural</h4><p>Tu presencia es elegante en cualquier contexto. Simplemente existes bien.</p></div>
+<div class="strength-card"><h4>Estrategia instintiva</h4><p>Siempre tienes un plan alternativo. Tu mente trabaja múltiples opciones simultáneamente.</p></div>
+<div class="strength-card"><h4>Impredecibilidad controlada</h4><p>No sabes qué esperar de ti, pero en controlado. Eso es poder.</p></div>
+<div class="strength-card"><h4>Capacidad de navegación</h4><p>En incertidumbre, mientras otros se pierden, tú simplemente cambias de forma.</p></div>
+<div class="strength-card"><h4>Poder en múltiples formas</h4><p>Puedes ser lo que se necesita en cada momento sin perder quién eres.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres extraordinario en roles que requieran adaptabilidad, estrategia multidimensional o habilidades que otros no pueden combinar. Los entornos que para otros son demasiado complejos, para ti son simplemente interesantes.</p><p>Tu dificultad está en especialización pura, donde se espera que hagas una sola cosa perfectamente.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Necesitas a alguien que pueda seguirte en tus múltiples mundos y que te conozca en cada uno de ellos. Alguien que celebre tu complejidad en lugar de pedir que la simplifiques.</p><p>Necesitas una pareja que entienda que tu versatilidad no es inconstancia sino expresión de tu complejidad.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, el Leopardo es impredecible, lo cual es una ventaja táctica real. Sabes adaptarte a la dinámica del momento y cambiar de estrategia cuando la situación lo requiere.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Leopardo</h3>
+        <p>La sombra del Leopardo es cuando la versatilidad se convierte en superficialidad. Cuando dominas todo pero no construyes nada profundo.</p><p>También está la pérdida de identidad. Cuando cambias tanto que nadie, ni tú, sabe quién eres realmente.</p><p>La última sombra: cuando tu múltiple naturaleza se convierte en fragmentación. Cuando no hay coherencia central, solo máscaras.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🐙</div><div class="compat-text"><h4>Pulpo</h4><p>El Pulpo comparte tu complejidad. Juntos son sofisticación extraordinaria.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐴</div><div class="compat-text"><h4>Caballo</h4><p>El Caballo iguala tu adaptabilidad. Juntos navegan lo imposible.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🌿</div><div class="compat-text"><h4>Pantera Negra</h4><p>La Pantera Negra comparte tu poder discreto. Juntos son influencia silenciosa.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">⚡</div><div class="compat-text"><h4>Cheetah</h4><p>El Cheetah aprecia tu versatilidad de velocidad. Juntos son adaptación rápida.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Elige una habilidad y profundiza</h4><p>Esta semana, ve más profundo en una capacidad en lugar de expandir.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Define tu mejor versión en cada registro</h4><p>¿Quién eres como líder visible? ¿Como estratega sombra? Claridad.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Practica compromiso de 30 días</h4><p>Elige una dirección y cúmplela sin cambiar de curso durante un mes.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Identifica tu verdadero norte</h4><p>¿Qué atraviesa todos tus registros? ¿Cuál es tu coherencia central?</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Comparte tu navegación</h4><p>Tu capacidad de navegar incertidumbre es un don. Enseña a otros.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="lesson" id="pavo_real">
+  <div class="lesson-header">
+    <div class="lesson-num">Arquetipo 22 de 22</div>
+    <div class="lesson-title">🦚 Pavo Real</div>
+    <div class="lesson-quote">&ldquo;No me disculpo por brillar. Para eso están las plumas.&rdquo;</div>
+  </div>
+  <div class="lesson-body">
+
+    <div class="sec">
+      <div class="sec-title">🔍 La esencia del arquetipo</div>
+      <p>El Pavo Real es expresión en su forma más pura. Tienes un sentido estético extraordinario, un deseo genuino de ser visto y una capacidad de presencia que hace que ignorarte sea simplemente imposible. No eres superficial: eres alguien que entiende que la belleza y la autenticidad son formas de comunicación tan válidas como cualquier otra.</p><p>Tu necesidad de reconocimiento no viene de inseguridad (aunque puede ir acompañada de ella): viene de un deseo profundamente humano de ser visto tal como eres. Tu reto es aprender que el reconocimiento más importante es el que te das a ti mismo, y que tu valor no puede depender de cuántas personas lo confirmaron hoy.</p><p>Lo que distingue al Pavo Real es que tu expresión es auténtica. No es performance vacía: es tu verdad comunicada a través de formas que otros encuentran difícil de ignorar.</p><p>Tu autenticidad expresiva es tu superpoder. En un mundo de grises, tu color es revolucionario.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌿 Tu naturaleza profunda</div>
+      <p>Tu psicología está basada en la expresión genuina. Tu mejor versión se comunica completamente.</p><p>Tienes una relación especial con la belleza: la ves como forma de comunicación, no como superficialidad.</p><p>Tu presencia es magnética porque es real. No es actuación: es ti siendo completamente ti.</p><p>El Pavo Real sabe que brillar es revolucionario. Que en un mundo de conformidad, ser tú completamente es acto de coraje.</p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">⚡ Fortalezas</div>
+      <div class="strength-grid">
+<div class="strength-card"><h4>Autenticidad expresiva</h4><p>Tu expresión genuina inspira a otros a ser más ellos mismos.</p></div>
+<div class="strength-card"><h4>Sentido estético extraordinario</h4><p>Tu capacidad de ver y crear belleza es un superpoder.</p></div>
+<div class="strength-card"><h4>Presencia magnética</h4><p>Tu energía simplemente llena espacios. Tu presencia es notable.</p></div>
+<div class="strength-card"><h4>Coraje sin disculpas</h4><p>Te muestras completamente. Eso requiere coraje extraordinario.</p></div>
+<div class="strength-card"><h4>Capacidad de inspiración</h4><p>Tu expresión inspira a otros a arriesgarse siendo ellos.</p></div>
+<div class="strength-card"><h4>Impacto visual</h4><p>Dejas impresión. Eso es poder genuino en comunicación.</p></div>
+      </div>
+    </div>
+
+        <div class="sec">
+      <div class="sec-title">🌐 Cómo eres en diferentes contextos</div>
+      <div class="ctx-grid">
+        <div class="ctx-card"><h4>💼 En el trabajo</h4><p>Eres brillante en roles creativos, de comunicación, actuación, diseño o cualquier espacio donde tu presencia y expresión sean la herramienta principal.</p><p>Tu dificultad está en roles invisibles, donde tu presencia es irrelevante.</p></div>
+        <div class="ctx-card"><h4>❤️ En el amor</h4><p>Necesitas a alguien que te vea, que te admire genuinamente y que disfrute de tu expresión sin sentirse opacado. La admiración mutua es tu lenguaje del amor.</p><p>Necesitas una pareja que valore tu expresión como fortaleza, no como vanidad a tolerar.</p></div>
+        <div class="ctx-card"><h4>⚔️ Ante el conflicto</h4><p>Ante el conflicto, cuando te sientes ignorado o no reconocido, el conflicto puede surgir. Tu necesidad de ser visto es real, pero trabajar la autovalidación reduce estos momentos.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🌑 Tu sombra: lo que no quieres ver</div>
+      <div class="shadow-box">
+        <h3>La sombra del Pavo Real</h3>
+        <p>La sombra del Pavo Real es cuando tu expresión se vuelve sobre compensación de vacío interno. Cuando brillas para llenar lo que está vacío.</p><p>También está la superficialidad real. Cuando tu necesidad de expresión es mayor que tu sustancia. Cuando hay más apariencia que realidad.</p><p>La última sombra: cuando tu expresión se convierte en prisión. Cuando tienes que ser siempre "on", siempre brillante, porque eso es lo único que tienes.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🤝 Compatibilidades naturales</div>
+<div class="compat-item"><div class="compat-emoji">🦁</div><div class="compat-text"><h4>León</h4><p>El León comparte tu presencia magnética. Se notan mutuamente como iguales.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🐯</div><div class="compat-text"><h4>Tigre Blanco</h4><p>El Tigre Blanco aprecia tu singularidad expresiva. Pareja de presencia.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">⚡</div><div class="compat-text"><h4>Cheetah</h4><p>El Cheetah aprecia tu velocidad de impacto visual. Juntos son presencia dinámica.</p></div></div>
+<div class="compat-item"><div class="compat-emoji">🦚</div><div class="compat-text"><h4>Coyote</h4><p>El Coyote aporta humor a tu expresión. Equilibrio delightful.</p></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">🎯 Tus 5 acciones de desarrollo personal</div>
+      <div class="actions-list">
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Practica autovalidación</h4><p>Esta semana, escribe tres cosas que admiras de ti sin buscar confirmación externa.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Distingue reconocimiento vs. aprobación</h4><p>¿Qué necesitas genuinamente versus qué estás buscando para llenar vacío?</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Desarrolla sustancia junto a presencia</h4><p>Que lo que hay detrás de tu expresión sea tan extraordinario como lo que se ve.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Cultiva admiración mutua</h4><p>Busca relaciones donde ambos se admiren genuinamente, no donde tú necesites admiración.</p></div></div>
+<div class="action-item"><div class="action-num"></div><div class="action-text"><h4>Usa tu expresión para crear</h4><p>Esta semana, toma tu sentido estético y crea algo que trascienda. Arte, enseñanza, liderazgo.</p></div></div>
+      </div>
+    </div>
+
+    <div class="bonus-bar">
+      <h3>📎 Bonos incluidos en tu compra</h3>
+      <ul class="bonus-list">
+        <li><span>🗺️ Bono 1</span> Mapa de Compatibilidades — Descubre con qué arquetipos tienes mayor afinidad natural y por qué ciertas personas te energizan o agotan.</li>
+        <li><span>📅 Bono 2</span> Plan de Activación 7 Días — Acciones concretas y específicas para activar tu arquetipo esta semana y comenzar a vivir desde tu esencia.</li>
+        <li><span>🌑 Bono 3</span> La Sombra del Arquetipo — Un análisis profundo de lo que tu animal revela sobre tu lado más oscuro y cómo integrarlo para tu crecimiento.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+</body></html>
