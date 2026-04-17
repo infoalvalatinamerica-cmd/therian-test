@@ -664,8 +664,8 @@ function sendToEmailService(name, email) {
   // Replace YOUR_BREVO_API_KEY with your key from brevo.com (free tier)
   // Replace YOUR_LIST_ID with your Brevo list ID
   // This will add the contact to your Brevo list silently
-  const BREVO_API_KEY = 'YOUR_BREVO_API_KEY'; // <-- reemplazar
-  if (BREVO_API_KEY === 'YOUR_BREVO_API_KEY') return; // skip if not configured
+  const BREVO_API_KEY = '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';
+  if (!BREVO_API_KEY) return; // skip if not configured
   const winner = getWinner();
   fetch('https://api.brevo.com/v3/contacts', {
     method: 'POST',
