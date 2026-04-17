@@ -668,20 +668,24 @@ function pickAnswer(idx, gives, btn) {
   }, 280);
 }
 
+// ── ID del ganador calculado UNA sola vez al terminar el quiz ──
+let finalWinnerId = null;
+
 function revealResult(evt) {
   if (evt) evt.preventDefault();
+  // Calcular el ganador UNA VEZ aquí para que email y pantalla sean idénticos
+  finalWinnerId = getWinner();
   const email = document.getElementById('email-input').value;
-  const name = document.getElementById('name-input').value;
+  const name  = document.getElementById('name-input').value;
   // Send to email service if provided
-  if (email) sendToEmailService(name, email);
+  if (email) sendToEmailService(name, email, finalWinnerId);
   // Show processing
   show('processing-screen');
   setTimeout(displayResult, 1800);
 }
 
-function sendToEmailService(name, email) {
-  const winner = getWinner();
-  const arch = ARCHETYPES[winner];
+function sendToEmailService(name, email, winnerId) {
+  const arch = ARCHETYPES[winnerId];
 
   // ── Brevo: captura de lead ───────────────────────────────────────
   const BREVO_API_KEY = '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';
@@ -714,12 +718,18 @@ function sendToEmailService(name, email) {
 }
 
 function getWinner() {
-  if (Object.keys(scores).length === 0) return 1;
-  return Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+  const keys = Object.keys(scores);
+  if (keys.length === 0) return 1;
+  // Encontrar el puntaje máximo
+  const maxScore = Math.max(...keys.map(k => scores[k]));
+  // Obtener todos los arquetipos empatados con el puntaje máximo
+  const tied = keys.filter(k => scores[k] === maxScore).map(Number);
+  // En caso de empate, elegir al azar entre los empatados (justo)
+  return tied[Math.floor(Math.random() * tied.length)];
 }
 
 function displayResult() {
-  const winnerId = parseInt(getWinner());
+  const winnerId = finalWinnerId !== null ? finalWinnerId : getWinner();
   const arch = ARCHETYPES[winnerId];
   if (!arch) return;
   document.getElementById('r-name').textContent = arch.name.toUpperCase();
