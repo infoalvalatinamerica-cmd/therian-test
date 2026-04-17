@@ -339,6 +339,26 @@
   .result-share { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); text-align: center; }
   .share-label { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; }
   .share-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .share-hint {
+    font-size: .72rem;
+    color: var(--text-dim);
+    margin-top: 10px;
+    line-height: 1.6;
+    opacity: .7;
+  }
+  .share-btn-main {
+    background: var(--gold);
+    color: var(--bg);
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .share-btn-main:hover {
+    background: var(--gold-dark);
+    color: var(--bg);
+    border-color: transparent;
+  }
   .share-btn {
     padding: 8px 18px;
     border: 1px solid var(--border);
@@ -435,14 +455,14 @@
       <a id="r-cta" href="pagina_de_venta.html" class="btn-cta">
         Presiona aquí para obtener el Reporte Completo
       </a>
-      <p class="result-guarantee">🔒 Pago seguro vía Hotmart &nbsp;·&nbsp; Garantía 7 días &nbsp;·&nbsp; Acceso inmediato</p>
       <div class="result-share">
-        <p class="share-label">Comparte tu resultado</p>
+        <p class="share-label">📲 Comparte tu arquetipo</p>
         <div class="share-btns">
-          <a id="share-wa" href="#" target="_blank" class="share-btn">📱 WhatsApp</a>
-          <a id="share-ig" href="#" class="share-btn">📸 Copiar para IG</a>
-          <a id="share-tw" href="#" target="_blank" class="share-btn">𝕏 Twitter/X</a>
+          <button id="share-native" class="share-btn share-btn-main">⬆ Compartir imagen</button>
+          <a id="share-tw" href="#" target="_blank" class="share-btn">𝕏 X / Twitter</a>
+          <a id="share-wa" href="#" target="_blank" class="share-btn">💬 WhatsApp</a>
         </div>
+        <p class="share-hint">En móvil: toca "Compartir imagen" para publicar directo en Instagram o TikTok 🐾</p>
       </div>
     </div>
   </div>
@@ -722,14 +742,44 @@ function displayResult() {
   } catch(e) {}
 
   // Share buttons
-  const text = encodeURIComponent(`Hice el Therian Test y soy ${arch.name} 🐾 — "${arch.quote.replace(/"/g,'')}" Descubre el tuyo → `);
-  const url  = encodeURIComponent(window.location.href);
-  document.getElementById('share-wa').href = `https://wa.me/?text=${text}${url}`;
-  document.getElementById('share-tw').href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
-  document.getElementById('share-ig').onclick = () => {
-    navigator.clipboard.writeText(`Soy ${arch.name} 🐾 "${arch.quote.replace(/"/g,'')}" — Therian Test`);
-    alert('¡Copiado! Pégalo en tu historia de Instagram.');
-    return false;
+  const shareText = `Hice el Therian Test y soy ${arch.name} 🐾\n"${arch.quote.replace(/[""]/g,'').replace(/"/g,'')}" \nDescubre el tuyo → theriantest.vercel.app`;
+  const tweetText = encodeURIComponent(`Hice el Therian Test y soy ${arch.name} 🐾 — "${arch.quote.replace(/"/g,'')}" Descubre el tuyo →`);
+  const waText    = encodeURIComponent(shareText);
+  const pageUrl   = encodeURIComponent('https://theriantest.vercel.app');
+
+  document.getElementById('share-wa').href = `https://wa.me/?text=${waText}%20${pageUrl}`;
+  document.getElementById('share-tw').href = `https://twitter.com/intent/tweet?text=${tweetText}&url=${pageUrl}`;
+
+  // Botón principal: Web Share API (abre hoja nativa en móvil → Instagram, TikTok, etc.)
+  document.getElementById('share-native').onclick = async () => {
+    const imgUrl = arch.bonusImg;
+    const fileName = `Arquetipo-${arch.name.replace(/\s+/g,'-')}.png`;
+
+    // Intento 1: compartir con imagen via Web Share API
+    if (navigator.share) {
+      try {
+        const resp = await fetch(imgUrl);
+        const blob = await resp.blob();
+        const file = new File([blob], fileName, { type: blob.type });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({ title: `Mi Arquetipo: ${arch.name}`, text: shareText, files: [file] });
+          return;
+        }
+        // Sin soporte de archivos: compartir URL
+        await navigator.share({ title: `Mi Arquetipo: ${arch.name}`, text: shareText, url: 'https://theriantest.vercel.app' });
+        return;
+      } catch(e) {
+        if (e.name === 'AbortError') return; // usuario canceló
+      }
+    }
+    // Fallback escritorio: descargar la imagen
+    const a = document.createElement('a');
+    a.href = imgUrl;
+    a.download = fileName;
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
   show('result-screen');
 }

@@ -336,12 +336,24 @@
     transform: translateY(-1px);
   }
 
+  /* ── RESPONSIVE WRAPPER ── */
+  #cover-wrapper {
+    width: 100%;
+    max-width: 800px;
+    overflow: hidden;
+  }
+
+  @media (max-width: 840px) {
+    body { padding: 16px; gap: 16px; }
+  }
+
 </style>
 </head>
 <body>
 
 <span class="hint">↓ Portada del producto (800 × 600 px) — Usa la captura de pantalla o el botón de descarga</span>
 
+<div id="cover-wrapper">
 <div id="cover">
   <div class="bg"></div>
   <div class="noise"></div>
@@ -510,6 +522,7 @@
   <div class="corner-tl"></div>
   <div class="corner-bl"></div>
 </div>
+</div><!-- /cover-wrapper -->
 
 <button class="dl-btn" onclick="downloadCover()">⬇ Descargar portada (screenshot)</button>
 
@@ -517,9 +530,20 @@
 
 <script>
   function downloadCover() {
-    // Use html2canvas if available, otherwise guide user
     alert('Para descargar la imagen:\n\n1. Clic derecho sobre la portada\n2. "Guardar imagen como..." \n\nO usa la herramienta de captura de pantalla de tu sistema y recorta solo la portada.\n\nTamaño exacto: 800 × 600 px');
   }
+
+  // ── Escala responsive de la portada ──
+  function scaleCover() {
+    const wrapper = document.getElementById('cover-wrapper');
+    const cover   = document.getElementById('cover');
+    const scale   = Math.min(1, wrapper.clientWidth / 800);
+    cover.style.transformOrigin = 'top left';
+    cover.style.transform = `scale(${scale})`;
+    wrapper.style.height  = (600 * scale) + 'px';
+  }
+  scaleCover();
+  window.addEventListener('resize', scaleCover);
 </script>
 
 </body>
