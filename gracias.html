@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tu Bono — Therian Test</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #d4a853;
+    --gold-dark: #b8903e;
+    --bg: #0d2318;
+    --bg2: #122d1f;
+    --text: #f5f0e8;
+    --text-dim: rgba(245,240,232,0.6);
+    --border: rgba(212,168,83,0.3);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  #app { width: 100%; max-width: 560px; }
+
+  /* ── CARD PRINCIPAL ── */
+  .card {
+    background: rgba(255,255,255,.025);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    animation: fadeIn .5s ease;
+  }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+
+  .card-header {
+    background: var(--bg2);
+    padding: 32px 28px 24px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: .62rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 14px;
+    margin-bottom: 18px;
+  }
+
+  .card-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .card-header p {
+    font-size: .9rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* ── IMAGEN ── */
+  .archetype-img-wrap { position: relative; }
+  .archetype-img {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── BODY ── */
+  .card-body { padding: 28px; }
+
+  .archetype-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 7vw, 2.6rem);
+    font-weight: 900;
+    color: var(--gold);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+
+  .archetype-subtitle {
+    text-align: center;
+    font-size: .75rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+  }
+
+  .quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--gold);
+    line-height: 1.7;
+    text-align: center;
+    padding: 14px 18px;
+    border-left: 3px solid var(--gold);
+    background: rgba(212,168,83,.07);
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 28px;
+  }
+
+  /* ── BONO BOX ── */
+  .bonus-box {
+    background: rgba(212,168,83,.08);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .bonus-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .bonus-box p {
+    font-size: .88rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .btn-download {
+    display: inline-block;
+    padding: 16px 32px;
+    background: var(--gold);
+    color: var(--bg);
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: .2s;
+    letter-spacing: .03em;
+  }
+  .btn-download:hover {
+    background: var(--gold-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(212,168,83,.3);
+  }
+
+  /* ── FALLBACK (todos los arquetipos) ── */
+  .fallback-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 6px;
+  }
+  .fallback-sub {
+    text-align: center;
+    font-size: .82rem;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .grid-item {
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+  }
+  .grid-item img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    display: block;
+  }
+  .grid-item-body { padding: 10px 10px 14px; }
+  .grid-item-name {
+    font-family: 'Playfair Display', serif;
+    font-size: .85rem;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .btn-dl-sm {
+    display: inline-block;
+    padding: 7px 16px;
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: .75rem;
+    text-decoration: none;
+    transition: .2s;
+    font-weight: 500;
+  }
+  .btn-dl-sm:hover {
+    background: rgba(212,168,83,.12);
+    border-color: var(--gold);
+  }
+
+  .footer {
+    text-align: center;
+    font-size: .72rem;
+    color: var(--text-dim);
+    margin-top: 28px;
+    line-height: 1.8;
+    opacity: .6;
+  }
+
+  @media (max-width: 420px) {
+    body { padding: 12px; align-items: flex-start; padding-top: 20px; }
+    .card { border-radius: 14px; }
+    .grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <!-- Contenido inyectado por JS -->
+</div>
+
+<script>
+// ════════════════════════════════════════════
+//  ARCHETIPOS — fallback completo
+// ════════════════════════════════════════════
+const ARCHETYPES = {
+  1:  { name:'El Lobo',          subtitle:'Arquetipo de Lealtad y Manada',        bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-lobo_tfjk0n.png' },
+  2:  { name:'El Zorro',         subtitle:'Arquetipo de Inteligencia y Astucia',   bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-zorro_zxlpue.png' },
+  3:  { name:'El Oso',           subtitle:'Arquetipo de Fuerza y Calma',           bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-oso_uplluz.png' },
+  4:  { name:'El Cuervo',        subtitle:'Arquetipo de Observación y Verdad',     bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-cuervo_lp8xnb.png' },
+  5:  { name:'El Delfín',        subtitle:'Arquetipo de Empatía y Conexión',       bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-delfin_qbletr.png' },
+  6:  { name:'El Gato',          subtitle:'Arquetipo de Independencia y Gracia',   bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-gato_mfqqtg.png' },
+  7:  { name:'El Águila',        subtitle:'Arquetipo de Visión y Ambición',        bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-aguila_ffr6oj.png' },
+  8:  { name:'El Jaguar',        subtitle:'Arquetipo de Poder Silencioso',         bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-jaguar_dt2y0d.png' },
+  9:  { name:'El León',          subtitle:'Arquetipo de Carisma y Liderazgo',      bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-leon_bwxbna.png' },
+  10: { name:'El Tigre Blanco',  subtitle:'Arquetipo de Singularidad y Magia',     bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-tigre-blanco_dnipor.png' },
+  11: { name:'El Elefante',      subtitle:'Arquetipo de Memoria y Comunidad',      bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-elefante_sxexdy.png' },
+  12: { name:'El Tigre',         subtitle:'Arquetipo de Pasión e Intensidad',      bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-tigre_gxoy5b.png' },
+  13: { name:'El Búho',          subtitle:'Arquetipo de Sabiduría y Análisis',     bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-buho_z9rzvw.png' },
+  14: { name:'El Caballo',       subtitle:'Arquetipo de Libertad y Pasión',        bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-caballo_xextg3.png' },
+  15: { name:'El Pulpo',         subtitle:'Arquetipo de Inteligencia Múltiple',    bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-pulpo_t4hg0i.png' },
+  16: { name:'El Cheetah',       subtitle:'Arquetipo de Velocidad y Enfoque',      bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-cheetah_wux0qm.png' },
+  17: { name:'El Pingüino',      subtitle:'Arquetipo de Comunidad y Lealtad',      bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-pinguino_vz34ya.png' },
+  18: { name:'La Pantera Negra', subtitle:'Arquetipo de Misterio y Soberanía',     bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-la-pantera-negra_q0skbt.png' },
+  19: { name:'El Coyote',        subtitle:'Arquetipo de Ingenio y Resiliencia',    bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-coyote_inrhig.png' },
+  20: { name:'El Ciervo',        subtitle:'Arquetipo de Sensibilidad y Gracia',    bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-ciervo_ohik5w.png' },
+  21: { name:'El Leopardo',      subtitle:'Arquetipo de Versatilidad y Maestría',  bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-leopardo_tgfudu.png' },
+  22: { name:'El Pavo Real',     subtitle:'Arquetipo de Expresión y Presencia',    bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-pavo-real_winaq5.png' }
+};
+
+// ════════════════════════════════════════════
+//  RENDER
+// ════════════════════════════════════════════
+function render() {
+  let result = null;
+  try { result = JSON.parse(localStorage.getItem('therian_result')); } catch(e) {}
+
+  const app = document.getElementById('app');
+
+  if (result && result.bonusImg) {
+    // ── MODO PERSONALIZADO: mostrar solo su arquetipo ──
+    app.innerHTML = `
+      <div class="card">
+        <div class="card-header">
+          <div class="badge">🎁 Tu Bono Exclusivo</div>
+          <h1>¡Tu compra fue exitosa!</h1>
+          <p>Gracias por tu confianza. Aquí está tu imagen de arquetipo en alta resolución.</p>
+        </div>
+
+        <div class="archetype-img-wrap">
+          <img class="archetype-img" src="${result.bonusImg}" alt="${result.name}">
+        </div>
+
+        <div class="card-body">
+          <h2 class="archetype-name">${result.name.toUpperCase()}</h2>
+          <p class="archetype-subtitle">${result.subtitle || ''}</p>
+          ${result.quote ? `<div class="quote">${result.quote}</div>` : ''}
+
+          <div class="bonus-box">
+            <h2>🖼️ Imagen HD — ${result.name}</h2>
+            <p>Descarga tu imagen de arquetipo en alta resolución. Úsala como fondo de pantalla, compártela en redes o imprímela.</p>
+            <a class="btn-download" href="${result.bonusImg}" download="Arquetipo-${result.name.replace(/\s+/g,'-')}.png" target="_blank">
+              ⬇ Descargar mi imagen HD
+            </a>
+          </div>
+
+          <p style="text-align:center; font-size:.85rem; color:var(--text-dim); line-height:1.7;">
+            Tu Informe Profundo de 10 páginas llegará a tu correo desde Hotmart en los próximos minutos.<br>
+            <span style="color:var(--gold);">Revisa también tu carpeta de spam si no lo ves.</span>
+          </p>
+        </div>
+      </div>
+      <p class="footer">Fernando Almanza — Arquetipos Therianos<br>© 2026 Todos los derechos reservados.</p>
+    `;
+
+  } else {
+    // ── MODO FALLBACK: mostrar los 22 arquetipos ──
+    const items = Object.values(ARCHETYPES).map(a => `
+      <div class="grid-item">
+        <img src="${a.bonusImg}" alt="${a.name}" loading="lazy">
+        <div class="grid-item-body">
+          <p class="grid-item-name">${a.name}</p>
+          <a class="btn-dl-sm" href="${a.bonusImg}" download target="_blank">⬇ Descargar</a>
+        </div>
+      </div>
+    `).join('');
+
+    app.innerHTML = `
+      <div class="card">
+        <div class="card-header">
+          <div class="badge">🎁 Tu Bono Exclusivo</div>
+          <h1>¡Tu compra fue exitosa!</h1>
+          <p>Selecciona tu arquetipo y descarga tu imagen en alta resolución.</p>
+        </div>
+        <div class="card-body">
+          <p class="fallback-title">Encuentra tu arquetipo</p>
+          <p class="fallback-sub">Haz clic en "Descargar" debajo de tu animal interior.</p>
+          <div class="grid">${items}</div>
+        </div>
+      </div>
+      <p class="footer">Fernando Almanza — Arquetipos Therianos<br>© 2026 Todos los derechos reservados.</p>
+    `;
+  }
+}
+
+render();
+</script>
+</body>
+</html>

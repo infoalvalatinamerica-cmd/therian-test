@@ -706,8 +706,21 @@ function displayResult() {
   document.getElementById('r-subtitle').textContent = arch.subtitle;
   document.getElementById('r-quote').textContent = arch.quote;
   document.getElementById('r-desc').textContent = arch.desc;
-  document.getElementById('r-img').src = arch.img; // full Cloudinary URL
+  document.getElementById('r-img').src = arch.img;
   document.getElementById('r-img').alt = arch.name;
+
+  // ── Guardar arquetipo en localStorage para página de entrega post-compra ──
+  try {
+    localStorage.setItem('therian_result', JSON.stringify({
+      id:       winnerId,
+      name:     arch.name,
+      subtitle: arch.subtitle,
+      img:      arch.img,
+      bonusImg: arch.bonusImg,
+      quote:    arch.quote
+    }));
+  } catch(e) {}
+
   // Share buttons
   const text = encodeURIComponent(`Hice el Therian Test y soy ${arch.name} 🐾 — "${arch.quote.replace(/"/g,'')}" Descubre el tuyo → `);
   const url  = encodeURIComponent(window.location.href);
