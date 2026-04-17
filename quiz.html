@@ -660,23 +660,37 @@ function revealResult(evt) {
 }
 
 function sendToEmailService(name, email) {
-  // ── Brevo / Sendinblue free API ──────────────────────────────────
-  // Replace YOUR_BREVO_API_KEY with your key from brevo.com (free tier)
-  // Replace YOUR_LIST_ID with your Brevo list ID
-  // This will add the contact to your Brevo list silently
-  const BREVO_API_KEY = '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';
-  if (!BREVO_API_KEY) return; // skip if not configured
   const winner = getWinner();
+  const arch = ARCHETYPES[winner];
+
+  // ── Brevo: captura de lead ───────────────────────────────────────
+  const BREVO_API_KEY = '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';
   fetch('https://api.brevo.com/v3/contacts', {
     method: 'POST',
     headers: { 'api-key': BREVO_API_KEY, 'Content-Type': 'application/json' },
     body: JSON.stringify({
       email,
-      attributes: { FIRSTNAME: name, ARCHETYPE: ARCHETYPES[winner]?.name || '' },
-      listIds: [2], // adjust your list ID
+      attributes: { FIRSTNAME: name, ARCHETYPE: arch?.name || '' },
+      listIds: [2],
       updateEnabled: true
     })
-  }).catch(() => {}); // silent fail — user still sees result
+  }).catch(() => {});
+
+  // ── Resend: correo con bono + CTA al informe ─────────────────────
+  if (arch) {
+    fetch('/api/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name,
+        email,
+        archetypeName:     arch.name,
+        archetypeSubtitle: arch.subtitle,
+        archetypeImg:      arch.img,
+        bonusImg:          arch.bonusImg
+      })
+    }).catch(() => {}); // silent fail — el resultado se muestra igual
+  }
 }
 
 function getWinner() {
