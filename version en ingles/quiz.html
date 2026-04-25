@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Therian Test â What's Your Inner Animal?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #d4a853;
+    --gold-dark: #b8903e;
+    --bg: #0d2318;
+    --bg2: #122d1f;
+    --text: #f5f0e8;
+    --text-dim: rgba(245,240,232,0.6);
+    --border: rgba(212,168,83,0.3);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  #app { width: 100%; max-width: 560px; position: relative; }
+
+  .screen { display: none; }
+  .screen.active { display: block; animation: fadeIn .4s ease; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+
+  /* âââ COVER ââ */
+  #cover {
+    text-align: center;
+    padding: 48px 32px;
+    background: rgba(255,255,255,.025);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+  }
+  .cover-badge {
+    display: inline-block;
+    font-size: .65rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 14px;
+    margin-bottom: 24px;
+  }
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 7vw, 3rem);
+    font-weight: 900;
+    color: var(--text);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .cover-title span { color: var(--gold); }
+  .cover-subtitle {
+    font-size: .95rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+  .cover-meta {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+  .cover-meta-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .cover-meta-item strong {
+    font-size: 1.3rem;
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+  }
+  .cover-meta-item span { font-size: .75rem; color: var(--text-dim); letter-spacing: .05em; text-transform: uppercase; }
+  .btn-start {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    background: var(--gold);
+    color: var(--bg);
+    font-weight: 700;
+    font-size: 1.05rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    letter-spacing: .03em;
+    transition: .2s;
+  }
+  .btn-start:hover { background: var(--gold-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(212,168,83,.3); }
+  .cover-trust { font-size: .75rem; color: var(--text-dim); margin-top: 14px; }
+
+  /* âââ PROGRESS ââ */
+  .progress-wrap { margin-bottom: 28px; }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: .7rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+    opacity: .8;
+  }
+  .progress-bar { height: 3px; background: rgba(212,168,83,.15); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--gold); border-radius: 2px; transition: width .4s ease; }
+
+  /* âââ QUESTION ââ */
+  #question-screen {
+    padding: 36px 28px;
+    background: rgba(255,255,255,.025);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+  }
+  .q-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.15rem, 4vw, 1.5rem);
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: 28px;
+    font-weight: 700;
+  }
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .opt-btn {
+    text-align: left;
+    padding: 14px 18px;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: .95rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.5;
+    transition: .2s;
+  }
+  .opt-btn:hover, .opt-btn.selected {
+    background: rgba(212,168,83,.12);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  .opt-btn.selected { pointer-events: none; }
+
+  /* âââ EMAIL CAPTURE ââ */
+  #email-screen {
+    text-align: center;
+    padding: 44px 32px;
+    background: rgba(255,255,255,.025);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+  }
+  .email-icon { font-size: 2.5rem; margin-bottom: 16px; }
+  .email-title { font-family: 'Playfair Display', serif; font-size: 1.7rem; color: var(--gold); margin-bottom: 10px; }
+  .email-sub { font-size: .9rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 28px; }
+  .email-form { display: flex; flex-direction: column; gap: 12px; }
+  .email-input {
+    padding: 14px 18px;
+    background: rgba(255,255,255,.05);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    transition: .2s;
+  }
+  .email-input:focus { border-color: var(--gold); background: rgba(212,168,83,.06); }
+  .email-input::placeholder { color: var(--text-dim); }
+  .btn-reveal {
+    padding: 16px;
+    background: var(--gold);
+    color: var(--bg);
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: .2s;
+  }
+  .btn-reveal:hover { background: var(--gold-dark); }
+  .email-skip { font-size: .78rem; color: var(--text-dim); text-decoration: underline; cursor: pointer; margin-top: 6px; }
+  .email-skip:hover { color: var(--text); }
+
+  /* âââ PROCESSING ââ */
+  #processing-screen {
+    text-align: center;
+    padding: 60px 32px;
+    background: rgba(255,255,255,.025);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+  }
+  .loader {
+    width: 48px; height: 48px;
+    border: 3px solid rgba(212,168,83,.2);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .processing-text { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--gold); }
+  .processing-sub { font-size: .85rem; color: var(--text-dim); margin-top: 8px; }
+
+  /* âââ RESULT ââ */
+  #result-screen {
+    background: rgba(255,255,255,.025);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .result-header {
+    background: var(--bg2);
+    padding: 28px 28px 0;
+    text-align: center;
+  }
+  .result-label { font-size: .65rem; letter-spacing: .25em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px; }
+  .result-animal { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 8vw, 3rem); font-weight: 900; color: var(--gold); margin-bottom: 4px; }
+  .result-subtitle { font-size: .8rem; color: var(--text-dim); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 20px; }
+  .result-img-wrap { position: relative; }
+  .result-img { width: 100%; max-height: 400px; object-fit: cover; display: block; }
+  .result-body { padding: 28px; }
+  .result-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gold);
+    line-height: 1.6;
+    text-align: center;
+    padding: 16px 20px;
+    border-left: 3px solid var(--gold);
+    background: rgba(212,168,83,.07);
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 20px;
+  }
+  .result-desc { font-size: .95rem; color: var(--text-dim); line-height: 1.8; margin-bottom: 24px; text-align: center; }
+  .result-teaser {
+    background: rgba(212,168,83,.08);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+  }
+  .result-teaser-title { font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .result-teaser-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .result-teaser-list li { font-size: .88rem; color: var(--text-dim); display: flex; gap: 10px; align-items: flex-start; }
+  .result-teaser-list li::before { content: "â¦"; color: var(--gold); flex-shrink: 0; font-size: .7rem; margin-top: 3px; }
+  .btn-cta {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    background: var(--gold);
+    color: var(--bg);
+    font-weight: 700;
+    font-size: 1.05rem;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: .2s;
+    line-height: 1.3;
+  }
+  .btn-cta:hover { background: var(--gold-dark); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(212,168,83,.35); }
+  .result-guarantee { text-align: center; font-size: .73rem; color: var(--text-dim); margin-top: 12px; }
+  .result-share { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); text-align: center; }
+  .share-label { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; }
+  .share-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .share-hint { font-size: .72rem; color: var(--text-dim); margin-top: 10px; line-height: 1.6; opacity: .7; }
+  .share-btn-main { background: var(--gold); color: var(--bg); border: none; font-weight: 700; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .share-btn-main:hover { background: var(--gold-dark); color: var(--bg); border-color: transparent; }
+  .share-btn {
+    padding: 8px 18px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text-dim);
+    font-size: .8rem;
+    cursor: pointer;
+    transition: .2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .share-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* Language bar */
+  .lang-bar {
+    position: fixed;
+    top: 12px;
+    right: 16px;
+    z-index: 999;
+    display: flex;
+    gap: 8px;
+  }
+  .lang-btn {
+    background: rgba(13,35,24,0.85);
+    border: 1px solid rgba(212,168,83,0.4);
+    color: rgba(245,240,232,0.8);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    padding: 6px 14px;
+    border-radius: 100px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    backdrop-filter: blur(8px);
+  }
+  .lang-btn.active { background: rgba(212,168,83,0.2); border-color: rgba(212,168,83,0.8); color: #d4a853; }
+  .lang-btn:hover { border-color: rgba(212,168,83,0.7); color: #d4a853; }
+
+  @media (max-width: 420px) {
+    body { padding: 12px; align-items: flex-start; padding-top: 24px; }
+    #question-screen, #cover, #email-screen, #result-screen { border-radius: 14px; }
+    #question-screen { padding: 24px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Language switcher -->
+<div class="lang-bar">
+  <a class="lang-btn" href="../quiz.html">ðªð¸ EspaÃ±ol</a>
+  <span class="lang-btn active">ðºð¸ English</span>
+</div>
+
+<div id="app">
+
+  <!-- ââ COVER ââ -->
+  <div id="cover" class="screen active">
+    <div class="cover-badge">ð¾ Self-Knowledge Test</div>
+    <h1 class="cover-title">Discover your<br><span>Inner Animal</span></h1>
+    <p class="cover-subtitle">15 questions will reveal the archetype that defines how you think, love, and lead. No filters.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><strong>15</strong><span>Questions</span></div>
+      <div class="cover-meta-item"><strong>22</strong><span>Archetypes</span></div>
+      <div class="cover-meta-item"><strong>~5</strong><span>Minutes</span></div>
+    </div>
+    <button class="btn-start" onclick="startQuiz()">Start the Test â</button>
+    <p class="cover-trust">â¦ Free &nbsp;Â·&nbsp; No registration required &nbsp;Â·&nbsp; Instant result</p>
+  </div>
+
+  <!-- ââ QUESTION ââ -->
+  <div id="question-screen" class="screen">
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Question <span id="q-num">1</span> of 15</span>
+        <span id="q-pct">0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+    </div>
+    <p class="q-text" id="q-text"></p>
+    <div class="options" id="options"></div>
+  </div>
+
+  <!-- ââ EMAIL CAPTURE ââ -->
+  <div id="email-screen" class="screen">
+    <div class="email-icon">ð®</div>
+    <h2 class="email-title">Processing your profile...</h2>
+    <p class="email-sub">The 15 questions have revealed your archetype. Where should we send your result and your <strong style="color:var(--gold)">gift image for social media</strong>?</p>
+    <form class="email-form" onsubmit="revealResult(event)">
+      <input type="text" id="name-input" class="email-input" placeholder="Your name" autocomplete="given-name">
+      <input type="email" id="email-input" class="email-input" placeholder="your@email.com" required autocomplete="email">
+      <button type="submit" class="btn-reveal">Reveal My Archetype â</button>
+    </form>
+    <p class="email-skip" onclick="revealResult(null)">I'd rather see the result without sharing my email</p>
+  </div>
+
+  <!-- ââ PROCESSING ââ -->
+  <div id="processing-screen" class="screen">
+    <div class="loader"></div>
+    <p class="processing-text">Analyzing your profile...</p>
+    <p class="processing-sub">Calculating your archetype among the 22 possible</p>
+  </div>
+
+  <!-- ââ RESULT ââ -->
+  <div id="result-screen" class="screen">
+    <div class="result-header">
+      <p class="result-label">Your archetype is</p>
+      <h2 class="result-animal" id="r-name">â</h2>
+      <p class="result-subtitle" id="r-subtitle">â</p>
+    </div>
+    <img class="result-img" id="r-img" src="" alt="Archetype">
+    <div class="result-body">
+      <div class="result-quote" id="r-quote">â</div>
+      <p class="result-desc" id="r-desc">â</p>
+      <div class="result-teaser">
+        <p class="result-teaser-title">Your complete report includes</p>
+        <ul class="result-teaser-list">
+          <li>Deep psychological analysis of your archetype (10+ pages)</li>
+          <li>Strengths, blind spots, and your inner shadow</li>
+          <li>How you show up at work, in love, and in conflict</li>
+          <li>Natural compatibility with the other 21 archetypes</li>
+          <li>7-day activation plan + 3 exclusive bonuses</li>
+        </ul>
+      </div>
+      <a id="r-cta" href="pagina_de_venta.html" class="btn-cta">
+        Click here to get the Complete Report
+      </a>
+      <div class="result-share">
+        <p class="share-label">ð² Share your archetype</p>
+        <div class="share-btns">
+          <button id="share-native" class="share-btn share-btn-main">â¬ Share image</button>
+          <a id="share-tw" href="#" target="_blank" class="share-btn">ð X / Twitter</a>
+          <a id="share-wa" href="#" target="_blank" class="share-btn">ð¬ WhatsApp</a>
+        </div>
+        <p class="share-hint">On mobile: tap "Share image" to post directly to Instagram or TikTok ð¾</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ââââââââââââââââââââââââââââââââââââââââââââ
+//  DATA â English
+// ââââââââââââââââââââââââââââââââââââââââââââ
+
+const ARCHETYPES = {
+  1:  { name:'The Wolf',         subtitle:'Archetype of Loyalty and Pack',          quote:'"Alone I am dangerous. With mine, I am invincible."',              img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-lobo_sugptj.jpg',           bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-lobo_tfjk0n.png',          desc:'You are deeply loyal and selective. Your strength does not come from noise, but from the clarity with which you protect what matters.' },
+  2:  { name:'The Fox',          subtitle:'Archetype of Intelligence and Cunning',   quote:'"I\'m not the strongest. But I\'m the smartest in the room."',      img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-zorro_qumdgj.jpg',          bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-zorro_zxlpue.png',      desc:'Your mind is your greatest weapon. You read situations and people with a speed that few can comprehend.' },
+  3:  { name:'The Bear',         subtitle:'Archetype of Strength and Calm',          quote:'"I am calm. But don\'t mistake that for tame."',                    img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-oso_gmytxz.jpg',            bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-oso_uplluz.png',           desc:'Your calm is not weakness â it\'s the signal that your strength needs no constant demonstration.' },
+  4:  { name:'The Raven',        subtitle:'Archetype of Observation and Truth',      quote:'"I\'m not dark. I just see what others prefer to ignore."',          img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-cuervo_aqo7da.jpg',         bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-cuervo_lp8xnb.png',        desc:'You have an analytical mind that sees layers where others see surfaces. Your depth is a gift.' },
+  5:  { name:'The Dolphin',      subtitle:'Archetype of Empathy and Connection',     quote:'"Life is too short not to enjoy it completely."',                   img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-delfin_xgyriu.jpg',         bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-delfin_qbletr.png',    desc:'You are positive social energy with emotional depth. You elevate everyone around you.' },
+  6:  { name:'The Cat',          subtitle:'Archetype of Independence and Grace',     quote:'"My affection is selective. That\'s what makes it valuable."',       img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-gato_zrbjzq.jpg',           bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-gato_mfqqtg.png',          desc:'Your self-sufficiency is genuine. When you choose to give your presence, it\'s because you truly want to.' },
+  7:  { name:'The Eagle',        subtitle:'Archetype of Vision and Ambition',        quote:'"While others look at the ground, I already see the horizon."',      img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-aguila_hbthke.jpg',         bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-aguila_ffr6oj.png',        desc:'You have a clarity of purpose that very few achieve. You see the future before it arrives.' },
+  8:  { name:'The Jaguar',       subtitle:'Archetype of Silent Power',               quote:'"Patience is not passivity. It\'s strategy disguised as calm."',     img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-jaguar_mv6ihz.jpg',         bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-jaguar_dt2y0d.png', desc:'Your power doesn\'t need to announce itself. You wait for the exact moment and act with surgical precision.' },
+  9:  { name:'The Lion',         subtitle:'Archetype of Charisma and Leadership',    quote:'"I don\'t seek to be the center. I\'m just too magnetic to avoid it."', img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-leon_avfef7.jpg',          bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-leon_bwxbna.png', desc:'Your presence transforms spaces. People follow you not because of hierarchy, but because they trust you.' },
+  10: { name:'The White Tiger',  subtitle:'Archetype of Singularity and Magic',      quote:'"I\'m not inconsistent. I\'m in constant evolution."',               img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-tigre-blanco_kxkf0x.jpg',   bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-tigre-blanco_dnipor.png',  desc:'You are an anomaly in the best sense. Your rarity is not a defect â it\'s your most powerful trait.' },
+  11: { name:'The Elephant',     subtitle:'Archetype of Memory and Community',       quote:'"I remember everything. Especially what matters."',                  img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-elefante_a1mkoo.jpg',       bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-elefante_sxexdy.png',       desc:
+'You carry the history of your own with a fidelity that few understand. You are the guardian of what truly counts.' },
+  12: { name:'The Tiger',        subtitle:'Archetype of Passion and Intensity',      quote:'"I am peace... until I\'m not."',                                    img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-tigre_d7n6by.jpg',          bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-tigre_gxoy5b.png',         desc:'You have an intensity others feel before you say a word. You love and protect without half-measures.' },
+  13: { name:'The Owl',          subtitle:'Archetype of Wisdom and Analysis',        quote:'"Most people are asleep when I\'m just beginning to think."',         img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-buho_kaf4gw.jpg',           bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-buho_z9rzvw.png',          desc:
+'Your mind never stops. You observe, analyze, and when you speak, what you say truly matters.' },
+  14: { name:'The Horse',        subtitle:'Archetype of Freedom and Passion',        quote:'"Freedom is not a luxury. It\'s my basic condition of existence."',   img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-caballo_wqb6nw.jpg',        bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-caballo_xextg3.png', desc:
+'You need space to be who you are. Constraining you is the fastest way to lose the best of you.' },
+  15: { name:'The Octopus',      subtitle:'Archetype of Multiple Intelligence',      quote:'"I don\'t have one plan. I have eight simultaneously."',              img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-pulpo_gakri6.jpg',          bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-pulpo_t4hg0i.png',         desc:'You think in parallel. While others solve one problem, you\'re already on step four.' },
+  16: { name:'The Cheetah',      subtitle:'Archetype of Speed and Focus',            quote:'"If it doesn\'t work the conventional way, I\'ll find another."',     img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-cheetah_zoduzz.jpg',        bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-cheetah_wux0qm.png',       desc:'When you find your direction, you are practically unstoppable. Speed with purpose is your zone of genius.' },
+  17: { name:'The Penguin',      subtitle:'Archetype of Community and Loyalty',      quote:'"In the coldest storm, I stand tall beside mine."',                   img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-pinguino_qmggi0.jpg',       bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-pinguino-vz34ya.png',  desc:'Your strength comes from the community you build. You are the one everyone trusts when the storm hits.' },
+  18: { name:'The Black Panther',subtitle:'Archetype of Mystery and Sovereignty',    quote:'"Precision is not cold. It\'s respect for the target."',               img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-pantera-negra_zghzpm.jpg',  bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-la-pantera-negra_q0skbt.png', desc:'You perfectly control what you project. Your power lies in a deep inner security no one can take from you.' },
+  19: { name:'The Coyote',       subtitle:'Archetype of Ingenuity and Resilience',   quote:'"I fell seven times. I laughed every time."',                         img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-coyote_ucem8u.jpg',         bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-coyote_inrhig.png',        desc:
+'Your humor is your philosophy. You find the unexpected exit in the problems that paralyze others.' },
+  20: { name:'The Deer',         subtitle:'Archetype of Sensitivity and Grace',      quote:'"My sensitivity is not fragility. It\'s my way of feeling the world completely."', img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-ciervo_leuwmc.jpg', bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-ciervo_ohik5w.png', desc:
+'You feel everything with a depth that is your greatest gift. You create safe spaces where others open up.' },
+  21: { name:'The Leopard',      subtitle:'Archetype of Versatility and Mastery',    quote:'"I navigate perfectly in the darkness where others get lost."',        img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-leopardo_lviqjs.jpg',       bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-leopardo_tgfudu.png',   desc:'You are equally powerful in light and shadow. Your adaptability is not indecision â it\'s true mastery.' },
+  22: { name:'The Peacock',      subtitle:'Archetype of Expression and Presence',    quote:'"I don\'t apologize for shining. That\'s what the feathers are for."', img:'https://res.cloudinary.com/dextkh9tv/image/upload/imagen-pavo-real_ojlrng.jpg',      bonusImg:'https://res.cloudinary.com/dextkh9tv/image/upload/arquetipo-el-pavo-real_winaq5.png',     desc:
+'You have an aesthetic sense and a presence that\'s impossible to ignore. Your authenticity inspires others to be more themselves.' }
+};
+
+const QUESTIONS = [
+  { q: '1. How do you prefer to spend your ideal free time?', opts: [
+    { t: 'Alone, recharging away from the noise.',                    g: [6,13] },
+    { t: 'With my close group, making plans together.',               g: [1,17] },
+    { t: 'Exploring something new I\'ve never tried before.',         g: [10,16] },
+    { t: 'Being the center of attention and enjoying it.',            g: [9,22] },
+    { t: 'Observing others without needing to participate.',          g: [4,21] }
+  ]},
+  { q: '2. When you have to make an important decision, what do you do?', opts: [
+    { t: 'I analyze all variables before making a move.',             g: [13,8] },
+    { t: 'I trust my instinct, and it almost never fails me.',        g: [12,14] },
+    { t: 'I consult with trusted people first.',                      g: [5,11] },
+    { t: 'I look for the most creative and original solution.',       g: [2,15] },
+    { t: 'I evaluate what\'s best for everyone, not just for me.',   g: [9,7] }
+  ]},
+  { q: '3. How do you typically behave when there is conflict?', opts: [
+    { t: 'I face it directly and without beating around the bush.',   g: [9,12] },
+    { t: 'I prefer to avoid conflict if I can.',                      g: [5,20] },
+    { t: 'I negotiate with strategy and without losing my cool.',     g: [2,8] },
+    { t: 'I defend mine regardless of the cost.',                     g: [1,3] },
+    { t: 'I observe, wait for the exact moment, and act.',            g: [4,18] }
+  ]},
+  { q: '4. How would you best describe your energy throughout the day?', opts: [
+    { t: 'Explosive in the mornings, calm in the afternoons.',        g: [7,12] },
+    { t: 'Slow at first, unstoppable from the evenings onward.',      g: [13,21] },
+    { t: 'Constant and steady from beginning to end.',                g: [11,17] },
+    { t: 'Depends on my mood and the environment around me.',         g: [6,16] },
+    { t: 'In bursts when something truly ignites my passion.',        g: [14,22] }
+  ]},
+  { q: '5. What role do you naturally take within a group?', opts: [
+    { t: 'The leader: others follow me without me asking.',           g: [9,7] },
+    { t: 'The listener: I support people emotionally.',               g: [5,11] },
+    { t: 'The strategist: I think before others react.',              g: [2,8] },
+    { t: 'The creative: I propose what no one else would dare.',      g: [15,16] },
+    { t: 'The observer: I learn more by staying quiet.',              g: [4,13] }
+  ]},
+  { q: '6. What do you consider your greatest strength in life?', opts: [
+    { t: 'My loyalty and my protective instinct.',                    g: [1,3] },
+    { t: 'My intelligence and analytical ability.',                   g: [13,15] },
+    { t: 'My charisma and presence in any space.',                    g: [9,22] },
+    { t: 'My ability to adapt to any situation.',                     g: [2,16] },
+    { t: 'My sensitivity and intuition for reading people.',          g: [20,10] }
+  ]},
+  { q: '7. If someone you trusted betrays you, what do you do?', opts: [
+    { t: 'I cut the bond forever, no drama.',                         g: [6,8] },
+    { t: 'I confront them directly and without filters.',             g: [1,12] },
+    { t: 'I forgive them with time... but I never forget.',           g: [4,11] },
+    { t: 'It hurts me deeply, it takes a long time to heal.',         g: [20,5] },
+    { t: 'I turn it into experience and learn from it.',               g: [7,13] }
+  ]},
+  { q: '8. Which of these words represents you best?', opts: [
+    { t: 'Independence.',                                             g: [6,7] },
+    { t: 'Loyalty.',                                                  g: [1,17] },
+    { t: 'Intensity.',                                                g: [12,14] },
+    { t: 'Depth.',                                                    g: [4,18] },
+    { t: 'Freedom.',                                                  g: [15,10] }
+  ]}                              g: [11,13] },
+    { t: 'Depth.',                                                    g: [12,14] },
+    { t: 'Freedom.',                                                  g: [15,10] }
+  ]},
+  { q: '9. When stress builds up, how do you handle it?', opts: [
+    { t: 'I isolate myself until I recover my balance.',              g: [3,6] },
+    { t: 'I talk to someone I trust to let it out.',                  g: [1,5] },
+    { t: 'I throw myself into something physical or active.',         g: [12,14] },
+    { t: 'I analyze the situation calmly until I find a way out.',   g: [13,8] },
+    { t: 'I find the funny side and keep moving forward.',            g: [19,16] }
+  ]},
+  { q: '10. What do you value most in an important relationship?', opts: [
+    { t: 'Freedom and space to be myself.',                           g: [6,14] },
+    { t: 'Unconditional loyalty through thick and thin.',             g: [1,11] },
+    { t: 'Intellectual depth and real conversations.',                g: [4,13] },
+    { t: 'Fun, laughter, and lightness.',                             g: [5,19] },
+    { t: 'Mutual admiration and growing together.',                   g: [9,22] }
+  ]},
+  { q: '11. What is your most honest blind spot?', opts: [
+    { t: 'I am too territorial with my things and people.',           g: [1,12] },
+    { t: 'I struggle to ask for help even when I need it.',           g: [6,8] },
+    { t: 'I need too much external validation.',                      g: [22,9] },
+    { t: 'I have trouble committing to just one thing.',              g: [10,16] },
+    { t: 'I struggle to let go of the past or truly forgive.',        g: [5,20] }
+  ]},
+  { q: '12. What is your ideal work environment?', opts: [
+    { t: 'Alone, in silence, no interruptions.',                      g: [13,6] },
+    { t: 'With my close team, collaborating.',                        g: [1,17] },
+    { t: 'On the move, changing places and routines.',                g: [14,10] },
+    { t: 'Somewhere I can stand out and be seen.',                    g: [9,22] },
+    { t: 'Anywhere â I adapt without a problem.',                     g: [15,2] }
+  ]},
+  { q: '13. You have an unexpected free hour. What do you do?', opts: [
+    { t: 'I read, research, or learn something that interests me.',   g: [13,4] },
+    { t: 'I go to nature or a quiet space.',                          g: [3,20] },
+    { t: 'I call or meet up with friends or family.',                 g: [5,17] },
+    { t: 'I do something creative: draw, write, create.',             g: [15,10] },
+    { t: 'I plan my next move or project.',                           g: [7,8] }
+  ]},
+  { q: '14. How would your friends describe your sense of humor?', opts: [
+    { t: 'Sarcastic and smart, not for everyone.',                    g: [4,19] },
+    { t: 'Warm and contagious, makes you feel good.',                 g: [5,9] },
+    { t: 'Unpredictable, always surprising.',                         g: [15,21] },
+    { t: 'Ironic and layered, with depth.',                           g: [8,18] },
+    { t: 'Absurd and spontaneous, no filters.',                       g: [19,16] }
+  ]},
+  { q: '15. Which of these images resonates with you most instinctively?', opts: [
+    { t: 'A wolf howling alone on a snowy mountain.',                 g: [1,3] },
+    { t: 'An eagle soaring freely above the clouds.',                 g: [7,20] },
+    { t: 'A fox among the trees at sunset.',                          g: [2,19] },
+    { t: 'An octopus in the dark depths of the ocean.',               g: [15,21] },
+    { t: 'A peacock spreading its feathers at dawn.',                 g: [22,10] }
+  ]}
+];
+
+// ââââââââââââââââââââââââââââââââââââââââââââ
+//  STATE
+// ââââââââââââââââââââââââââââââââââââââââââââ
+let currentQ = 0;
+let scores = {};
+let finalWinnerId = null;
+
+// ââââââââââââââââââââââââââââââââââââââââââââ
+//  HELPERS
+// ââââââââââââââââââââââââââââââââââââââââââââ
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function startQuiz() {
+  currentQ = 0;
+  scores = {};
+  show('question-screen');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[currentQ];
+  const pct = Math.round((currentQ / QUESTIONS.length) * 100);
+  document.getElementById('q-num').textContent = currentQ + 1;
+  document.getElementById('q-pct').textContent = pct + '%';
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('q-text').textContent = q.q;
+  const container = document.getElementById('options');
+  container.innerHTML = '';
+  q.opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.textContent = opt.t;
+    btn.onclick = () => pickAnswer(i, opt.g, btn);
+    container.appendChild(btn);
+  });
+}
+
+function pickAnswer(idx, gives, btn) {
+  document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  gives.forEach(archetypeIdx => {
+    scores[archetypeIdx] = (scores[archetypeIdx] || 0) + 1;
+  });
+  setTimeout(() => {
+    currentQ++;
+    if (currentQ < QUESTIONS.length) {
+      renderQuestion();
+    } else {
+      show('email-screen');
+    }
+  }, 280);
+}
+
+function revealResult(evt) {
+  if (evt) evt.preventDefault();
+  finalWinnerId = getWinner();
+  const email = document.getElementById('email-input').value;
+  const name  = document.getElementById('name-input').value;
+  if (email) sendToEmailService(name, email, finalWinnerId);
+  show('processing-screen');
+  setTimeout(displayResult, 1800);
+}
+
+function sendToEmailService(name, email, winnerId) {
+  const arch = ARCHETYPES[winnerId];
+  const BREVO_API_KEY = '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';
+  fetch('https://api.brevo.com/v3/contacts', {
+    method: 'POST',
+    headers: { 'api-key': BREVO_API_KEY, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      email,
+      attributes: { FIRSTNAME: name, ARCHETYPE: arch?.name || '' },
+      listIds: [2],
+      updateEnabled: true
+    })
+  }).catch(() => {});
+
+  if (arch) {
+    fetch('/api/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name, email,
+        archetypeName:     arch.name,
+        archetypeSubtitle: arch.subtitle,
+        archetypeImg:      arch.img,
+        bonusImg:          arch.bonusImg
+      })
+    }).catch(() => {});
+  }
+}
+
+function getWinner() {
+  const keys = Object.keys(scores);
+  if (keys.length === 0) return 1;
+  const maxScore = Math.max(...keys.map(k => scores[k]));
+  const tied = keys.filter(k => scores[k] === maxScore).map(Number);
+  return tied[Math.floor(Math.random() * tied.length)];
+}
+
+function displayResult() {
+  const winnerId = finalWinnerId !== null ? finalWinnerId : getWinner();
+  const arch = ARCHETYPES[winnerId];
+  if (!arch) return;
+  document.getElementById('r-name').textContent = arch.name.toUpperCase();
+  document.getElementById('r-subtitle').textContent = arch.subtitle;
+  document.getElementById('r-quote').textContent = arch.quote;
+  document.getElementById('r-desc').textContent = arch.desc;
+  document.getElementById('r-img').src = arch.img;
+  document.getElementById('r-img').alt = arch.name;
+
+  try {
+    localStorage.setItem('therian_result_en', JSON.stringify({
+      id: winnerId, name: arch.name, subtitle: arch.subtitle,
+      img: arch.img, bonusImg: arch.bonusImg, quote: arch.quote
+    }));
+  } catch(e) {}
+
+  const shareText = `I took the Therian Test and I'm ${arch.name} ð¾\n${arch.quote.replace(/[""]/g,'').replace(/"/g,'')}\nDiscover yours â theriantest.vercel.app`;
+  const tweetText = encodeURIComponent(`I took the Therian Test and I'm ${arch.name} ð¾ â ${arch.quote.replace(/"/g,'')} Discover yours â`);
+  const waText    = encodeURIComponent(shareText);
+  const pageUrl   = encodeURIComponent('https://theriantest.vercel.app');
+
+  document.getElementById('share-wa').href = `https://wa.me/?text=${waText}%20${pageUrl}`;
+  document.getElementById('share-tw').href = `https://twitter.com/intent/tweet?text=${tweetText}&url=${pageUrl}`;
+
+  document.getElementById('share-native').onclick = async () => {
+    const imgUrl = arch.bonusImg;
+    const fileName = `Archetype-${arch.name.replace(/\s+/g,'-')}.png`;
+    if (navigator.share) {
+      try {
+        const resp = await fetch(imgUrl);
+        const blob = await resp.blob();
+        const file = new File([blob], fileName, { type: blob.type });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({ title: `My Archetype: ${arch.name}`, text: shareText, files: [file] });
+          return;
+        }
+        await navigator.share({ title: `My Archetype: ${arch.name}`, text: shareText, url: 'https://theriantest.vercel.app' });
+        return;
+      } catch(e) {
+        if (e.name === 'AbortError') return;
+      }
+    }
+    const a = document.createElement('a');
+    a.href = imgUrl; a.download = fileName; a.target = '_blank';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  };
+  show('result-screen');
+}
+
+// ââââââââââââââââââââââââââââââââââââââââââââ
+//  INIT
+// ââââââââââââââââââââââââââââââââââââââââââââ
+show('cover');
+</script>
+</body>
+</html>
