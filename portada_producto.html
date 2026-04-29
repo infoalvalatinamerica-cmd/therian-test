@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html id="html-root" lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portada — Descubre Tu Theriotype</title>
+<title id="page-title">Portada — Descubre Tu Theriotype</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,6 +24,32 @@
     font-size: 0.8rem;
     letter-spacing: 0.1em;
   }
+
+  /* ── LANGUAGE BAR ── */
+  .lang-bar {
+    position: fixed;
+    top: 12px;
+    right: 16px;
+    z-index: 999;
+    display: flex;
+    gap: 8px;
+  }
+  .lang-btn {
+    background: rgba(13,35,24,0.85);
+    border: 1px solid rgba(212,168,83,0.4);
+    color: rgba(245,240,232,0.6);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 6px 14px;
+    border-radius: 100px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: all 0.2s;
+  }
+  .lang-btn:hover { color: rgba(245,240,232,0.9); border-color: rgba(212,168,83,0.7); }
+  .lang-btn.active { background: rgba(212,168,83,0.2); border-color: rgba(212,168,83,0.8); color: #d4a853; }
 
   /* ── COVER ── */
   #cover {
@@ -352,10 +378,9 @@
 <body>
 
 <!-- LANGUAGE BAR -->
-<div style="position:fixed;top:16px;right:20px;z-index:999;display:flex;align-items:center;gap:6px;background:rgba(13,13,13,0.75);backdrop-filter:blur(8px);border:1px solid rgba(212,168,83,0.25);border-radius:100px;padding:6px 14px;font-size:0.78rem;font-family:'DM Sans',sans-serif;">
-  <span style="color:#d4a853;font-weight:500;">🇪🇸 Español</span>
-  <span style="color:rgba(245,240,232,0.2);">|</span>
-  <a href="version en ingles/portada_producto.html" style="color:rgba(245,240,232,0.55);text-decoration:none;">🇺🇸 English</a>
+<div class="lang-bar">
+  <button id="btn-es" class="lang-btn active" onclick="setLang('es')">🇪🇸 ES</button>
+  <button id="btn-en" class="lang-btn" onclick="setLang('en')">🇺🇸 EN</button>
 </div>
 
 <div id="cover-wrapper">
@@ -479,17 +504,17 @@
   <!-- Main content -->
   <div class="content">
     <div class="top-section">
-      <div class="eyebrow">Test de Autoconocimiento</div>
+      <div id="ui-eyebrow" class="eyebrow">Test de Autoconocimiento</div>
 
       <div class="main-title">
-        <span class="line1">Descubre</span>
-        <span class="line2">Tu</span>
-        <span class="line2" style="font-size:4.2rem; color: #f5f0e8; font-style: normal;">Theriotype</span>
+        <span id="ui-line1" class="line1">Descubre</span>
+        <span id="ui-line2" class="line2">Tu</span>
+        <span id="ui-line3" class="line2" style="font-size:4.2rem; color: #f5f0e8; font-style: normal;">Theriotype</span>
       </div>
 
-      <p class="subtitle">¿Qué animal eres en el fondo?<br>22 arquetipos · Psicología real · Sin filtros.</p>
+      <p id="ui-subtitle" class="subtitle">¿Qué animal eres en el fondo?<br>22 arquetipos · Psicología real · Sin filtros.</p>
 
-      <div class="animals-strip">
+      <div id="ui-animals" class="animals-strip">
         <span class="animal-pill">🐺 Lobo</span>
         <span class="animal-pill">🦊 Zorro</span>
         <span class="animal-pill">🦅 Águila</span>
@@ -506,20 +531,20 @@
       <div class="stats-row">
         <div class="stat">
           <span class="stat-num">22</span>
-          <span class="stat-label">Arquetipos</span>
+          <span id="ui-stat-a" class="stat-label">Arquetipos</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat">
           <span class="stat-num">15</span>
-          <span class="stat-label">Preguntas</span>
+          <span id="ui-stat-q" class="stat-label">Preguntas</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat">
           <span class="stat-num">5</span>
-          <span class="stat-label">Áreas de vida</span>
+          <span id="ui-stat-l" class="stat-label">Áreas de vida</span>
         </div>
       </div>
-      <a class="cta-btn" href="quiz.html">▶ Descubre tu Arquetipo · Gratis</a>
+      <a id="ui-cta" class="cta-btn" href="quiz.html">▶ Descubre tu Arquetipo · Gratis</a>
     </div>
   </div>
 
@@ -531,17 +556,84 @@
 
 
 <script>
+  var currentLang = 'es';
+
+  var UI = {
+    es: {
+      htmlLang: 'es',
+      pageTitle: 'Portada — Descubre Tu Theriotype',
+      eyebrow: 'Test de Autoconocimiento',
+      line1: 'Descubre',
+      line2: 'Tu',
+      subtitle: '¿Qué animal eres en el fondo?<br>22 arquetipos · Psicología real · Sin filtros.',
+      animals: ['🐺 Lobo','🦊 Zorro','🦅 Águila','🐬 Delfín','🐻 Oso','🦁 León','🐯 Tigre','+16 más'],
+      statA: 'Arquetipos',
+      statQ: 'Preguntas',
+      statL: 'Áreas de vida',
+      cta: '▶ Descubre tu Arquetipo · Gratis',
+      ctaHref: 'quiz.html'
+    },
+    en: {
+      htmlLang: 'en',
+      pageTitle: 'Cover — Discover Your Theriotype',
+      eyebrow: 'Self-Knowledge Test',
+      line1: 'Discover',
+      line2: 'Your',
+      subtitle: 'What animal are you, deep down?<br>22 archetypes · Real psychology · No filters.',
+      animals: ['🐺 Wolf','🦊 Fox','🦅 Eagle','🐬 Dolphin','🐻 Bear','🦁 Lion','🐯 Tiger','+16 more'],
+      statA: 'Archetypes',
+      statQ: 'Questions',
+      statL: 'Life areas',
+      cta: '▶ Discover your Archetype · Free',
+      ctaHref: 'quiz.html?lang=en'
+    }
+  };
+
+  function setLang(lang) {
+    currentLang = lang;
+    var ui = UI[lang];
+    document.getElementById('html-root').lang = ui.htmlLang;
+    document.getElementById('page-title').textContent = ui.pageTitle;
+    document.getElementById('ui-eyebrow').textContent = ui.eyebrow;
+    document.getElementById('ui-line1').textContent = ui.line1;
+    document.getElementById('ui-line2').textContent = ui.line2;
+    document.getElementById('ui-subtitle').innerHTML = ui.subtitle;
+    // Animals strip
+    var strip = document.getElementById('ui-animals');
+    strip.innerHTML = '';
+    ui.animals.forEach(function(a) {
+      var pill = document.createElement('span');
+      pill.className = 'animal-pill';
+      pill.textContent = a;
+      strip.appendChild(pill);
+    });
+    document.getElementById('ui-stat-a').textContent = ui.statA;
+    document.getElementById('ui-stat-q').textContent = ui.statQ;
+    document.getElementById('ui-stat-l').textContent = ui.statL;
+    var cta = document.getElementById('ui-cta');
+    cta.textContent = ui.cta;
+    cta.href = ui.ctaHref;
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  }
+
+  // Auto-detect language from URL param
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('lang') === 'en') { setLang('en'); }
+  })();
+
   function downloadCover() {
     alert('Para descargar la imagen:\n\n1. Clic derecho sobre la portada\n2. "Guardar imagen como..." \n\nO usa la herramienta de captura de pantalla de tu sistema y recorta solo la portada.\n\nTamaño exacto: 800 × 600 px');
   }
 
   // ── Escala responsive de la portada ──
   function scaleCover() {
-    const wrapper = document.getElementById('cover-wrapper');
-    const cover   = document.getElementById('cover');
-    const scale   = Math.min(1, wrapper.clientWidth / 800);
+    var wrapper = document.getElementById('cover-wrapper');
+    var cover   = document.getElementById('cover');
+    var scale   = Math.min(1, wrapper.clientWidth / 800);
     cover.style.transformOrigin = 'top left';
-    cover.style.transform = `scale(${scale})`;
+    cover.style.transform = 'scale(' + scale + ')';
     wrapper.style.height  = (600 * scale) + 'px';
   }
   scaleCover();
