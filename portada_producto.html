@@ -19,7 +19,7 @@
   }
 
   .hint {
-    display: none;
+    color: rgba(255,255,255,0.35);
     font-family: 'DM Sans', sans-serif;
     font-size: 0.8rem;
     letter-spacing: 0.1em;
@@ -351,7 +351,12 @@
 </head>
 <body>
 
-<span class="hint">↓ Portada del producto (800 × 600 px) — Usa la captura de pantalla o el botón de descarga</span>
+<!-- LANGUAGE BAR -->
+<div style="position:fixed;top:16px;right:20px;z-index:999;display:flex;align-items:center;gap:6px;background:rgba(13,13,13,0.75);backdrop-filter:blur(8px);border:1px solid rgba(212,168,83,0.25);border-radius:100px;padding:6px 14px;font-size:0.78rem;font-family:'DM Sans',sans-serif;">
+  <span style="color:#d4a853;font-weight:500;">🇪🇸 Español</span>
+  <span style="color:rgba(245,240,232,0.2);">|</span>
+  <a href="version en ingles/portada_producto.html" style="color:rgba(245,240,232,0.55);text-decoration:none;">🇺🇸 English</a>
+</div>
 
 <div id="cover-wrapper">
 <div id="cover">
@@ -524,9 +529,6 @@
 </div>
 </div><!-- /cover-wrapper -->
 
-<button class="dl-btn" style="display:none" onclick="downloadCover()">⬇ Descargar portada (screenshot)</button>
-
-<span class="hint">Dimensiones: 800 × 600 px · Lista para subir a Hotmart</span>
 
 <script>
   function downloadCover() {

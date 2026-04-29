@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" id="html-root">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Descubre Tu Theriotype | ¿Qué animal eres en el fondo?</title>
+<title id="page-title">Descubre Tu Theriotype | ¿Qué animal eres en el fondo?</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -11,7 +11,7 @@
     --ink: #0d0d0d;
     --bone: #f5f0e8;
     --amber: #c9842a;
-    --forest: #1a3a2a;h
+    --forest: #1a3a2a;
     --rust: #8b3a1a;
     --gold: #d4a853;
     --muted: #6b6055;
@@ -19,7 +19,6 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -29,6 +28,47 @@
     font-weight: 300;
     overflow-x: hidden;
   }
+
+  /* ── LANGUAGE TOGGLE ── */
+  .lang-bar {
+    position: fixed;
+    top: 16px;
+    right: 20px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(13,13,13,0.75);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(212,168,83,0.25);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 0.78rem;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .lang-bar button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    color: rgba(245,240,232,0.55);
+    transition: color 0.2s;
+    padding: 0;
+  }
+  .lang-bar button:hover { color: var(--gold); }
+  .lang-bar button.active { color: var(--gold); font-weight: 500; }
+  .lang-bar .sep { color: rgba(245,240,232,0.2); }
+
+  /* ── BILINGUAL SHOW/HIDE ── */
+  .lang-es, .lang-en { display: none; }
+  body.lang-active-es .lang-es { display: contents; }
+  body.lang-active-en .lang-en { display: contents; }
+
+  /* For block-level wrappers that need display:block */
+  .lang-block-es, .lang-block-en { display: none; }
+  body.lang-active-es .lang-block-es { display: block; }
+  body.lang-active-en .lang-block-en { display: block; }
 
   /* ── HERO ── */
   .hero {
@@ -59,60 +99,12 @@
     max-width: 820px;
   }
 
-  .paw-row {
-    font-size: 2rem;
-    margin-bottom: 32px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;
-    letter-spacing: 12px;
-  }
-
-  .hero-eyebrow {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 24px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.4s forwards;
-  }
-
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 8vw, 6.5rem);
-    font-weight: 900;
-    color: var(--bone);
-    line-height: 1.0;
-    margin-bottom: 12px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.6s forwards;
-  }
-
-  .hero-title em {
-    color: var(--gold);
-    font-style: italic;
-  }
-
-  .hero-subtitle {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
-    font-weight: 400;
-    font-style: italic;
-    color: rgba(245,240,232,0.7);
-    margin-bottom: 48px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.8s forwards;
-  }
-
-  .hero-cta-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    opacity: 0;
-    animation: fadeUp 0.8s 1s forwards;
-  }
+  .paw-row { font-size: 2rem; margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; letter-spacing: 12px; }
+  .hero-eyebrow { font-family: 'DM Sans', sans-serif; font-size: 0.75rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 900; color: var(--bone); line-height: 1.0; margin-bottom: 12px; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
+  .hero-title em { color: var(--gold); font-style: italic; }
+  .hero-subtitle { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 400; font-style: italic; color: rgba(245,240,232,0.7); margin-bottom: 48px; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
+  .hero-cta-group { display: flex; flex-direction: column; align-items: center; gap: 16px; opacity: 0; animation: fadeUp 0.8s 1s forwards; }
 
   .btn-primary {
     display: inline-block;
@@ -131,568 +123,116 @@
     position: relative;
     overflow: hidden;
   }
-
-  .btn-primary::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(rgba(255,255,255,0.1), transparent);
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-
-  .btn-primary:hover {
-    background: #b5731f;
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(201,132,42,0.4);
-  }
+  .btn-primary::after { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(255,255,255,0.1), transparent); opacity: 0; transition: opacity 0.2s; }
+  .btn-primary:hover { background: #b5731f; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,132,42,0.4); }
   .btn-primary:hover::after { opacity: 1; }
 
-  .hero-trust {
-    font-size: 0.8rem;
-    color: rgba(245,240,232,0.45);
-    letter-spacing: 0.05em;
-  }
-
-  /* ── ANIMALS TICKER ── */
-  .ticker-wrap {
-    background: var(--amber);
-    padding: 14px 0;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
-  .ticker {
-    display: inline-block;
-    animation: ticker 30s linear infinite;
-  }
-
-  .ticker span {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: white;
-    margin: 0 24px;
-  }
-
-  @keyframes ticker {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
+  /* ── TICKER ── */
+  .ticker-wrap { background: var(--amber); padding: 14px 0; overflow: hidden; white-space: nowrap; }
+  .ticker { display: inline-block; animation: ticker 30s linear infinite; }
+  .ticker span { font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: white; margin: 0 24px; }
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
   /* ── SECTIONS ── */
   section { padding: 100px 24px; }
-
   .container { max-width: 1000px; margin: 0 auto; }
   .container-sm { max-width: 700px; margin: 0 auto; }
 
-  .section-label {
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--amber);
-    margin-bottom: 16px;
-    display: block;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 700;
-    line-height: 1.15;
-    color: var(--ink);
-    margin-bottom: 24px;
-  }
-
+  .section-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.4em; text-transform: uppercase; color: var(--amber); margin-bottom: 16px; display: block; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 24px; }
   .section-title em { color: var(--amber); font-style: italic; }
-
-  .section-body {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: var(--muted);
-    max-width: 640px;
-  }
+  .section-body { font-size: 1.05rem; line-height: 1.8; color: var(--muted); max-width: 640px; }
 
   /* ── ABOUT ── */
   .about { background: var(--bone); }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .about-visual {
-    position: relative;
-  }
-
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
   .animal-circle {
-    width: 100%;
-    aspect-ratio: 1;
-    max-width: 380px;
-    background: var(--forest);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 7rem;
-    position: relative;
-    overflow: hidden;
-    margin: 0 auto;
-    box-shadow: 0 40px 80px rgba(26,58,42,0.25);
+    width: 100%; aspect-ratio: 1; max-width: 380px;
+    background: var(--forest); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 7rem; position: relative; overflow: hidden;
+    margin: 0 auto; box-shadow: 0 40px 80px rgba(26,58,42,0.25);
   }
-
-  .animal-circle::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 30% 30%, rgba(212,168,83,0.2), transparent 60%);
-  }
-
-  .orbit-text {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-  }
-
-  .stats-row {
-    display: flex;
-    gap: 40px;
-    margin-top: 48px;
-  }
-
+  .animal-circle::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 30%, rgba(212,168,83,0.2), transparent 60%); }
+  .stats-row { display: flex; gap: 40px; margin-top: 48px; }
   .stat { text-align: center; }
-
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: var(--amber);
-    line-height: 1;
-    display: block;
-  }
-
-  .stat-label {
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-top: 6px;
-    display: block;
-  }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 700; color: var(--amber); line-height: 1; display: block; }
+  .stat-label { font-size: 0.75rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin-top: 6px; display: block; }
 
   /* ── ANIMALS GRID ── */
   .animals-section { background: var(--card); }
-
-  .animals-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 16px;
-    margin-top: 56px;
-  }
-
-  .animal-card {
-    background: white;
-    border: 1px solid rgba(0,0,0,0.06);
-    border-radius: 8px;
-    padding: 24px 16px;
-    text-align: center;
-    transition: all 0.3s;
-    cursor: default;
-  }
-
-  .animal-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    border-color: var(--gold);
-  }
-
+  .animals-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; margin-top: 56px; }
+  .animal-card { background: white; border: 1px solid rgba(0,0,0,0.06); border-radius: 8px; padding: 24px 16px; text-align: center; transition: all 0.3s; cursor: default; }
+  .animal-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--gold); }
   .animal-card .emoji { font-size: 2.2rem; display: block; margin-bottom: 10px; }
-
-  .animal-card .aname {
-    font-family: 'Playfair Display', serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--forest);
-    display: block;
-    margin-bottom: 6px;
-  }
-
-  .animal-card .atag {
-    font-size: 0.72rem;
-    color: var(--muted);
-    line-height: 1.4;
-    display: block;
-  }
+  .animal-card .aname { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; color: var(--forest); display: block; margin-bottom: 6px; }
+  .animal-card .atag { font-size: 0.72rem; color: var(--muted); line-height: 1.4; display: block; }
 
   /* ── WHAT YOU GET ── */
   .gets-section { background: var(--forest); }
-
   .gets-section .section-title { color: var(--bone); }
   .gets-section .section-label { color: var(--gold); }
-
-  .gets-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
-    margin-top: 56px;
-  }
-
-  .get-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(212,168,83,0.2);
-    border-radius: 8px;
-    padding: 32px;
-    transition: all 0.3s;
-  }
-
-  .get-card:hover {
-    background: rgba(255,255,255,0.08);
-    border-color: rgba(212,168,83,0.5);
-  }
-
+  .gets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; margin-top: 56px; }
+  .get-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(212,168,83,0.2); border-radius: 8px; padding: 32px; transition: all 0.3s; }
+  .get-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(212,168,83,0.5); }
   .get-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
-
-  .get-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--bone);
-    margin-bottom: 10px;
-  }
-
-  .get-desc {
-    font-size: 0.9rem;
-    line-height: 1.7;
-    color: rgba(245,240,232,0.6);
-  }
+  .get-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--bone); margin-bottom: 10px; }
+  .get-desc { font-size: 0.9rem; line-height: 1.7; color: rgba(245,240,232,0.6); }
 
   /* ── TESTIMONIALS ── */
   .testimonials-section { background: var(--bone); }
-
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
-    margin-top: 56px;
-  }
-
-  .testimonial {
-    background: white;
-    border-radius: 8px;
-    padding: 32px;
-    position: relative;
-    border: 1px solid rgba(0,0,0,0.06);
-  }
-
-  .testimonial::before {
-    content: '"';
-    font-family: 'Playfair Display', serif;
-    font-size: 5rem;
-    color: var(--gold);
-    position: absolute;
-    top: 8px;
-    left: 24px;
-    line-height: 1;
-    opacity: 0.4;
-  }
-
-  .testimonial-text {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--ink);
-    margin-bottom: 20px;
-    padding-top: 20px;
-  }
-
-  .testimonial-author {
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--amber);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .testimonial-animal {
-    font-size: 0.75rem;
-    color: var(--muted);
-    margin-top: 4px;
-  }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; margin-top: 56px; }
+  .testimonial { background: white; border-radius: 8px; padding: 32px; position: relative; border: 1px solid rgba(0,0,0,0.06); }
+  .testimonial::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--gold); position: absolute; top: 8px; left: 24px; line-height: 1; opacity: 0.4; }
+  .testimonial-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; line-height: 1.7; color: var(--ink); margin-bottom: 20px; padding-top: 20px; }
+  .testimonial-author { font-size: 0.8rem; font-weight: 500; color: var(--amber); letter-spacing: 0.1em; text-transform: uppercase; }
+  .testimonial-animal { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
 
   /* ── PRICING ── */
   .pricing-section { background: var(--bone); padding-top: 0; }
-
-  .pricing-card {
-    max-width: 560px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.12);
-    position: relative;
-  }
-
-  .pricing-header {
-    background: var(--forest);
-    padding: 48px 48px 40px;
-    text-align: center;
-    position: relative;
-  }
-
-  .pricing-badge {
-    display: inline-block;
-    background: var(--amber);
-    color: white;
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 6px 16px;
-    border-radius: 100px;
-    margin-bottom: 20px;
-  }
-
-  .pricing-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--bone);
-    margin-bottom: 8px;
-  }
-
-  .price-display {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 4px;
-    margin: 12px 0 4px;
-  }
-
-  .price-currency {
-    font-size: 1.4rem;
-    font-weight: 500;
-    color: var(--gold);
-    margin-top: 8px;
-  }
-
-  .price-amount {
-    font-family: 'Playfair Display', serif;
-    font-size: 5rem;
-    font-weight: 900;
-    color: white;
-    line-height: 1;
-  }
-
-  .price-note {
-    font-size: 0.8rem;
-    color: rgba(245,240,232,0.5);
-    letter-spacing: 0.05em;
-  }
-
-  .price-original-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 4px;
-  }
-
-  .price-original {
-    font-size: 1.3rem;
-    font-weight: 500;
-    color: rgba(245,240,232,0.45);
-    text-decoration: line-through;
-    text-decoration-color: rgba(245,240,232,0.5);
-    font-family: 'Playfair Display', serif;
-  }
-
-  .price-save-badge {
-    background: rgba(212,168,83,0.2);
-    color: var(--gold);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 20px;
-    border: 1px solid rgba(212,168,83,0.35);
-  }
-
-  .pricing-badge-beta {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(212,168,83,0.15);
-    border: 1px solid rgba(212,168,83,0.4);
-    color: var(--gold);
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 5px 14px;
-    border-radius: 20px;
-    margin-bottom: 10px;
-  }
-
-  .price-beta-note {
-    font-size: 0.82rem;
-    color: rgba(245,240,232,0.55);
-    font-style: italic;
-    margin-top: 2px;
-    margin-bottom: 6px;
-  }
-
+  .pricing-card { max-width: 560px; margin: 0 auto; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.12); }
+  .pricing-header { background: var(--forest); padding: 48px 48px 40px; text-align: center; }
+  .pricing-badge-beta { display: inline-flex; align-items: center; gap: 6px; background: rgba(212,168,83,0.15); border: 1px solid rgba(212,168,83,0.4); color: var(--gold); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 10px; }
+  .pricing-name { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--bone); margin-bottom: 8px; }
+  .price-original-row { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 4px; }
+  .price-original { font-size: 1.3rem; font-weight: 500; color: rgba(245,240,232,0.45); text-decoration: line-through; text-decoration-color: rgba(245,240,232,0.5); font-family: 'Playfair Display', serif; }
+  .price-save-badge { background: rgba(212,168,83,0.2); color: var(--gold); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(212,168,83,0.35); }
+  .price-display { display: flex; align-items: flex-start; justify-content: center; gap: 4px; margin: 12px 0 4px; }
+  .price-currency { font-size: 1.4rem; font-weight: 500; color: var(--gold); margin-top: 8px; }
+  .price-amount { font-family: 'Playfair Display', serif; font-size: 5rem; font-weight: 900; color: white; line-height: 1; }
+  .price-beta-note { font-size: 0.82rem; color: rgba(245,240,232,0.55); font-style: italic; margin-top: 2px; margin-bottom: 6px; }
+  .price-note { font-size: 0.8rem; color: rgba(245,240,232,0.5); letter-spacing: 0.05em; }
   .pricing-body { padding: 40px 48px 48px; }
-
   .pricing-features { list-style: none; margin-bottom: 36px; }
-
-  .pricing-features li {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    font-size: 0.95rem;
-    color: var(--ink);
-    line-height: 1.5;
-  }
-
+  .pricing-features li { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 0.95rem; color: var(--ink); line-height: 1.5; }
   .pricing-features li:last-child { border-bottom: none; }
-
-  .check {
-    color: var(--amber);
-    font-size: 1.1rem;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .pricing-cta {
-    width: 100%;
-    background: var(--amber);
-    color: white;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    font-size: 1.05rem;
-    letter-spacing: 0.05em;
-    padding: 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    text-decoration: none;
-    display: block;
-    text-align: center;
-    transition: all 0.25s;
-  }
-
-  .pricing-cta:hover {
-    background: #b5731f;
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(201,132,42,0.35);
-  }
-
-  .pricing-guarantee {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
+  .check { color: var(--amber); font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+  .pricing-cta { width: 100%; background: var(--amber); color: white; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 1.05rem; letter-spacing: 0.05em; padding: 20px; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; display: block; text-align: center; transition: all 0.25s; }
+  .pricing-cta:hover { background: #b5731f; transform: translateY(-2px); box-shadow: 0 12px 30px rgba(201,132,42,0.35); }
+  .pricing-guarantee { text-align: center; margin-top: 20px; font-size: 0.8rem; color: var(--muted); }
 
   /* ── FAQ ── */
   .faq-section { background: var(--card); }
-
   .faq-list { margin-top: 56px; max-width: 680px; }
-
-  .faq-item {
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-    padding: 24px 0;
-  }
-
-  .faq-q {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 10px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-  }
-
+  .faq-item { border-bottom: 1px solid rgba(0,0,0,0.08); padding: 24px 0; }
+  .faq-q { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
   .faq-arrow { color: var(--amber); flex-shrink: 0; font-style: normal; }
-
-  .faq-a {
-    font-size: 0.95rem;
-    line-height: 1.8;
-    color: var(--muted);
-  }
+  .faq-a { font-size: 0.95rem; line-height: 1.8; color: var(--muted); }
 
   /* ── FINAL CTA ── */
-  .final-cta {
-    background: var(--ink);
-    text-align: center;
-    padding: 120px 24px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .final-cta::before {
-    content: '🐾';
-    position: absolute;
-    font-size: 20rem;
-    opacity: 0.04;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
-
+  .final-cta { background: var(--ink); text-align: center; padding: 120px 24px; position: relative; overflow: hidden; }
+  .final-cta::before { content: '🐾'; position: absolute; font-size: 20rem; opacity: 0.04; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
   .final-cta .section-title { color: var(--bone); }
   .final-cta .section-label { color: var(--gold); }
-
-  .final-cta p {
-    color: rgba(245,240,232,0.55);
-    font-size: 1rem;
-    max-width: 520px;
-    margin: 0 auto 40px;
-    line-height: 1.8;
-  }
+  .final-cta p { color: rgba(245,240,232,0.55); font-size: 1rem; max-width: 520px; margin: 0 auto 40px; line-height: 1.8; }
 
   /* ── FOOTER ── */
-  footer {
-    background: #080808;
-    text-align: center;
-    padding: 32px 24px;
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.2);
-    letter-spacing: 0.05em;
-  }
+  footer { background: #080808; text-align: center; padding: 32px 24px; font-size: 0.78rem; color: rgba(255,255,255,0.2); letter-spacing: 0.05em; }
 
   /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(32px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
@@ -703,35 +243,66 @@
   }
 </style>
 </head>
-<body>
+<body class="lang-active-es">
+
+<!-- LANGUAGE BAR -->
+<div class="lang-bar">
+  <button id="btn-es" class="active" onclick="setLang('es')">🇪🇸 Español</button>
+  <span class="sep">|</span>
+  <button id="btn-en" onclick="setLang('en')">🇺🇸 English</button>
+</div>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-texture"></div>
   <div class="hero-inner">
     <div class="paw-row">🐾</div>
-    <span class="hero-eyebrow">Test de autoconocimiento · 22 arquetipos animales</span>
-    <h1 class="hero-title">¿Qué animal<br>eres en el <em>fondo?</em></h1>
-    <p class="hero-subtitle">Descubre tu theriotype y entiéndete como nunca antes.</p>
+    <span class="hero-eyebrow">
+      <span class="lang-es">Test de autoconocimiento · 22 arquetipos animales</span>
+      <span class="lang-en">Self-Knowledge Test · 22 Animal Archetypes</span>
+    </span>
+    <h1 class="hero-title">
+      <span class="lang-es">¿Qué animal<br>eres en el <em>fondo?</em></span>
+      <span class="lang-en">What animal<br>are you, <em>deep down?</em></span>
+    </h1>
+    <p class="hero-subtitle">
+      <span class="lang-es">Descubre tu theriotype y entiéndete como nunca antes.</span>
+      <span class="lang-en">Discover your theriotype and understand yourself like never before.</span>
+    </p>
     <div class="hero-cta-group">
-      <a href="#pricing" class="btn-primary">Descubrir mi theriotype →</a>
+      <a href="#pricing" class="btn-primary">
+        <span class="lang-es">Descubrir mi theriotype →</span>
+        <span class="lang-en">Discover my theriotype →</span>
+      </a>
     </div>
   </div>
 </section>
 
 <!-- TICKER -->
 <div class="ticker-wrap">
-  <div class="ticker">
+  <div class="ticker lang-block-es">
     <span>🐺 LOBO</span><span>🦊 ZORRO</span><span>🐻 OSO</span><span>🦅 ÁGUILA</span><span>🐬 DELFÍN</span>
-    <span>🐱 GATO</span><span>🐦‍⬛ CUERVO</span><span>🐍 SERPIENTE</span><span>🦁 LEÓN</span><span>🦋 MARIPOSA</span>
+    <span>🐱 GATO</span><span>🐦‍⬛ CUERVO</span><span>🐆 JAGUAR</span><span>🦁 LEÓN</span><span>🦋 MARIPOSA</span>
     <span>🐘 ELEFANTE</span><span>🐯 TIGRE</span><span>🦉 BÚHO</span><span>🐴 CABALLO</span><span>🐙 PULPO</span>
-    <span>🦝 MAPACHE</span><span>🐧 PINGÜINO</span><span>🦗 MANTIS</span><span>🐺 COYOTE</span><span>🦌 CIERVO</span>
-    <span>🦇 MURCIÉLAGO</span><span>🦚 PAVO REAL</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span>⚡ CHEETAH</span><span>🐧 PINGÜINO</span><span>🖤 PANTERA NEGRA</span><span>🐺 COYOTE</span><span>🦌 CIERVO</span>
+    <span>🌿 LEOPARDO</span><span>🦚 PAVO REAL</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span>🐺 LOBO</span><span>🦊 ZORRO</span><span>🐻 OSO</span><span>🦅 ÁGUILA</span><span>🐬 DELFÍN</span>
-    <span>🐱 GATO</span><span>🐦‍⬛ CUERVO</span><span>🐍 SERPIENTE</span><span>🦁 LEÓN</span><span>🦋 MARIPOSA</span>
+    <span>🐱 GATO</span><span>🐦‍⬛ CUERVO</span><span>🐆 JAGUAR</span><span>🦁 LEÓN</span><span>🦋 MARIPOSA</span>
     <span>🐘 ELEFANTE</span><span>🐯 TIGRE</span><span>🦉 BÚHO</span><span>🐴 CABALLO</span><span>🐙 PULPO</span>
-    <span>🦝 MAPACHE</span><span>🐧 PINGÜINO</span><span>🦗 MANTIS</span><span>🐺 COYOTE</span><span>🦌 CIERVO</span>
-    <span>🦇 MURCIÉLAGO</span><span>🦚 PAVO REAL</span>
+    <span>⚡ CHEETAH</span><span>🐧 PINGÜINO</span><span>🖤 PANTERA NEGRA</span><span>🐺 COYOTE</span><span>🦌 CIERVO</span>
+    <span>🌿 LEOPARDO</span><span>🦚 PAVO REAL</span>
+  </div>
+  <div class="ticker lang-block-en">
+    <span>🐺 WOLF</span><span>🦊 FOX</span><span>🐻 BEAR</span><span>🦅 EAGLE</span><span>🐬 DOLPHIN</span>
+    <span>🐱 CAT</span><span>🐦‍⬛ RAVEN</span><span>🐆 JAGUAR</span><span>🦁 LION</span><span>🐘 ELEPHANT</span>
+    <span>🐯 WHITE TIGER</span><span>🦉 OWL</span><span>🐴 HORSE</span><span>🐙 OCTOPUS</span><span>⚡ CHEETAH</span>
+    <span>🐧 PENGUIN</span><span>🖤 BLACK PANTHER</span><span>🐺 COYOTE</span><span>🦌 DEER</span><span>🌿 LEOPARD</span>
+    <span>🔥 TIGER</span><span>🦚 PEACOCK</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span>🐺 WOLF</span><span>🦊 FOX</span><span>🐻 BEAR</span><span>🦅 EAGLE</span><span>🐬 DOLPHIN</span>
+    <span>🐱 CAT</span><span>🐦‍⬛ RAVEN</span><span>🐆 JAGUAR</span><span>🦁 LION</span><span>🐘 ELEPHANT</span>
+    <span>🐯 WHITE TIGER</span><span>🦉 OWL</span><span>🐴 HORSE</span><span>🐙 OCTOPUS</span><span>⚡ CHEETAH</span>
+    <span>🐧 PENGUIN</span><span>🖤 BLACK PANTHER</span><span>🐺 COYOTE</span><span>🦌 DEER</span><span>🌿 LEOPARD</span>
+    <span>🔥 TIGER</span><span>🦚 PEACOCK</span>
   </div>
 </div>
 
@@ -740,25 +311,43 @@
   <div class="container">
     <div class="about-grid">
       <div class="about-text reveal">
-        <span class="section-label">¿De qué va esto?</span>
-        <h2 class="section-title">Más que un test viral.<br>Una <em>herramienta real.</em></h2>
-        <p class="section-body">El fenómeno Therian explotó en redes con una pregunta que, en el fondo, todos nos hemos hecho: <strong>¿qué hay en mí de animal?</strong></p>
+        <span class="section-label">
+          <span class="lang-es">¿De qué va esto?</span>
+          <span class="lang-en">What is this?</span>
+        </span>
+        <h2 class="section-title">
+          <span class="lang-es">Más que un test viral.<br>Una <em>herramienta real.</em></span>
+          <span class="lang-en">More than a viral test.<br>A <em>real tool.</em></span>
+        </h2>
+        <p class="section-body lang-block-es">El fenómeno Therian explotó en redes con una pregunta que, en el fondo, todos nos hemos hecho: <strong>¿qué hay en mí de animal?</strong></p>
+        <p class="section-body lang-block-en">The Therian phenomenon exploded on social media with a question that, deep down, we've all asked ourselves: <strong>what animal lives inside me?</strong></p>
         <br>
-        <p class="section-body">Este test combina los 22 arquetipos animales más poderosos con psicología real de personalidad. El resultado no es solo divertido: es un espejo preciso de cómo piensas, amas, lideras y te recuperas.</p>
+        <p class="section-body lang-block-es">Este test combina los 22 arquetipos animales más poderosos con psicología real de personalidad. El resultado no es solo divertido: es un espejo preciso de cómo piensas, amas, lideras y te recuperas.</p>
+        <p class="section-body lang-block-en">This test combines the 22 most powerful animal archetypes with real personality psychology. The result isn't just fun — it's a precise mirror of how you think, love, lead, and bounce back.</p>
         <br>
-        <p class="section-body">Con base en patrones de comportamiento reales. Con una pizca de humor. Sin rodeos.</p>
+        <p class="section-body lang-block-es">Con base en patrones de comportamiento reales. Con una pizca de humor. Sin rodeos.</p>
+        <p class="section-body lang-block-en">Built on real behavioral patterns. With a dash of humor. No sugarcoating.</p>
         <div class="stats-row">
           <div class="stat">
             <span class="stat-num">22</span>
-            <span class="stat-label">Theriotypes únicos</span>
+            <span class="stat-label">
+              <span class="lang-es">Theriotypes únicos</span>
+              <span class="lang-en">Unique Theriotypes</span>
+            </span>
           </div>
           <div class="stat">
             <span class="stat-num">15</span>
-            <span class="stat-label">Preguntas del test</span>
+            <span class="stat-label">
+              <span class="lang-es">Preguntas del test</span>
+              <span class="lang-en">Test Questions</span>
+            </span>
           </div>
           <div class="stat">
             <span class="stat-num">5</span>
-            <span class="stat-label">Áreas de vida</span>
+            <span class="stat-label">
+              <span class="lang-es">Áreas de vida</span>
+              <span class="lang-en">Life Areas</span>
+            </span>
           </div>
         </div>
       </div>
@@ -769,14 +358,22 @@
   </div>
 </section>
 
-<!-- ANIMALS -->
+<!-- ANIMALS GRID -->
 <section class="animals-section">
   <div class="container">
     <div class="reveal">
-      <span class="section-label">Los 22 arquetipos</span>
-      <h2 class="section-title">¿Cuál eres <em>tú?</em></h2>
+      <span class="section-label">
+        <span class="lang-es">Los 22 arquetipos</span>
+        <span class="lang-en">The 22 Archetypes</span>
+      </span>
+      <h2 class="section-title">
+        <span class="lang-es">¿Cuál eres <em>tú?</em></span>
+        <span class="lang-en">Which one are <em>you?</em></span>
+      </h2>
     </div>
-    <div class="animals-grid">
+
+    <!-- ES GRID -->
+    <div class="animals-grid lang-block-es">
       <div class="animal-card reveal"><span class="emoji">🐺</span><span class="aname">El Lobo</span><span class="atag">Solo soy peligroso. Con los míos, invencible.</span></div>
       <div class="animal-card reveal"><span class="emoji">🦊</span><span class="aname">El Zorro</span><span class="atag">No soy el más fuerte. Solo el más listo.</span></div>
       <div class="animal-card reveal"><span class="emoji">🐻</span><span class="aname">El Oso</span><span class="atag">Tranquilo. Pero no me confundas con manso.</span></div>
@@ -800,6 +397,32 @@
       <div class="animal-card reveal"><span class="emoji">🌿</span><span class="aname">El Leopardo</span><span class="atag">Soy elegante en el caos y letal en la calma.</span></div>
       <div class="animal-card reveal"><span class="emoji">🦚</span><span class="aname">El Pavo Real</span><span class="atag">No me disculpo por brillar. Para eso están las plumas.</span></div>
     </div>
+
+    <!-- EN GRID -->
+    <div class="animals-grid lang-block-en">
+      <div class="animal-card reveal"><span class="emoji">🐺</span><span class="aname">The Wolf</span><span class="atag">Alone I'm dangerous. With my pack, unstoppable.</span></div>
+      <div class="animal-card reveal"><span class="emoji">🦊</span><span class="aname">The Fox</span><span class="atag">Not the strongest. Just the smartest.</span></div>
+      <div class="animal-card reveal"><span class="emoji">🐻</span><span class="aname">The Bear</span><span class="atag">Calm. But don't mistake that for gentle.</span></div>
+      <div class="animal-card reveal"><span class="emoji">🦅</span><span class="aname">The Eagle</span><span class="atag">While others look at the ground, I see the horizon.</span></div>
+      <div class="animal-card reveal"><span class="emoji">🐬</span><span class="aname">The Dolphin</span><span class="atag">Life's too short not to enjoy every second of it.</span></div>
+      <div class="animal-card reveal"><span class="emoji">🐱</span><span class="aname">The Cat</span><span class="atag">My affection is selective. That's what makes it valuable.</span></div>
+      <div class="animal-card reveal"><span class="emoji">🐦‍⬛</span><span class="aname">The Raven</span><span class="atag">I see what others choose to ignore.</span></div>
+      <div class="animal-card reveal"><span class="emoji">🐆</span><span class="aname">The Jaguar</span><span class="atag">I don't chase what I want. I position myself until it can't escape.</span></div>
+      <div class="animal-card reveal"><span class="emoji">🦁</span><span class="aname">The Lion</span><span class="atag">I'm not trying to be the center. I just am magnetic.</span></div>
+      <div class="animal-card reveal"><span class="emoji">🐯</span><span class="aname">The White Tiger</span><span class="atag">I'm the rarity the world needed but didn't know how to ask for.</span></div>
+      <div class="animal-card reveal"><span class="emoji">🐘</span><span class="aname">The Elephant</span><span class="atag">I remember everything. Especially what actually matters.</span></div>
+      <div class="animal-card reveal"><span class="emoji">🔥</span><span class="aname">The Tiger</span><span class="atag">I'm peace... until I'm not.</span></div>
+      <div class="animal-card reveal"><span class="emoji">🦉</span><span class="aname">The Owl</span><span class="atag">Most people sleep when I start to think.</span></div>
+      <div class="animal-card reveal"><span class="emoji">🐴</span><span class="aname">The Horse</span><span class="atag">Freedom is my basic condition for existence.</span></div>
+      <div class="animal-card reveal"><span class="emoji">🐙</span><span class="aname">The Octopus</span><span class="atag">I don't have one plan. I have eight running simultaneously.</span></div>
+      <div class="animal-card reveal"><span class="emoji">⚡</span><span class="aname">The Cheetah</span><span class="atag">While others are still planning, I've already arrived.</span></div>
+      <div class="animal-card reveal"><span class="emoji">🐧</span><span class="aname">The Penguin</span><span class="atag">In the coldest storm, I'm the one still standing.</span></div>
+      <div class="animal-card reveal"><span class="emoji">🖤</span><span class="aname">The Black Panther</span><span class="atag">What you see is what I choose to show you. The rest is mine alone.</span></div>
+      <div class="animal-card reveal"><span class="emoji">🐺</span><span class="aname">The Coyote</span><span class="atag">I fell seven times. I laughed every single one.</span></div>
+      <div class="animal-card reveal"><span class="emoji">🦌</span><span class="aname">The Deer</span><span class="atag">My sensitivity isn't fragility. It's how I feel the world.</span></div>
+      <div class="animal-card reveal"><span class="emoji">🌿</span><span class="aname">The Leopard</span><span class="atag">Elegant in chaos. Lethal in calm.</span></div>
+      <div class="animal-card reveal"><span class="emoji">🦚</span><span class="aname">The Peacock</span><span class="atag">I don't apologize for shining. That's what the feathers are for.</span></div>
+    </div>
   </div>
 </section>
 
@@ -807,39 +430,69 @@
 <section class="gets-section">
   <div class="container">
     <div class="reveal">
-      <span class="section-label">¿Qué incluye?</span>
-      <h2 class="section-title" style="color: var(--bone)">Todo lo que necesitas para <em>entenderte.</em></h2>
+      <span class="section-label">
+        <span class="lang-es">¿Qué incluye?</span>
+        <span class="lang-en">What's included?</span>
+      </span>
+      <h2 class="section-title" style="color: var(--bone)">
+        <span class="lang-es">Todo lo que necesitas para <em>entenderte.</em></span>
+        <span class="lang-en">Everything you need to <em>understand yourself.</em></span>
+      </h2>
     </div>
     <div class="gets-grid">
       <div class="get-card reveal">
         <span class="get-icon">🧪</span>
-        <div class="get-title">El Test Completo (15 preguntas)</div>
-        <p class="get-desc">Preguntas de opción múltiple con psicología real detrás. Cada respuesta mapea directamente a tu arquetipo. En 10 minutos tienes tu resultado.</p>
+        <div class="get-title">
+          <span class="lang-es">El Test Completo (15 preguntas)</span>
+          <span class="lang-en">The Full Test (15 Questions)</span>
+        </div>
+        <p class="get-desc lang-block-es">Preguntas de opción múltiple con psicología real detrás. Cada respuesta mapea directamente a tu arquetipo. En 10 minutos tienes tu resultado.</p>
+        <p class="get-desc lang-block-en">Multiple-choice questions with real psychology behind every option. Each answer maps directly to your archetype. In 10 minutes, you have your result.</p>
       </div>
       <div class="get-card reveal">
         <span class="get-icon">🐾</span>
-        <div class="get-title">Tu Perfil Theriotype Completo</div>
-        <p class="get-desc">Descripción profunda de tu arquetipo animal: quién eres, cómo piensas, qué te mueve y qué te frena. Sin suavizar nada.</p>
+        <div class="get-title">
+          <span class="lang-es">Tu Perfil Theriotype Completo</span>
+          <span class="lang-en">Your Complete Theriotype Profile</span>
+        </div>
+        <p class="get-desc lang-block-es">Descripción profunda de tu arquetipo animal: quién eres, cómo piensas, qué te mueve y qué te frena. Sin suavizar nada.</p>
+        <p class="get-desc lang-block-en">A deep description of your animal archetype: who you are, how you think, what drives you, and what holds you back. Nothing softened.</p>
       </div>
       <div class="get-card reveal">
         <span class="get-icon">💼</span>
-        <div class="get-title">Cómo Eres en el Trabajo</div>
-        <p class="get-desc">Tu estilo de liderazgo, colaboración y rendimiento. Entender tu theriotype en el trabajo puede cambiar cómo te relacionas con tu carrera.</p>
+        <div class="get-title">
+          <span class="lang-es">Cómo Eres en el Trabajo</span>
+          <span class="lang-en">How You Show Up at Work</span>
+        </div>
+        <p class="get-desc lang-block-es">Tu estilo de liderazgo, colaboración y rendimiento. Entender tu theriotype en el trabajo puede cambiar cómo te relacionas con tu carrera.</p>
+        <p class="get-desc lang-block-en">Your leadership style, collaboration patterns, and performance mode. Understanding your theriotype at work can shift how you relate to your career.</p>
       </div>
       <div class="get-card reveal">
         <span class="get-icon">❤️</span>
-        <div class="get-title">Cómo Amas y te Relacionas</div>
-        <p class="get-desc">Tu lenguaje del amor, tus necesidades en pareja y lo que te hace imposible de ignorar. Honesto hasta donde duele un poco.</p>
+        <div class="get-title">
+          <span class="lang-es">Cómo Amas y te Relacionas</span>
+          <span class="lang-en">How You Love and Connect</span>
+        </div>
+        <p class="get-desc lang-block-es">Tu lenguaje del amor, tus necesidades en pareja y lo que te hace imposible de ignorar. Honesto hasta donde duele un poco.</p>
+        <p class="get-desc lang-block-en">Your love language, your needs in a relationship, and what makes you impossible to ignore. Honest to the point of stinging a little.</p>
       </div>
       <div class="get-card reveal">
         <span class="get-icon">⚡</span>
-        <div class="get-title">Tus Puntos Ciegos (con amor)</div>
-        <p class="get-desc">Lo que probablemente todos ven en ti menos tú. Dicho con respeto, pero sin filtros. Porque el autoconocimiento real incomoda un poco.</p>
+        <div class="get-title">
+          <span class="lang-es">Tus Puntos Ciegos (con amor)</span>
+          <span class="lang-en">Your Blind Spots (with care)</span>
+        </div>
+        <p class="get-desc lang-block-es">Lo que probablemente todos ven en ti menos tú. Dicho con respeto, pero sin filtros. Porque el autoconocimiento real incomoda un poco.</p>
+        <p class="get-desc lang-block-en">What everyone around you probably sees except you. Said with respect, but without filters. Because real self-knowledge is a little uncomfortable.</p>
       </div>
       <div class="get-card reveal">
         <span class="get-icon">🎯</span>
-        <div class="get-title">5 Acciones de Desarrollo Personal</div>
-        <p class="get-desc">No teoría. Acciones concretas y específicas para tu theriotype que puedes implementar esta misma semana.</p>
+        <div class="get-title">
+          <span class="lang-es">5 Acciones de Desarrollo Personal</span>
+          <span class="lang-en">5 Personal Growth Actions</span>
+        </div>
+        <p class="get-desc lang-block-es">No teoría. Acciones concretas y específicas para tu theriotype que puedes implementar esta misma semana.</p>
+        <p class="get-desc lang-block-en">No theory. Concrete, specific actions for your theriotype that you can implement this very week.</p>
       </div>
     </div>
   </div>
@@ -849,24 +502,36 @@
 <section class="testimonials-section">
   <div class="container">
     <div class="reveal">
-      <span class="section-label">Lo que dicen</span>
-      <h2 class="section-title">Resultados que <em>resuenan.</em></h2>
+      <span class="section-label">
+        <span class="lang-es">Lo que dicen</span>
+        <span class="lang-en">What people say</span>
+      </span>
+      <h2 class="section-title">
+        <span class="lang-es">Resultados que <em>resuenan.</em></span>
+        <span class="lang-en">Results that <em>resonate.</em></span>
+      </h2>
     </div>
     <div class="testimonials-grid">
       <div class="testimonial reveal">
-        <p class="testimonial-text">Me salió Cuervo y lo leí tres veces. Cada línea era como si alguien me hubiera espiado toda la vida. Asustador y liberador al mismo tiempo.</p>
+        <p class="testimonial-text lang-block-es">Me salió Cuervo y lo leí tres veces. Cada línea era como si alguien me hubiera espiado toda la vida. Asustador y liberador al mismo tiempo.</p>
+        <p class="testimonial-text lang-block-en">I got Raven and read it three times. Every single line felt like someone had been watching me my whole life. Equal parts unsettling and freeing.</p>
         <div class="testimonial-author">Andrea M.</div>
-        <div class="testimonial-animal">🐦‍⬛ Theriotype: Cuervo</div>
+        <div class="testimonial-animal">
+          <span class="lang-es">🐦‍⬛ Theriotype: Cuervo</span>
+          <span class="lang-en">🐦‍⬛ Theriotype: Raven</span>
+        </div>
       </div>
       <div class="testimonial reveal">
-        <p class="testimonial-text">Pensé que iba a ser un test gracioso y listo. Terminé enviándoselo a todo mi grupo de trabajo porque describe perfectamente cómo somos cada uno.</p>
+        <p class="testimonial-text lang-block-es">Pensé que iba a ser un test gracioso y listo. Terminé enviándoselo a todo mi grupo de trabajo porque describe perfectamente cómo somos cada uno.</p>
+        <p class="testimonial-text lang-block-en">I thought it was going to be a fun little quiz and that's it. I ended up sending it to my entire team because it nails exactly how each of us operates.</p>
         <div class="testimonial-author">Carlos V.</div>
-        <div class="testimonial-animal">🦁 Theriotype: León</div>
+        <div class="testimonial-animal">🦁 Theriotype: <span class="lang-es">León</span><span class="lang-en">Lion</span></div>
       </div>
       <div class="testimonial reveal">
-        <p class="testimonial-text">La parte de 'puntos ciegos' me dejó sin palabras. Nadie me lo había dicho tan directo. Necesitaba leerlo de esta forma para poder trabajarlo.</p>
+        <p class="testimonial-text lang-block-es">La parte de 'puntos ciegos' me dejó sin palabras. Nadie me lo había dicho tan directo. Necesitaba leerlo de esta forma para poder trabajarlo.</p>
+        <p class="testimonial-text lang-block-en">The blind spots section left me speechless. No one had ever said it that directly to me. I needed to read it this way to actually work on it.</p>
         <div class="testimonial-author">Daniela R.</div>
-        <div class="testimonial-animal">🐯 Theriotype: Tigre Blanco</div>
+        <div class="testimonial-animal">🐯 Theriotype: <span class="lang-es">Tigre Blanco</span><span class="lang-en">White Tiger</span></div>
       </div>
     </div>
   </div>
@@ -878,21 +543,36 @@
     <div class="reveal">
       <div class="pricing-card">
         <div class="pricing-header">
-          <span class="pricing-badge-beta">⚡ Fase Beta · Oferta de Lanzamiento</span>
-          <div class="pricing-name">Descubre Tu Theriotype</div>
+          <span class="pricing-badge-beta">
+            <span class="lang-es">⚡ Fase Beta · Oferta de Lanzamiento</span>
+            <span class="lang-en">⚡ Beta Phase · Launch Offer</span>
+          </span>
+          <div class="pricing-name">
+            <span class="lang-es">Descubre Tu Theriotype</span>
+            <span class="lang-en">Discover Your Theriotype</span>
+          </div>
           <div class="price-original-row">
             <span class="price-original">$15.00 USD</span>
-            <span class="price-save-badge">Ahorras 73%</span>
+            <span class="price-save-badge">
+              <span class="lang-es">Ahorras 73%</span>
+              <span class="lang-en">Save 73%</span>
+            </span>
           </div>
           <div class="price-display">
             <span class="price-currency">$</span>
             <span class="price-amount">3.99</span>
           </div>
-          <div class="price-beta-note">Este análisis detallado suele costar $15 — descúbrelo hoy por solo $3.99</div>
-          <div class="price-note">USD · Pago único · Acceso inmediato</div>
+          <div class="price-beta-note">
+            <span class="lang-es">Este análisis detallado suele costar $15 — descúbrelo hoy por solo $3.99</span>
+            <span class="lang-en">This in-depth analysis normally runs $15 — get it today for just $3.99</span>
+          </div>
+          <div class="price-note">
+            <span class="lang-es">USD · Pago único · Acceso inmediato</span>
+            <span class="lang-en">USD · One-time payment · Instant access</span>
+          </div>
         </div>
         <div class="pricing-body">
-          <ul class="pricing-features">
+          <ul class="pricing-features lang-block-es">
             <li><span class="check">✦</span> Test de 15 preguntas con sistema de puntuación</li>
             <li><span class="check">✦</span> Los 22 theriotypes con perfil psicológico completo</li>
             <li><span class="check">✦</span> Análisis de trabajo, amor y conflicto</li>
@@ -901,8 +581,23 @@
             <li><span class="check">✦</span> PDF descargable de alta calidad</li>
             <li><span class="check">✦</span> Acceso inmediato después del pago</li>
           </ul>
-          <a href="https://pay.hotmart.com/T105436103V" class="pricing-cta">Quiero descubrir mi theriotype →</a>
-          <p class="pricing-guarantee">🔒 Compra 100% segura vía Hotmart &nbsp;·&nbsp; Garantía de 7 días</p>
+          <ul class="pricing-features lang-block-en">
+            <li><span class="check">✦</span> 15-question test with full scoring system</li>
+            <li><span class="check">✦</span> All 22 theriotypes with complete psychological profiles</li>
+            <li><span class="check">✦</span> Work, love, and conflict analysis</li>
+            <li><span class="check">✦</span> Strengths and blind spots for your archetype</li>
+            <li><span class="check">✦</span> 5 concrete personal growth actions</li>
+            <li><span class="check">✦</span> High-quality downloadable PDF</li>
+            <li><span class="check">✦</span> Instant access after payment</li>
+          </ul>
+          <a href="https://pay.hotmart.com/T105436103V" class="pricing-cta">
+            <span class="lang-es">Quiero descubrir mi theriotype →</span>
+            <span class="lang-en">I want to discover my theriotype →</span>
+          </a>
+          <p class="pricing-guarantee">
+            <span class="lang-es">🔒 Compra 100% segura vía Hotmart &nbsp;·&nbsp; Garantía de 7 días</span>
+            <span class="lang-en">🔒 100% secure checkout via Hotmart &nbsp;·&nbsp; 7-day money-back guarantee</span>
+          </p>
         </div>
       </div>
     </div>
@@ -913,10 +608,18 @@
 <section class="faq-section">
   <div class="container">
     <div class="reveal">
-      <span class="section-label">Preguntas frecuentes</span>
-      <h2 class="section-title">Lo que quizás <em>te preguntas.</em></h2>
+      <span class="section-label">
+        <span class="lang-es">Preguntas frecuentes</span>
+        <span class="lang-en">Frequently Asked Questions</span>
+      </span>
+      <h2 class="section-title">
+        <span class="lang-es">Lo que quizás <em>te preguntas.</em></span>
+        <span class="lang-en">Things you might <em>be wondering.</em></span>
+      </h2>
     </div>
-    <div class="faq-list reveal">
+
+    <!-- ES FAQ -->
+    <div class="faq-list reveal lang-block-es">
       <div class="faq-item">
         <div class="faq-q">¿Necesito saber algo sobre el mundo Therian para hacer el test? <span class="faq-arrow">↓</span></div>
         <p class="faq-a">Para nada. El test está diseñado para cualquier persona, sin importar si conoces el fenómeno Therian o es la primera vez que escuchas el término. Solo necesitas conocerte a ti mismo.</p>
@@ -938,50 +641,116 @@
         <p class="faq-a">Tienes 7 días de garantía. Si sientes que el producto no cumplió lo que prometía, puedes solicitar el reembolso sin preguntas incómodas.</p>
       </div>
     </div>
+
+    <!-- EN FAQ -->
+    <div class="faq-list reveal lang-block-en">
+      <div class="faq-item">
+        <div class="faq-q">Do I need to know anything about the Therian world to take this test? <span class="faq-arrow">↓</span></div>
+        <p class="faq-a">Not at all. The test is designed for anyone, whether you're deep in the Therian community or hearing the term for the first time. All you need is a little self-awareness.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How long does it take? <span class="faq-arrow">↓</span></div>
+        <p class="faq-a">The test has 15 questions and takes about 8–12 minutes. Reading your full profile may take another 15–20 minutes, depending on how long you sit with each section.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is this scientifically based or just entertainment? <span class="faq-arrow">↓</span></div>
+        <p class="faq-a">It's an intentional middle ground. The archetypes are built on real psychological logic — personality traits, behavioral patterns, attachment styles. It's not a clinical diagnosis, but it's not a horoscope either. Think of it as pop psychology with real substance.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I receive my product after paying? <span class="faq-arrow">↓</span></div>
+        <p class="faq-a">Immediately after payment, Hotmart will email you a download link for your PDF. It will also be permanently available in your Hotmart library.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if I'm not satisfied? <span class="faq-arrow">↓</span></div>
+        <p class="faq-a">You have a 7-day money-back guarantee. If you feel the product didn't deliver on what it promised, you can request a full refund — no awkward questions asked.</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- FINAL CTA -->
 <section class="final-cta">
   <div class="container-sm">
-    <span class="section-label">El momento es ahora</span>
-    <h2 class="section-title" style="margin-bottom: 20px;">Tu animal interior<br>lleva tiempo <em>esperando.</em></h2>
-    <p>El quiz es gratuito. Si lo que descubres sobre ti te resuena, desbloqueas el reporte completo de tu arquetipo por solo <strong>$3.99</strong> — precio de lanzamiento beta, antes de que suba a $15. Sin relleno. Sin vueltas. Solo el espejo que necesitabas.</p>
-    <a href="#pricing" class="btn-primary">Descubrir mi theriotype →</a>
+    <span class="section-label">
+      <span class="lang-es">El momento es ahora</span>
+      <span class="lang-en">The moment is now</span>
+    </span>
+    <h2 class="section-title" style="margin-bottom: 20px;">
+      <span class="lang-es">Tu animal interior<br>lleva tiempo <em>esperando.</em></span>
+      <span class="lang-en">Your inner animal<br>has been <em>waiting.</em></span>
+    </h2>
+    <p class="lang-block-es">El quiz es gratuito. Si lo que descubres sobre ti te resuena, desbloqueas el reporte completo de tu arquetipo por solo <strong>$3.99</strong> — precio de lanzamiento beta, antes de que suba a $15. Sin relleno. Sin vueltas. Solo el espejo que necesitabas.</p>
+    <p class="lang-block-en">The quiz is free. If what you discover about yourself resonates, unlock your complete archetype report for just <strong>$3.99</strong> — beta launch price, before it goes up to $15. No filler. No fluff. Just the mirror you needed.</p>
+    <a href="#pricing" class="btn-primary">
+      <span class="lang-es">Descubrir mi theriotype →</span>
+      <span class="lang-en">Discover my theriotype →</span>
+    </a>
   </div>
 </section>
 
 <footer>
-  © 2025 · Descubre Tu Theriotype · Todos los derechos reservados
+  <span class="lang-es">© 2025 · Descubre Tu Theriotype · Todos los derechos reservados</span>
+  <span class="lang-en">© 2025 · Discover Your Theriotype · All rights reserved</span>
 </footer>
 
 <script>
-  // Intersection Observer for reveal animations
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 60);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
+// ════════════════════════════════════════════
+//  LANGUAGE TOGGLE
+// ════════════════════════════════════════════
+function setLang(lang) {
+  document.body.className = `lang-active-${lang}`;
+  document.getElementById('html-root').lang = lang;
+  document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('page-title').textContent = lang === 'es'
+    ? 'Descubre Tu Theriotype | ¿Qué animal eres en el fondo?'
+    : 'Discover Your Theriotype | What animal are you, deep down?';
 
-  reveals.forEach(el => observer.observe(el));
+  // Re-trigger reveal observer for newly visible elements
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight) {
+      el.classList.add('visible');
+    }
+  });
+}
 
-  // Rotate hero emoji
-  const emojis = ['🐺','🦊','🐻','🦅','🐬','🐱','🦁','🦋','🐯','🦉'];
-  const circle = document.querySelector('.animal-circle');
-  let idx = 0;
-  setInterval(() => {
-    idx = (idx + 1) % emojis.length;
-    circle.style.transition = 'opacity 0.4s';
-    circle.style.opacity = '0';
-    setTimeout(() => {
-      circle.textContent = emojis[idx];
-      circle.style.opacity = '1';
-    }, 400);
-  }, 2500);
+// ════════════════════════════════════════════
+//  REVEAL ON SCROLL
+// ════════════════════════════════════════════
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+
+// ════════════════════════════════════════════
+//  ROTATING ANIMAL EMOJI
+// ════════════════════════════════════════════
+const emojis = ['🐺','🦊','🐻','🦅','🐬','🐱','🦁','🔥','🐯','🦉'];
+const circle = document.querySelector('.animal-circle');
+let idx = 0;
+setInterval(() => {
+  idx = (idx + 1) % emojis.length;
+  circle.style.transition = 'opacity 0.4s';
+  circle.style.opacity = '0';
+  setTimeout(() => {
+    circle.textContent = emojis[idx];
+    circle.style.opacity = '1';
+  }, 400);
+}, 2500);
+
+// ════════════════════════════════════════════
+//  INIT — detect ?lang= param
+// ════════════════════════════════════════════
+(function init() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('lang') === 'en') setLang('en');
+})();
 </script>
 </body>
 </html>
